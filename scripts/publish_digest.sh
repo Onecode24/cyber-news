@@ -17,7 +17,8 @@ TOKEN_FILE="${GH_TOKEN_FILE:-$HOME/.config/cyberdigest/gh_token}"
 TOKEN="$(cat "$TOKEN_FILE")"
 SLUG="$(date +%Y-%m-%d-%H%M)"
 BRANCH="digest/${SLUG}"
-DEST="digests/${SLUG}.md"
+EXT="${CONTENT_FILE##*.}"
+DEST="digests/${SLUG}.${EXT}"
 
 cd "$REPO_DIR"
 git fetch origin main
