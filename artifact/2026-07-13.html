@@ -1,79 +1,45 @@
 <title>Cybersecurity Digest — July 13, 2026</title>
 <style>
   :root {
-    --bg: #f4f6f9;
-    --panel: #ffffff;
-    --panel-border: #dde3ec;
-    --ink: #141a24;
-    --ink-soft: #4b5567;
-    --muted: #7c8797;
-    --accent: #0f6e63;
-    --accent-soft: #e2f2ef;
-    --rule: #d8dfe9;
-    --sev-critical: #b3271e;
-    --sev-critical-bg: #fbeaea;
-    --sev-high: #a1600a;
-    --sev-high-bg: #fbf1e0;
-    --sev-info: #2557a7;
-    --sev-info-bg: #e9f0fb;
-    --link: #0f6e63;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d1117;
-      --panel: #141b26;
-      --panel-border: #262f3d;
-      --ink: #e7ecf3;
-      --ink-soft: #b6c0cf;
-      --muted: #8894a6;
-      --accent: #4fd1c0;
-      --accent-soft: #16302c;
-      --rule: #263043;
-      --sev-critical: #ff8a80;
-      --sev-critical-bg: #3a1a19;
-      --sev-high: #f2b866;
-      --sev-high-bg: #3a2a12;
-      --sev-info: #8bb4e8;
-      --sev-info-bg: #16233a;
-      --link: #6fe0cf;
-    }
+    --bg: #ECEEF1;
+    --paper: #F7F8F9;
+    --ink: #14181D;
+    --ink-soft: #454C55;
+    --rule: #C7CCD2;
+    --accent: #0F6E63;
+    --breach: #A8382E;
+    --vuln: #A3631A;
+    --policy: #2E5FA3;
+    --ai: #0F6E63;
+    --code-bg: #E7E9EC;
   }
   :root[data-theme="dark"] {
-    --bg: #0d1117;
-    --panel: #141b26;
-    --panel-border: #262f3d;
-    --ink: #e7ecf3;
-    --ink-soft: #b6c0cf;
-    --muted: #8894a6;
-    --accent: #4fd1c0;
-    --accent-soft: #16302c;
-    --rule: #263043;
-    --sev-critical: #ff8a80;
-    --sev-critical-bg: #3a1a19;
-    --sev-high: #f2b866;
-    --sev-high-bg: #3a2a12;
-    --sev-info: #8bb4e8;
-    --sev-info-bg: #16233a;
-    --link: #6fe0cf;
+    --bg: #0B0E12;
+    --paper: #12161B;
+    --ink: #DDE2E7;
+    --ink-soft: #9AA4AE;
+    --rule: #2A3138;
+    --accent: #4FC3B4;
+    --breach: #E08277;
+    --vuln: #E0A25A;
+    --policy: #7FA8DE;
+    --ai: #4FC3B4;
+    --code-bg: #1A2027;
   }
-  :root[data-theme="light"] {
-    --bg: #f4f6f9;
-    --panel: #ffffff;
-    --panel-border: #dde3ec;
-    --ink: #141a24;
-    --ink-soft: #4b5567;
-    --muted: #7c8797;
-    --accent: #0f6e63;
-    --accent-soft: #e2f2ef;
-    --rule: #d8dfe9;
-    --sev-critical: #b3271e;
-    --sev-critical-bg: #fbeaea;
-    --sev-high: #a1600a;
-    --sev-high-bg: #fbf1e0;
-    --sev-info: #2557a7;
-    --sev-info-bg: #e9f0fb;
-    --link: #0f6e63;
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B0E12;
+      --paper: #12161B;
+      --ink: #DDE2E7;
+      --ink-soft: #9AA4AE;
+      --rule: #2A3138;
+      --accent: #4FC3B4;
+      --breach: #E08277;
+      --vuln: #E0A25A;
+      --policy: #7FA8DE;
+      --ai: #4FC3B4;
+      --code-bg: #1A2027;
+    }
   }
 
   * { box-sizing: border-box; }
@@ -81,293 +47,278 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap {
-    max-width: 760px;
+  .sheet {
+    max-width: 700px;
     margin: 0 auto;
-    padding: 0 20px 64px;
+    padding: 2.5rem 1.5rem 4rem;
   }
-
   header.masthead {
-    padding: 48px 0 28px;
     border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2rem;
   }
   .kicker {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 10px;
+    margin-bottom: 0.4rem;
   }
-  h1.title {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: clamp(32px, 6vw, 46px);
-    font-weight: 700;
-    margin: 0 0 8px;
-    letter-spacing: -0.01em;
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 2.1rem;
+    margin: 0 0 0.35rem;
     text-wrap: balance;
+    letter-spacing: -0.01em;
   }
   .dateline {
-    font-size: 15px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
     color: var(--ink-soft);
-    margin: 0;
-  }
-  .intro {
-    color: var(--ink-soft);
-    font-size: 15px;
-    max-width: 62ch;
-    margin: 14px 0 0;
   }
 
-  section.block { margin-top: 44px; }
-  h2.section-head {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 13px;
-    letter-spacing: 0.12em;
+  section.block { margin-bottom: 2.6rem; }
+  h2.section-title {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 18px;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.3rem;
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  h2.section-head::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
-
-  h3.cat-head {
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 28px 0 12px;
-  }
-  h3.cat-head:first-of-type { margin-top: 0; }
-
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--panel-border);
-    border-radius: 6px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-  }
-  .card-top {
-    display: flex;
-    justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
-    margin-bottom: 6px;
+    gap: 0.6rem;
   }
-  .card h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 650;
-    color: var(--ink);
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+    font-style: italic;
+  }
+
+  .category { margin-bottom: 1.8rem; }
+  .category-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .category-label.breach { color: var(--breach); }
+  .category-label.vuln { color: var(--vuln); }
+  .category-label.policy { color: var(--policy); }
+  .category-label.ai { color: var(--ai); }
+
+  .item {
+    display: grid;
+    grid-template-columns: 4px 1fr;
+    gap: 0.9rem;
+    padding: 0.15rem 0 1rem;
+  }
+  .item .stripe { border-radius: 2px; }
+  .item.breach .stripe { background: var(--breach); }
+  .item.vuln .stripe { background: var(--vuln); }
+  .item.policy .stripe { background: var(--policy); }
+  .item.ai .stripe { background: var(--ai); }
+
+  .item h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.02rem;
+    font-weight: 600;
     text-wrap: balance;
   }
-  .chip {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 999px;
-    white-space: nowrap;
-    flex-shrink: 0;
+  .item p {
+    margin: 0 0 0.45rem;
+    color: var(--ink);
+    font-size: 0.94rem;
   }
-  .chip.critical { color: var(--sev-critical); background: var(--sev-critical-bg); }
-  .chip.high { color: var(--sev-high); background: var(--sev-high-bg); }
-  .chip.info { color: var(--sev-info); background: var(--sev-info-bg); }
-
-  .card p {
-    margin: 0 0 10px;
+  .item .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.74rem;
     color: var(--ink-soft);
-    font-size: 14.5px;
   }
-  .card a.src {
-    font-size: 13px;
-    color: var(--link);
+  .item .meta a {
+    color: var(--accent);
     text-decoration: none;
     border-bottom: 1px solid currentColor;
   }
-  .card a.src:hover { opacity: 0.8; }
-  .card a.src:focus-visible, a:focus-visible {
+  .item .meta a:hover { opacity: 0.75; }
+  .item .meta a:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
-  .beginner-panel {
-    background: var(--accent-soft);
-    border: 1px solid var(--panel-border);
-    border-left: 4px solid var(--accent);
+  .beginner {
+    background: var(--paper);
+    border: 1px solid var(--rule);
     border-radius: 6px;
-    padding: 24px 24px 22px;
+    padding: 1.6rem 1.7rem;
   }
-  .beginner-eyebrow {
-    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-    font-size: 11px;
+  .beginner .badge {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    background: var(--code-bg);
     color: var(--accent);
-    margin: 0 0 10px;
+    padding: 0.25rem 0.55rem;
+    border-radius: 3px;
+    margin-bottom: 0.9rem;
   }
-  .beginner-panel h3 {
-    margin: 0 0 12px;
-    font-size: 21px;
+  .beginner h3 {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 1.3rem;
+    margin: 0 0 0.7rem;
     text-wrap: balance;
   }
-  .beginner-panel p {
-    margin: 0 0 12px;
-    color: var(--ink-soft);
-    font-size: 15px;
-  }
-  .beginner-panel p:last-child { margin-bottom: 0; }
-  .why-matters {
-    font-size: 13.5px;
-    color: var(--ink);
-    font-weight: 600;
-  }
+  .beginner p { margin: 0 0 0.8rem; font-size: 0.97rem; }
+  .beginner p:last-child { margin-bottom: 0; }
 
   footer {
-    margin-top: 52px;
-    padding-top: 18px;
+    margin-top: 3rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--rule);
-    color: var(--muted);
-    font-size: 12.5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .card { transition: border-color 0.15s ease; }
+  @media (max-width: 480px) {
+    h1 { font-size: 1.7rem; }
+    .sheet { padding: 1.8rem 1.1rem 3rem; }
   }
 </style>
 
-<div class="wrap">
+<div class="sheet">
   <header class="masthead">
-    <p class="kicker">🛡 Cybersecurity Digest</p>
-    <h1 class="title">Cybersecurity Digest</h1>
-    <p class="dateline">Sunday, July 13, 2026 &mdash; a plain-language briefing on the last 48 hours, plus one story to learn from</p>
+    <div class="kicker">Field Briefing · Issue for Newcomers &amp; Practitioners</div>
+    <h1>Cybersecurity Digest</h1>
+    <div class="dateline">Monday, July 13, 2026</div>
   </header>
 
   <section class="block">
-    <h2 class="section-head">Last 48 Hours</h2>
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past few days, grouped by type.</p>
 
-    <h3 class="cat-head">Vulnerabilities &amp; CVEs</h3>
+    <div class="category">
+      <div class="category-label breach">Breaches &amp; Incidents</div>
 
-    <div class="card">
-      <div class="card-top">
-        <h4>Wormable Windows flaw tops July Patch Tuesday</h4>
-        <span class="chip critical">CVSS 9.8</span>
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>Accenture confirms breach after hacker lists stolen data for sale</h3>
+          <p>A threat actor known as "888" claims to have stolen roughly 35GB of Accenture data — including source code, RSA/SSH keys, and Azure access tokens — and put it up for sale. Accenture says the incident is contained with no impact to operations, but hasn't confirmed the scope.</p>
+          <div class="meta">Jul 8, 2026 · <a href="https://www.bleepingcomputer.com/news/security/accenture-confirms-breach-after-hacker-offers-stolen-data-for-sale/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
       </div>
-      <p>Microsoft's July Patch Tuesday includes CVE-2025-47981, a heap-based buffer overflow in the Windows SPNEGO/NEGOEX authentication mechanism that needs no credentials or user interaction and is fully wormable across networked servers &mdash; the month's most urgent fix.</p>
-      <a class="src" href="https://byteiota.com/patch-tuesday-july-2026-cve-tracking/" target="_blank" rel="noopener">byteiota.com &rarr;</a>
+
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>Dutch police close in on suspect behind 6M-record Odido breach</h3>
+          <p>Investigators say a caller posing as an Odido IT technician talked a staffer into bypassing MFA, letting attackers (linked to ShinyHunters) pull 6.2 million customer records. Police have a recording of the caller's voice and say they'll release it publicly if he doesn't come forward.</p>
+          <div class="meta">Jul 11, 2026 · <a href="https://cybernews.com/cybercrime/odido-hack-police-suspect-voice-recording/" target="_blank" rel="noopener">Cybernews</a></div>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>Argentina's football federation hacked amid World Cup controversy</h3>
+          <p>Attackers believed to be Egyptian hacktivists broke into an AFA email account and media-accreditation database, blasting journalists with messages demanding "justice" after a disputed World Cup result. No ransom was demanded, pointing to a grudge rather than a payday.</p>
+          <div class="meta">Jul 10, 2026 · <a href="https://cybernews.com/news/hackers-hijack-argentina-football-federation-fifa-world-cup/" target="_blank" rel="noopener">Cybernews</a></div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-top">
-        <h4>Ubiquiti UniFi Connect hit by perfect-score command injection</h4>
-        <span class="chip critical">CVSS 10.0</span>
+    <div class="category">
+      <div class="category-label vuln">Vulnerabilities &amp; Patch Guidance</div>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>CISA: SharePoint RCE now under active attack — patch immediately</h3>
+          <p>CVE-2026-45659, a deserialization flaw in Microsoft SharePoint Server (CVSS 8.8), is being exploited in the wild and has been added to CISA's Known Exploited Vulnerabilities catalog. Federal agencies were given three days to patch; anyone running on-prem SharePoint should treat that as the deadline too.</p>
+          <div class="meta">Added to KEV Jul 1, 2026 · <a href="https://www.bleepingcomputer.com/news/security/cisa-microsoft-sharepoint-rce-flaw-now-actively-exploited/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
       </div>
-      <p>CVE-2026-50746 lets anyone with network access run commands on the host device through improper access control. It's the third Ubiquiti critical disclosure in as many days, bringing the week's total to 14 new critical CVEs across the vendor's product line.</p>
-      <a class="src" href="https://senserva.com/exploited-this-week.html" target="_blank" rel="noopener">senserva.com &rarr;</a>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>Ubiquiti patches maximum-severity UniFi Connect flaw (CVSS 10.0)</h3>
+          <p>CVE-2026-50746 lets anyone with network access run arbitrary commands on the host with zero authentication — no login, no user click needed. Roughly 100,000 UniFi endpoints sit exposed to the internet; update UniFi Connect to 3.4.20+ now.</p>
+          <div class="meta">Jul 8, 2026 · <a href="https://www.bleepingcomputer.com/news/security/ubiquiti-warns-of-new-max-severity-unifi-os-vulnerability/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>Oracle E-Business Suite flaw still being hit weeks after the patch</h3>
+          <p>CVE-2026-46817 (CVSS 9.8) allows unauthenticated takeover of Oracle Payments and has been actively exploited since late June. Shadowserver still counts roughly 900 exposed EBS instances — if you haven't applied Oracle's Critical Patch Update, this week is the week.</p>
+          <div class="meta">Ongoing since Jun 27, 2026 · <a href="https://www.bleepingcomputer.com/news/security/over-900-oracle-e-business-instances-exposed-to-ongoing-attacks/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-top">
-        <h4>Adobe ColdFusion: 11 critical bugs, 6 at max severity</h4>
-        <span class="chip critical">CVSS 10.0</span>
+    <div class="category">
+      <div class="category-label policy">Industry &amp; Policy</div>
+
+      <div class="item policy">
+        <div class="stripe"></div>
+        <div>
+          <h3>European Commission launches "Grand Challenge" on AI for cybersecurity</h3>
+          <p>Brussels is pulling companies, researchers, and public bodies into a joint push to build AI-driven defensive tools and grow the EU's cybersecurity market, part of a broader plan to address both the risks and the opportunities advanced AI creates for security teams.</p>
+          <div class="meta">Jul 7, 2026 · <a href="https://commission.europa.eu/news-and-media/news/new-eu-plan-address-risks-and-opportunities-advanced-ai-cybersecurity-2026-07-07_en" target="_blank" rel="noopener">European Commission</a></div>
+        </div>
       </div>
-      <p>Adobe patched 11 critical ColdFusion vulnerabilities, six of them scoring a maximum 10.0 and allowing unauthenticated attackers to run arbitrary code. Adobe is urging customers to patch within 72 hours.</p>
-      <a class="src" href="https://threat-modeling.com/vulnerability-intelligence-report-july-9-2026/" target="_blank" rel="noopener">threat-modeling.com &rarr;</a>
     </div>
 
-    <div class="card">
-      <div class="card-top">
-        <h4>Oracle E-Business Suite flaw already being probed by attackers</h4>
-        <span class="chip high">Actively exploited</span>
+    <div class="category">
+      <div class="category-label ai">AI-Driven Defense</div>
+
+      <div class="item ai">
+        <div class="stripe"></div>
+        <div>
+          <h3>iboss gives away free visibility into shadow AI tool usage</h3>
+          <p>iboss launched an AI Security Platform, offered free to any organization, that shows security teams which AI tools employees are actually using — a response to "shadow AI" spreading faster than policy can keep up.</p>
+          <div class="meta">Jul 3, 2026 · <a href="https://www.helpnetsecurity.com/2026/07/03/new-infosec-products-of-the-week-july-3-2026/" target="_blank" rel="noopener">Help Net Security</a></div>
+        </div>
       </div>
-      <p>Oracle disclosed two critical E-Business Suite vulnerabilities under active exploitation attempts. CVE-2026-46817, in the Payments module (CVSS 9.8), is the most urgent, with researchers already confirming exploitation attempts against honeypots.</p>
-      <a class="src" href="https://threat-modeling.com/vulnerability-intelligence-report-july-9-2026/" target="_blank" rel="noopener">threat-modeling.com &rarr;</a>
-    </div>
 
-    <h3 class="cat-head">Breaches &amp; Ransomware</h3>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>Accenture confirms breach of internal source code</h4>
-        <span class="chip high">Breach</span>
+      <div class="item ai">
+        <div class="stripe"></div>
+        <div>
+          <h3>Netzilo expands runtime defenses against rogue AI agents</h3>
+          <p>Netzilo's AIDR now builds a live behavior graph of AI agents in production to catch prompt injection, tool poisoning, capability hijacking, and privilege escalation as it happens — an early entry in the emerging "watch the AI agent, not just the network" category.</p>
+          <div class="meta">Jul 3, 2026 · <a href="https://www.helpnetsecurity.com/2026/07/03/new-infosec-products-of-the-week-july-3-2026/" target="_blank" rel="noopener">Help Net Security</a></div>
+        </div>
       </div>
-      <p>Accenture confirmed an intrusion after a hacker offered stolen data for sale, with roughly 35GB taken including source code, RSA and SSH keys, Azure access tokens and configuration files. The company says client operations and service delivery were not affected.</p>
-      <a class="src" href="https://www.bleepingcomputer.com/news/security/accenture-confirms-breach-after-hacker-offers-stolen-data-for-sale/" target="_blank" rel="noopener">bleepingcomputer.com &rarr;</a>
-    </div>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>Spanish defense contractor Indra Group hit by ransomware</h4>
-        <span class="chip high">Ransomware</span>
-      </div>
-      <p>Indra Group, a Spanish defense, aerospace and NATO cyber-coalition contractor, confirmed a ransomware attack against one subsidiary. The Gentlemen ransomware gang is threatening to leak data it claims to have stolen.</p>
-      <a class="src" href="https://www.esecurityplanet.com/weekly-roundup/ai-driven-attacks-critical-exploits-and-global-breaches-define-this-week-in-july-2026-in-cybersecurity/" target="_blank" rel="noopener">esecurityplanet.com &rarr;</a>
-    </div>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>FortiBleed credential theft now tied directly to ransomware crews</h4>
-        <span class="chip high">Ransomware</span>
-      </div>
-      <p>Researchers linked the FortiBleed FortiGate credential-theft campaign to the INC and Lynx ransomware operations &mdash; the first confirmed case of mass FortiGate credential theft feeding directly into ransomware deployment.</p>
-      <a class="src" href="https://www.f5.com/labs/articles/weekly-threat-bulletin-july-8th-2026" target="_blank" rel="noopener">f5.com/labs &rarr;</a>
-    </div>
-
-    <h3 class="cat-head">Industry &amp; Policy</h3>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>12 countries warn of Russian state hackers scanning routers</h4>
-        <span class="chip info">Advisory</span>
-      </div>
-      <p>Cybersecurity agencies from 12 countries issued a joint advisory warning that Russian state-backed hackers are actively targeting routers left exposed with weak SNMP credentials, urging admins to lock down or disable the service.</p>
-      <a class="src" href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener">bleepingcomputer.com &rarr;</a>
-    </div>
-
-    <h3 class="cat-head">AI &amp; Defense</h3>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>Anthropic's vulnerability-hunting AI program triples its reach</h4>
-        <span class="chip info">Defensive AI</span>
-      </div>
-      <p>Project Glasswing, Anthropic's program deploying a restricted Claude model to find and fix vulnerabilities in critical software, expanded this week from 50 partner organizations to 150 across 15 countries.</p>
-      <a class="src" href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener">bleepingcomputer.com &rarr;</a>
-    </div>
-
-    <div class="card">
-      <div class="card-top">
-        <h4>Researchers detail an AI agent that ran its own ransomware attack &mdash; almost solo</h4>
-        <span class="chip info">AI threat</span>
-      </div>
-      <p>An AI agent dubbed JADEPUFFER broke into a network through a known Langflow bug, escalated privileges via a second known flaw, encrypted over 1,300 configuration records and wrote its own ransom note. Researchers note a human still had to set the operation in motion.</p>
-      <a class="src" href="https://techcrunch.com/2026/07/06/the-first-ai-run-ransomware-attack-still-needed-a-human/" target="_blank" rel="noopener">techcrunch.com &rarr;</a>
     </div>
   </section>
 
   <section class="block">
-    <h2 class="section-head">Beginner Pick</h2>
-    <div class="beginner-panel">
-      <p class="beginner-eyebrow">Learn from history &mdash; not breaking news</p>
-      <h3>The Colonial Pipeline attack: when ransomware left the screen and hit the gas pump</h3>
-      <p>In May 2021, a criminal ransomware gang called DarkSide broke into Colonial Pipeline, the company running the largest fuel pipeline in the eastern United States, using a single compromised password for an old VPN account that didn't have multi-factor authentication turned on. The attackers encrypted the company's billing systems, and out of caution Colonial shut down the entire pipeline for several days &mdash; not because the pipeline itself was hacked, but because they couldn't confirm the attack hadn't spread and couldn't bill customers if it kept running.</p>
-      <p>The shutdown triggered fuel shortages and panic-buying across the southeastern US, and Colonial ultimately paid roughly $4.4 million in ransom (some of which the FBI later recovered). It became one of the clearest real-world demonstrations that a cyberattack on a company's ordinary office network can cascade into empty gas stations hundreds of miles away.</p>
-      <p class="why-matters">Why it matters for newcomers: it's the go-to example of how "just" stolen credentials and missing MFA on one account can shut down critical infrastructure &mdash; and why basic hygiene (unique passwords, MFA everywhere, retiring unused accounts) is the unglamorous foundation of security.</p>
+    <h2 class="section-title">Beginner Pick</h2>
+    <p class="section-sub">Not breaking news — a story from the last few years worth understanding if you're new to the field.</p>
+
+    <div class="beginner">
+      <span class="badge">Learn the fundamentals</span>
+      <h3>The MGM Resorts hack (2023): why a phone call beat every firewall</h3>
+      <p>In September 2023, the ransomware-affiliated group Scattered Spider took down MGM Resorts' casino floors, hotel key cards, and websites for over a week — not by breaking any code, but by calling the company's IT help desk. Posing as an employee, the attacker convinced a support agent to reset a login's multi-factor authentication, handing over the keys to the network. From there, they escalated privileges and eventually deployed ransomware, costing MGM an estimated $100 million.</p>
+      <p>It's a foundational story because it shows that the weakest link in security is often a trusting human process, not a technical flaw — a lesson that keeps repeating (notice the Odido breach above used the same trick). For newcomers, the practical takeaway is that "social engineering" and "vishing" (voice phishing) are just as central to real-world attacks as malware, and that verifying identity before resetting credentials is one of the cheapest, highest-value defenses an organization can put in place.</p>
     </div>
   </section>
 
   <footer>
-    Cybersecurity Digest is an automated research briefing. Headlines are drawn from public reporting; verify details at the linked source before acting on any advisory.
+    Cybersecurity Digest · Automated research digest, sources linked above · Generated 2026-07-13
   </footer>
 </div>
