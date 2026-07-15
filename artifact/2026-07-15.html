@@ -1,0 +1,333 @@
+<title>Cybersecurity Digest — July 15, 2026</title>
+<style>
+  :root {
+    --bg: #ECEEF1;
+    --paper: #F7F8F9;
+    --ink: #14181D;
+    --ink-soft: #454C55;
+    --rule: #C7CCD2;
+    --accent: #0F6E63;
+    --breach: #A8382E;
+    --vuln: #A3631A;
+    --policy: #2E5FA3;
+    --ai: #0F6E63;
+    --code-bg: #E7E9EC;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0E12;
+    --paper: #12161B;
+    --ink: #DDE2E7;
+    --ink-soft: #9AA4AE;
+    --rule: #2A3138;
+    --accent: #4FC3B4;
+    --breach: #E08277;
+    --vuln: #E0A25A;
+    --policy: #7FA8DE;
+    --ai: #4FC3B4;
+    --code-bg: #1A2027;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B0E12;
+      --paper: #12161B;
+      --ink: #DDE2E7;
+      --ink-soft: #9AA4AE;
+      --rule: #2A3138;
+      --accent: #4FC3B4;
+      --breach: #E08277;
+      --vuln: #E0A25A;
+      --policy: #7FA8DE;
+      --ai: #4FC3B4;
+      --code-bg: #1A2027;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  header.masthead {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .kicker {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 2.1rem;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .dateline {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  section.block { margin-bottom: 2.6rem; }
+  h2.section-title {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.3rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+    font-style: italic;
+  }
+
+  .category { margin-bottom: 1.8rem; }
+  .category-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .category-label.breach { color: var(--breach); }
+  .category-label.vuln { color: var(--vuln); }
+  .category-label.policy { color: var(--policy); }
+  .category-label.ai { color: var(--ai); }
+
+  .item {
+    display: grid;
+    grid-template-columns: 4px 1fr;
+    gap: 0.9rem;
+    padding: 0.15rem 0 1rem;
+  }
+  .item .stripe { border-radius: 2px; }
+  .item.breach .stripe { background: var(--breach); }
+  .item.vuln .stripe { background: var(--vuln); }
+  .item.policy .stripe { background: var(--policy); }
+  .item.ai .stripe { background: var(--ai); }
+
+  .item h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.02rem;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  .item p {
+    margin: 0 0 0.45rem;
+    color: var(--ink);
+    font-size: 0.94rem;
+  }
+  .item .meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+  }
+  .item .meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .item .meta a:hover { opacity: 0.75; }
+  .item .meta a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .beginner {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.6rem 1.7rem;
+  }
+  .beginner .badge {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--code-bg);
+    color: var(--accent);
+    padding: 0.25rem 0.55rem;
+    border-radius: 3px;
+    margin-bottom: 0.9rem;
+  }
+  .beginner h3 {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 1.3rem;
+    margin: 0 0 0.7rem;
+    text-wrap: balance;
+  }
+  .beginner p { margin: 0 0 0.8rem; font-size: 0.97rem; }
+  .beginner p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.7rem; }
+    .sheet { padding: 1.8rem 1.1rem 3rem; }
+  }
+</style>
+
+<div class="sheet">
+  <header class="masthead">
+    <div class="kicker">Field Briefing · Issue for Newcomers &amp; Practitioners</div>
+    <h1>Cybersecurity Digest</h1>
+    <div class="dateline">Wednesday, July 15, 2026</div>
+  </header>
+
+  <section class="block">
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past few days, grouped by type.</p>
+
+    <div class="category">
+      <div class="category-label breach">Breaches &amp; Incidents</div>
+
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>Japan's largest taxi operator shuts down systems after malware attack</h3>
+          <p>Nihon Kotsu, which runs over 8,500 taxis, was hit by malware in the early hours of July 11 and pulled its phone/web dispatch, reservation, and several internal IT systems offline. No evidence of data theft so far, but the investigation is ongoing.</p>
+          <div class="meta">Jul 11–14, 2026 · <a href="https://www.bleepingcomputer.com/news/security/japans-largest-taxi-operator-shuts-systems-after-cyberattack/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>FortiBleed credential-theft campaign tied directly to ransomware gangs</h3>
+          <p>Researchers linked the FortiBleed operation — which sniffed VPN credentials from roughly 430,000 exposed FortiGate firewalls and amassed over 110 million credentials — to the INC and Lynx ransomware groups, confirming at least 12 ransomware deployments came out of the stolen access.</p>
+          <div class="meta">Jul 14, 2026 · <a href="https://www.bleepingcomputer.com/news/security/fortibleed-credential-theft-campaign-linked-to-lynx-ransomware/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <div class="stripe"></div>
+        <div>
+          <h3>Official AsyncAPI npm packages backdoored in coordinated supply-chain attack</h3>
+          <p>Upwind traced malicious code planted in official AsyncAPI npm packages (2M+ weekly downloads) to a coordinated compromise of two separate GitHub repos and their publishing pipelines. The payload ran on normal package import rather than at install, dodging tools that only watch install-time scripts.</p>
+          <div class="meta">Jul 14, 2026 · <a href="https://hackread.com/upwind-supply-chain-compromise-asyncapi-npm-packages/" target="_blank" rel="noopener">Hackread</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-label vuln">Vulnerabilities &amp; CVEs</div>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>Microsoft's biggest Patch Tuesday ever: 570 CVEs, two zero-days under attack</h3>
+          <p>July's release fixes a record 570 flaws (622 by Microsoft's own count) after June's previous high of ~200. Two are already being exploited: CVE-2026-56164, an unauthenticated privilege-escalation bug in on-prem SharePoint Server, and CVE-2026-56155, a local elevation-of-privilege flaw in Active Directory Federation Services. Patch internet-facing SharePoint and AD FS first.</p>
+          <div class="meta">Jul 14, 2026 · <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-july-2026-patch-tuesday-fixes-massive-570-flaws-3-zero-days/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>BitLocker bypass flaw ships with a public proof-of-concept</h3>
+          <p>CVE-2026-50661, also patched this Patch Tuesday, lets an attacker with physical access defeat BitLocker disk encryption — and researchers already have working exploit code circulating publicly, so treat this as urgent even though it wasn't seen exploited yet.</p>
+          <div class="meta">Jul 14, 2026 · <a href="https://www.tenable.com/blog/microsofts-july-2026-patch-tuesday-addresses-569-cves-cve-2026-56155-cve-2026-56164" target="_blank" rel="noopener">Tenable</a></div>
+        </div>
+      </div>
+
+      <div class="item vuln">
+        <div class="stripe"></div>
+        <div>
+          <h3>11 old Microsoft-signed UEFI shims can still bypass Secure Boot</h3>
+          <p>ESET found 11 legitimate, still-trusted UEFI shim binaries that need no new exploit — just their existence lets an attacker with admin access run code before the OS or any security software even loads. Microsoft revoked the affected shims back in its June update, so confirm your fleet has that patch applied.</p>
+          <div class="meta">Jul 14, 2026 · <a href="https://thehackernews.com/2026/07/11-old-microsoft-signed-linux-uefi.html" target="_blank" rel="noopener">The Hacker News</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-label policy">Industry &amp; Policy</div>
+
+      <div class="item policy">
+        <div class="stripe"></div>
+        <div>
+          <h3>OAuth "client ID spoofing" lets attackers test stolen logins without tripping alarms</h3>
+          <p>Two threat clusters are abusing how Microsoft Entra ID responds to fake OAuth client IDs to check huge lists of stolen credentials against real accounts — without ever generating a logged sign-in event. One campaign hit 4,000 tenants with 700,000 spoofed client IDs; defenses tuned to watch named apps miss it entirely.</p>
+          <div class="meta">Jul 13, 2026 · <a href="https://thehackernews.com/2026/07/oauth-client-id-spoofing-lets-attackers.html" target="_blank" rel="noopener">The Hacker News</a></div>
+        </div>
+      </div>
+
+      <div class="item policy">
+        <div class="stripe"></div>
+        <div>
+          <h3>Spanish police dismantle €140M fraud and money-laundering network</h3>
+          <p>An Interpol/Europol-backed operation raided sites in Spain and Portugal and arrested a fourth suspect in Panama, unwinding a group that ran "CEO fraud" business-email-compromise scams and investment fraud through 800+ bank accounts and dozens of money mules.</p>
+          <div class="meta">Jul 13, 2026 · <a href="https://www.bleepingcomputer.com/news/security/spanish-police-take-down-140-million-cyber-fraud-ring-arrest-four/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-label ai">AI Defense &amp; Patch Guidance</div>
+
+      <div class="item ai">
+        <div class="stripe"></div>
+        <div>
+          <h3>EU launches "Grand Challenge" to build AI-driven cybersecurity tools</h3>
+          <p>The European Commission is pulling companies, researchers, and public bodies into a joint push to develop AI-based defensive tools while addressing the risks advanced AI creates for attackers and defenders alike — part of a broader plan unveiled this month.</p>
+          <div class="meta">Jul 7, 2026 · <a href="https://commission.europa.eu/news-and-media/news/new-eu-plan-address-risks-and-opportunities-advanced-ai-cybersecurity-2026-07-07_en" target="_blank" rel="noopener">European Commission</a></div>
+        </div>
+      </div>
+
+      <div class="item ai">
+        <div class="stripe"></div>
+        <div>
+          <h3>New phishing kits "Jalisco" and "OmegaLord" defeat MFA on Microsoft 365</h3>
+          <p>Two newly spotted phishing-as-a-service kits use adversary-in-the-middle proxy techniques to relay live login sessions, letting attackers capture session tokens and slip past multi-factor authentication on Microsoft 365 accounts. Enabling phishing-resistant MFA (passkeys/FIDO2) is the main mitigation that actually stops this class of kit.</p>
+          <div class="meta">Jul 2026 · <a href="https://www.esecurityplanet.com/weekly-roundup/ai-driven-attacks-critical-exploits-and-global-breaches-define-this-week-in-july-2026-in-cybersecurity/" target="_blank" rel="noopener">eSecurity Planet</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Beginner Pick</h2>
+    <p class="section-sub">Not breaking news — a story from the last few years worth understanding if you're new to the field.</p>
+
+    <div class="beginner">
+      <span class="badge">Learn the fundamentals</span>
+      <h3>The Colonial Pipeline attack (2021): one leaked password, a shut-down pipeline, and gas lines up and down the East Coast</h3>
+      <p>In May 2021, the ransomware gang DarkSide broke into Colonial Pipeline — the company that carries nearly half the fuel supply for the U.S. East Coast — using a single compromised VPN password for an account that had no multi-factor authentication. In about two hours they stole 100GB of data, then deployed ransomware onto the company's business network. Colonial proactively shut down the pipeline itself to contain the damage, even though the ransomware never touched the operational control systems directly.</p>
+      <p>The six-day shutdown triggered fuel shortages and panic buying across several states, pushed gas prices to their highest level since 2014, and forced a federal emergency declaration. Colonial paid the attackers 75 bitcoin (about $4.4 million); the FBI later clawed back roughly $2.4 million of it by tracking the ransom wallet. It's a foundational story for newcomers because it shows how a single weak credential and a missing MFA setting can cascade into a national-scale crisis — and why "critical infrastructure" isn't an abstract policy term, it's gas stations running dry.</p>
+    </div>
+  </section>
+
+  <footer>
+    Cybersecurity Digest · Automated research digest, sources linked above · Generated 2026-07-15
+  </footer>
+</div>
