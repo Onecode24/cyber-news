@@ -1,0 +1,296 @@
+<title>Cybersecurity Digest — July 23, 2026</title>
+<style>
+  :root {
+    --ink: #12151c;
+    --paper: #f2f1ec;
+    --paper-raised: #e8e6df;
+    --line: rgba(18,21,28,0.12);
+    --accent: #33507d;
+    --accent-soft: #dde5ef;
+    --sev-critical: #a8382c;
+    --sev-critical-soft: #f6e2df;
+    --sev-warn: #93691c;
+    --sev-warn-soft: #f2e7cd;
+    --sev-info: #3f7a5c;
+    --sev-info-soft: #dfeee5;
+    --muted: #55596a;
+  }
+  :root[data-theme="dark"] {
+    --ink: #eceae3;
+    --paper: #14171e;
+    --paper-raised: #1c2029;
+    --line: rgba(236,234,227,0.14);
+    --accent: #8fb0d9;
+    --accent-soft: #223349;
+    --sev-critical: #e08276;
+    --sev-critical-soft: #3a2321;
+    --sev-warn: #dab868;
+    --sev-warn-soft: #372c16;
+    --sev-info: #7cc7a3;
+    --sev-info-soft: #1c3227;
+    --muted: #a6abbd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eceae3;
+      --paper: #14171e;
+      --paper-raised: #1c2029;
+      --line: rgba(236,234,227,0.14);
+      --accent: #8fb0d9;
+      --accent-soft: #223349;
+      --sev-critical: #e08276;
+      --sev-critical-soft: #3a2321;
+      --sev-warn: #dab868;
+      --sev-warn-soft: #372c16;
+      --sev-info: #7cc7a3;
+      --sev-info-soft: #1c3227;
+      --muted: #a6abbd;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 4rem;
+  }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+
+  header.masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 2.25rem;
+  }
+  .eyebrow {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1.title {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: clamp(1.9rem, 5vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .dateline {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  section.category {
+    margin-bottom: 2.4rem;
+  }
+  h2.cat-heading {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  h2.cat-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  article.item {
+    padding: 1rem 1.1rem;
+    border-left: 3px solid var(--tag-color, var(--accent));
+    background: var(--paper-raised);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 0.85rem;
+  }
+  article.item:last-child { margin-bottom: 0; }
+  .item-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+  .tag {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: var(--tag-bg, var(--accent-soft));
+    color: var(--tag-color, var(--accent));
+  }
+  h3.item-title {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0.2rem 0 0.4rem;
+    text-wrap: balance;
+  }
+  .item p {
+    margin: 0 0 0.5rem;
+    font-size: 0.98rem;
+  }
+  .source-line {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .source-line a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .source-line a:hover, .source-line a:focus-visible { border-bottom-color: var(--accent); }
+
+  .beginner {
+    margin-top: 2.6rem;
+    padding: 1.6rem 1.6rem 1.8rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .beginner .eyebrow { margin-bottom: 0.3rem; display: block; }
+  h2.beginner-title {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 0.15rem;
+    text-wrap: balance;
+  }
+  .beginner .subhead {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .beginner p { font-size: 1rem; margin: 0 0 0.85rem; }
+  .beginner p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 480px) {
+    .page { padding: 2rem 1.1rem 3rem; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <span class="eyebrow">Cybersecurity Digest</span>
+    <h1 class="title">This Week in Cybersecurity</h1>
+    <span class="dateline mono">Thursday, July 23, 2026</span>
+  </header>
+
+  <section class="category">
+    <h2 class="cat-heading">Vulnerabilities &amp; CVEs</h2>
+
+    <article class="item" style="--tag-color: var(--sev-critical); --tag-bg: var(--sev-critical-soft);">
+      <div class="item-head"><span class="tag">Critical · Actively Exploited</span></div>
+      <h3 class="item-title">SharePoint RCE lets attackers steal machine keys, survive patching</h3>
+      <p>A public proof-of-concept for CVE-2026-50522 (CVSS 9.8) started triggering real attacks within hours of release. Stolen "machine keys" let intruders forge valid SharePoint logins even after the server is patched, so admins are being told to rotate keys, not just update.</p>
+      <p class="source-line">Source: <a href="https://www.bleepingcomputer.com/news/security/critical-sharepoint-rce-flaw-exploited-to-steal-machine-keys/" target="_blank" rel="noopener">BleepingComputer</a></p>
+    </article>
+
+    <article class="item" style="--tag-color: var(--sev-critical); --tag-bg: var(--sev-critical-soft);">
+      <div class="item-head"><span class="tag">Critical · On CISA KEV List</span></div>
+      <h3 class="item-title">WordPress "wp2shell" flaw puts 500M+ sites at risk</h3>
+      <p>CVE-2026-63030 lets an unauthenticated attacker run code via WordPress's REST API batch endpoint. CISA added it to its Known Exploited Vulnerabilities catalog on July 21 after public exploit code surfaced — an update to prioritize if you run WordPress.</p>
+      <p class="source-line">Source: <a href="https://www.rapid7.com/blog/post/etr-cve-2026-63030-wp2shell-a-critical-remote-code-execution-vulnerability-in-wordpress-core/" target="_blank" rel="noopener">Rapid7</a></p>
+    </article>
+
+    <article class="item" style="--tag-color: var(--sev-warn); --tag-bg: var(--sev-warn-soft);">
+      <div class="item-head"><span class="tag">Being Weaponized</span></div>
+      <h3 class="item-title">Qilin ransomware crew is walking in through a Palo Alto VPN bug</h3>
+      <p>An authentication-bypass flaw in PAN-OS GlobalProtect (CVE-2026-0257) is the common thread across a wave of Qilin ransomware intrusions. Palo Alto has a patch out; anyone still exposed should also kill active VPN sessions after updating.</p>
+      <p class="source-line">Source: <a href="https://thehackernews.com/2026/07/qilin-ransomware-attackers-exploit-pan.html" target="_blank" rel="noopener">The Hacker News</a></p>
+    </article>
+  </section>
+
+  <section class="category">
+    <h2 class="cat-heading">Breaches &amp; Incidents</h2>
+
+    <article class="item">
+      <div class="item-head"><span class="tag">Breach</span></div>
+      <h3 class="item-title">5.1 million customer records leaked from auto-parts platform RevolutionParts</h3>
+      <p>A dark-web listing posted July 22 claims to hold names, emails, phone numbers, home addresses, and device data for over 5 million customers of the e-commerce platform, used by car dealerships nationwide. Unverified independently, but the sample data checks out.</p>
+      <p class="source-line">Source: <a href="https://cybernews.com/security/revolution-parts-data-breach-claims/" target="_blank" rel="noopener">Cybernews</a></p>
+    </article>
+
+    <article class="item">
+      <div class="item-head"><span class="tag">Ransomware</span></div>
+      <h3 class="item-title">NATO defense contractor Indra Group hit by ransomware</h3>
+      <p>The "Gentlemen" ransomware gang — a prolific offshoot of the Qilin operation — claims to have stolen data from a subsidiary of Indra, a major Spanish defense and aerospace firm, and is threatening to leak it. Indra says its core services remain secure.</p>
+      <p class="source-line">Source: <a href="https://cybernews.com/security/indra-group-ransomware-attack-data-leak/" target="_blank" rel="noopener">Cybernews</a></p>
+    </article>
+
+    <article class="item">
+      <div class="item-head"><span class="tag">Breach</span></div>
+      <h3 class="item-title">Ernst &amp; Young discloses breach of client tax records</h3>
+      <p>An attacker who broke into a third-party IT support platform this spring downloaded documents containing Social Security numbers, account numbers, and full tax filings for a number of EY clients. EY filed formal notifications with regulators on July 15.</p>
+      <p class="source-line">Source: <a href="https://www.securityweek.com/ernst-young-data-breach-affects-personal-financial-information/" target="_blank" rel="noopener">SecurityWeek</a></p>
+    </article>
+  </section>
+
+  <section class="category">
+    <h2 class="cat-heading">Industry, Policy &amp; AI Defense</h2>
+
+    <article class="item" style="--tag-color: var(--sev-info); --tag-bg: var(--sev-info-soft);">
+      <div class="item-head"><span class="tag">Policy</span></div>
+      <h3 class="item-title">White House launches "Gold Eagle," an AI-powered vulnerability clearinghouse</h3>
+      <p>The voluntary program pairs Treasury, DHS, DoD, and industry partners to use frontier AI models to find, verify, and prioritize software flaws, then coordinate fixes faster across government and critical infrastructure.</p>
+      <p class="source-line">Source: <a href="https://cyberscoop.com/trump-gold-eagle-ai-cyber-clearinghouse/" target="_blank" rel="noopener">CyberScoop</a></p>
+    </article>
+
+    <article class="item" style="--tag-color: var(--sev-info); --tag-bg: var(--sev-info-soft);">
+      <div class="item-head"><span class="tag">Defensive Tool</span></div>
+      <h3 class="item-title">Google's AI threat-hunting agents reach general availability</h3>
+      <p>Google Threat Intelligence's agentic AI features — natural-language investigation, automated malware analysis, and alert triage — have moved out of preview and are now generally available to Enterprise-tier customers.</p>
+      <p class="source-line">Source: <a href="https://pulse2.com/google-threat-intelligence-makes-agentic-ai-capabilities-generally-available/" target="_blank" rel="noopener">Pulse2</a></p>
+    </article>
+  </section>
+
+  <div class="beginner">
+    <span class="eyebrow">🎓 Beginner Pick — Learn the Backstory</span>
+    <h2 class="beginner-title">The Colonial Pipeline Attack (2021)</h2>
+    <div class="subhead">Not breaking news — a classic case every newcomer should know</div>
+    <p>In May 2021, a ransomware gang called DarkSide broke into Colonial Pipeline, the company that carries nearly half the fuel supply for the U.S. East Coast, using nothing more exotic than one leaked employee password on an old VPN account that didn't have multi-factor authentication. To contain the damage, Colonial shut the pipeline down itself — and that shutdown, not the hack, is what caused the gas shortages and panic-buying seen on the news.</p>
+    <p>Colonial paid roughly $4.4 million in Bitcoin to get its systems back, but the story didn't end there: the FBI managed to trace and claw back most of the ransom by following the cryptocurrency wallet the gang used, one of the first big public wins of its kind.</p>
+    <p>It's a favorite teaching example because it shows how a single weak password can cascade into national headlines, why "ransomware" is really an extortion business model rather than one virus, and why basic hygiene — MFA, and retiring unused accounts — remains the cheapest defense against attacks that make it all the way to critical infrastructure.</p>
+  </div>
+
+  <footer>
+    Cybersecurity Digest is an automated weekly roundup. Stories are drawn from public reporting; verify details at the linked sources before acting on anything here.
+  </footer>
+
+</div>
