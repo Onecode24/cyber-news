@@ -1,0 +1,325 @@
+<title>Cybersecurity Digest — July 21, 2026</title>
+<style>
+  :root {
+    --paper: #f1f3f5;
+    --paper-raised: #ffffff;
+    --ink: #171b1f;
+    --ink-soft: #4b545c;
+    --rule: #d7dde1;
+    --accent: #2f6f6a;
+    --accent-ink: #17403c;
+    --breach: #a13d3d;
+    --vuln: #a8681a;
+    --policy: #3d5a80;
+    --ai: #5b4b8a;
+    --tag-bg: #ffffff;
+    --feature-bg: #e8ede9;
+    --feature-rule: #bcd0cb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12161a;
+      --paper-raised: #181d22;
+      --ink: #e7ebee;
+      --ink-soft: #a2adb5;
+      --rule: #2b3238;
+      --accent: #6fbdb5;
+      --accent-ink: #a9d9d2;
+      --breach: #d98686;
+      --vuln: #d9a563;
+      --policy: #8fb0d9;
+      --ai: #b3a3e0;
+      --tag-bg: #1e2429;
+      --feature-bg: #16211f;
+      --feature-rule: #2a423d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12161a;
+    --paper-raised: #181d22;
+    --ink: #e7ebee;
+    --ink-soft: #a2adb5;
+    --rule: #2b3238;
+    --accent: #6fbdb5;
+    --accent-ink: #a9d9d2;
+    --breach: #d98686;
+    --vuln: #d9a563;
+    --policy: #8fb0d9;
+    --ai: #b3a3e0;
+    --tag-bg: #1e2429;
+    --feature-bg: #16211f;
+    --feature-rule: #2a423d;
+  }
+  :root[data-theme="light"] {
+    --paper: #f1f3f5;
+    --paper-raised: #ffffff;
+    --ink: #171b1f;
+    --ink-soft: #4b545c;
+    --rule: #d7dde1;
+    --accent: #2f6f6a;
+    --accent-ink: #17403c;
+    --breach: #a13d3d;
+    --vuln: #a8681a;
+    --policy: #3d5a80;
+    --ai: #5b4b8a;
+    --tag-bg: #ffffff;
+    --feature-bg: #e8ede9;
+    --feature-rule: #bcd0cb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  header.masthead {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .kicker {
+    font-family: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.5rem;
+  }
+
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 2.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+  }
+
+  .dateline {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .dateline .sep { color: var(--rule); }
+
+  section.block { margin-bottom: 2.6rem; }
+
+  h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+    text-wrap: balance;
+  }
+
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.4rem;
+    max-width: 55ch;
+  }
+
+  h3.cat-head {
+    font-family: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    margin: 1.6rem 0 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  h3.cat-head:first-of-type { margin-top: 0; }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .dot.breach { background: var(--breach); }
+  .dot.vuln { background: var(--vuln); }
+  .dot.policy { background: var(--policy); }
+  .dot.ai { background: var(--ai); }
+
+  article.item {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.05rem 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .item h4 {
+    margin: 0 0 0.4rem;
+    font-size: 1.03rem;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  .item p {
+    margin: 0 0 0.65rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .item .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-family: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-size: 0.78rem;
+  }
+
+  .item .meta .when { color: var(--ink-soft); }
+
+  .item a.src {
+    color: var(--accent-ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .item a.src:hover { opacity: 0.75; }
+
+  /* Beginner pick feature */
+  .feature {
+    background: var(--feature-bg);
+    border: 1px solid var(--feature-rule);
+    border-radius: 10px;
+    padding: 1.6rem 1.6rem 1.7rem;
+  }
+
+  .feature .kicker {
+    color: var(--accent-ink);
+  }
+
+  .feature h2.section-head {
+    color: var(--ink);
+  }
+
+  .feature .story-title {
+    font-weight: 700;
+    font-size: 1.08rem;
+    margin: 0 0 0.7rem;
+  }
+
+  .feature p {
+    margin: 0 0 0.85rem;
+    font-size: 0.98rem;
+  }
+  .feature p:last-of-type { margin-bottom: 0; }
+
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 480px) {
+    h1.title { font-size: 1.85rem; }
+    .item .meta { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Cybersecurity Digest &middot; Issue for newcomers &amp; pros</p>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <div class="dateline">
+      <span>Tuesday, July 21, 2026</span>
+      <span class="sep">&middot;</span>
+      <span>Covering the last 48&ndash;72 hours</span>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2 class="section-head">Last 48 Hours</h2>
+    <p class="section-sub">The stories worth knowing about right now, grouped by type. Each links to its original source.</p>
+
+    <h3 class="cat-head"><span class="dot breach"></span>Breaches &amp; Incidents</h3>
+
+    <article class="item">
+      <h4>Update: Fairlife (Coca-Cola) ransomware still halting US milk production</h4>
+      <p>Four days after Coca-Cola disclosed the ransomware attack on its Fairlife dairy subsidiary, US production remains "temporarily suspended" and the stock dipped again on the news. Coca-Cola says product quality wasn't affected and Canadian operations are running normally, but the full scope of the intrusion is still under investigation with outside cybersecurity help.</p>
+      <div class="meta"><span class="when">Jul 20, 2026</span><a class="src" href="https://www.fool.com/investing/2026/07/20/a-ransomware-attack-just-halted-coca-colas-fairlif/" target="_blank" rel="noopener">The Motley Fool &rarr;</a></div>
+    </article>
+
+    <article class="item">
+      <h4>Hugging Face says an autonomous AI agent breached its production systems</h4>
+      <p>The AI model repository confirmed that an autonomous agent framework &mdash; not a human operator directly &mdash; ran a multi-stage attack via a malicious dataset loader, escalating from a processing worker to internal credentials and clusters over a weekend. Hugging Face says public models and datasets are unaffected but is still checking for customer data exposure.</p>
+      <div class="meta"><span class="when">Jul 20, 2026</span><a class="src" href="https://thehackernews.com/2026/07/worlds-largest-ai-model-repository.html" target="_blank" rel="noopener">The Hacker News &rarr;</a></div>
+    </article>
+
+    <article class="item">
+      <h4>Ernst &amp; Young discloses breach of client tax records via IT support platform</h4>
+      <p>EY notified California regulators that a third party accessed a support-ticket platform used by its IT staff for about two weeks this spring, downloading documents with clients' Social Security numbers, account codes, and tax-filing details. Affected individuals are being offered two years of free credit monitoring.</p>
+      <div class="meta"><span class="when">Filed Jul 15, 2026</span><a class="src" href="https://www.bleepingcomputer.com/news/security/ernst-and-young-discloses-data-breach-after-support-system-hack/" target="_blank" rel="noopener">BleepingComputer &rarr;</a></div>
+    </article>
+
+    <h3 class="cat-head"><span class="dot vuln"></span>Vulnerabilities &amp; CVEs</h3>
+
+    <article class="item">
+      <h4>Critical ServiceNow AI Platform flaw exploited days after patch shipped</h4>
+      <p>CVE-2026-6875 (CVSS 9.5) is an unauthenticated sandbox-escape bug in ServiceNow's AI Platform that lets attackers run code with no credentials and no prior foothold. Researchers confirmed active in-the-wild exploitation, including a second bypass technique that evades defenses built for the original public proof-of-concept &mdash; patch immediately if you run an affected release.</p>
+      <div class="meta"><span class="when">Jul 20, 2026</span><a class="src" href="https://www.helpnetsecurity.com/2026/07/20/servicenow-cve-2026-6875-exploited/" target="_blank" rel="noopener">Help Net Security &rarr;</a></div>
+    </article>
+
+    <article class="item">
+      <h4>"wp2shell" flaw chain puts 500M+ WordPress sites at risk of takeover</h4>
+      <p>Two chained bugs (CVE-2026-63030 and CVE-2026-60137) in WordPress Core let a completely unauthenticated attacker go from a REST API request to full remote code execution &mdash; no login, plugin, or special config required. WordPress.org has shipped 7.0.2 and backported fixes to 6.9.5 and 6.8.6, and is force-updating affected sites given active exploitation.</p>
+      <div class="meta"><span class="when">Jul 20, 2026</span><a class="src" href="https://thehackernews.com/2026/07/new-wp2shell-wordpress-core-flaw-lets.html" target="_blank" rel="noopener">The Hacker News &rarr;</a></div>
+    </article>
+
+    <h3 class="cat-head"><span class="dot policy"></span>Industry &amp; Supply Chain</h3>
+
+    <article class="item">
+      <h4>"SleeperGem" attack hijacks dormant RubyGems accounts to plant malware</h4>
+      <p>Attackers took over at least two long-dormant RubyGems maintainer accounts and pushed three malicious packages (including one impersonating Microsoft's Git Credential Manager) that fetch and run a hidden binary, then scan for CI/CD credentials across GitHub Actions, GitLab, Jenkins, and more. Anyone who installed the named gems is advised to treat the system as compromised and rotate all credentials.</p>
+      <div class="meta"><span class="when">Jul 20, 2026</span><a class="src" href="https://thehackernews.com/2026/07/sleepergem-uses-three-malicious.html" target="_blank" rel="noopener">The Hacker News &rarr;</a></div>
+    </article>
+
+    <h3 class="cat-head"><span class="dot ai"></span>AI &amp; Defensive Tools</h3>
+
+    <article class="item">
+      <h4>Polygraf AI launches "Meeting Guard" to catch deepfakes in live video calls</h4>
+      <p>The new tool joins video meetings as a participant, analyzing audio and video in real time to flag manipulated content, verify that speakers are who they claim to be, and catch unauthorized sharing of sensitive information &mdash; a direct response to the rise of deepfake-driven business-meeting fraud.</p>
+      <div class="meta"><span class="when">Week of Jul 17, 2026</span><a class="src" href="https://www.news4hackers.com/top-information-security-products-launching-this-week-july-17-2026/" target="_blank" rel="noopener">News4Hackers &rarr;</a></div>
+    </article>
+
+  </section>
+
+  <section class="block feature">
+    <p class="kicker">Beginner's Corner &middot; not breaking news &mdash; a story to learn from</p>
+    <h2 class="section-head">The ransomware attack that emptied gas stations up and down the US East Coast</h2>
+    <p class="story-title">The 2021 Colonial Pipeline attack, explained</p>
+    <p>This week's Coca-Cola/Fairlife story is a good moment to look back at the incident that first showed the public just how disruptive ransomware could be. In May 2021, a criminal group called DarkSide broke into Colonial Pipeline, the company operating the largest fuel pipeline in the United States, using a single compromised password for an old VPN account &mdash; one that didn't even have multi-factor authentication turned on.</p>
+    <p>The attackers encrypted Colonial's billing and business IT systems. Even though the pipeline's operational controls weren't directly hit, Colonial shut the pipeline down anyway because it couldn't safely bill customers for fuel &mdash; and that single decision cut off nearly half the East Coast's gasoline, diesel, and jet fuel supply. Panic buying emptied gas stations from Texas to Virginia for days.</p>
+    <p>Colonial paid the attackers roughly $4.4 million in Bitcoin to get a decryption tool, and the US Department of Justice later recovered about $2.3 million of that ransom by tracing the cryptocurrency wallet &mdash; one of the first times law enforcement clawed back ransomware payments at scale.</p>
+    <p>The lesson for beginners: this wasn't a sophisticated zero-day exploit, it was one leaked password on an account without MFA. It's why "basic hygiene" &mdash; multi-factor authentication, retiring unused accounts, and network segmentation between IT and operational systems &mdash; gets repeated so often in security training. Critical infrastructure attacks also don't need to touch the physical equipment to cause physical-world chaos; disrupting the business side is often enough.</p>
+  </section>
+
+  <footer>
+    Cybersecurity Digest is an automated roundup generated for research and awareness purposes. Always verify critical claims against the linked primary sources before acting on them.
+  </footer>
+
+</div>
