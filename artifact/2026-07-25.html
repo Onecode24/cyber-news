@@ -1,0 +1,373 @@
+<title>Cybersecurity Digest — July 25, 2026</title>
+<style>
+  :root {
+    --paper: #f2f4f7;
+    --paper-raised: #ffffff;
+    --ink: #131a24;
+    --ink-soft: #4c5766;
+    --rule: #d7dce3;
+    --accent: #1b7f8e;
+    --accent-ink: #0f5964;
+    --critical: #b3402c;
+    --critical-bg: #fbeae6;
+    --warn: #9c6b0b;
+    --warn-bg: #faf1e0;
+    --policy: #35578c;
+    --policy-bg: #e9eff8;
+    --defense: #1b7f8e;
+    --defense-bg: #e5f2f2;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+    --serif: Charter, "Iowan Old Style", "Georgia Pro", Georgia, "Noto Serif", serif;
+  }
+  :root[data-theme="dark"] {
+    --paper: #0b0f14;
+    --paper-raised: #12181f;
+    --ink: #e6eaf0;
+    --ink-soft: #a3adba;
+    --rule: #262f3a;
+    --accent: #4fb3c2;
+    --accent-ink: #7fd0dc;
+    --critical: #e08871;
+    --critical-bg: #2a1712;
+    --warn: #d9ac52;
+    --warn-bg: #2a220f;
+    --policy: #8fb0dd;
+    --policy-bg: #131d2c;
+    --defense: #6fc7d0;
+    --defense-bg: #0f2325;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0b0f14;
+      --paper-raised: #12181f;
+      --ink: #e6eaf0;
+      --ink-soft: #a3adba;
+      --rule: #262f3a;
+      --accent: #4fb3c2;
+      --accent-ink: #7fd0dc;
+      --critical: #e08871;
+      --critical-bg: #2a1712;
+      --warn: #d9ac52;
+      --warn-bg: #2a220f;
+      --policy: #8fb0dd;
+      --policy-bg: #131d2c;
+      --defense: #6fc7d0;
+      --defense-bg: #0f2325;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 4rem;
+  }
+
+  header.masthead {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .masthead-title {
+    font-family: var(--mono);
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .masthead-title .bracket { color: var(--accent); }
+  .masthead-date {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .masthead-sub {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.35rem 0 0;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.1rem;
+  }
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .category {
+    margin-bottom: 1.9rem;
+  }
+  .category-head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 0.7rem;
+  }
+  .category-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .category-head h3 {
+    font-family: var(--mono);
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .item {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--cat-color, var(--accent));
+    border-radius: 3px;
+    padding: 0.85rem 1rem 0.95rem;
+    margin-bottom: 0.65rem;
+  }
+  .item:last-child { margin-bottom: 0; }
+  .item h4 {
+    margin: 0 0 0.3rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .item p {
+    margin: 0 0 0.45rem;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+  .item .src {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .item .src::before { content: "→ "; }
+
+  .cat-breach { --cat-color: var(--critical); }
+  .cat-breach .category-dot { background: var(--critical); }
+  .cat-vuln { --cat-color: var(--warn); }
+  .cat-vuln .category-dot { background: var(--warn); }
+  .cat-policy { --cat-color: var(--policy); }
+  .cat-policy .category-dot { background: var(--policy); }
+  .cat-defense { --cat-color: var(--defense); }
+  .cat-defense .category-dot { background: var(--defense); }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.14rem 0.45rem;
+    border-radius: 2px;
+    margin-bottom: 0.4rem;
+  }
+  .cat-breach .tag { background: var(--critical-bg); color: var(--critical); }
+  .cat-vuln .tag { background: var(--warn-bg); color: var(--warn); }
+  .cat-policy .tag { background: var(--policy-bg); color: var(--policy); }
+  .cat-defense .tag { background: var(--defense-bg); color: var(--defense); }
+
+  .beginner {
+    margin-top: 2.5rem;
+    border: 1px dashed var(--accent);
+    border-radius: 6px;
+    padding: 1.5rem 1.6rem 1.7rem;
+    background: var(--defense-bg);
+  }
+  .beginner .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent-ink);
+    margin: 0 0 0.5rem;
+  }
+  .beginner h2 {
+    margin: 0 0 0.15rem;
+    font-size: 1.4rem;
+    text-wrap: balance;
+  }
+  .beginner .dek {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .beginner p {
+    margin: 0 0 0.85rem;
+    font-size: 1rem;
+  }
+  .beginner p:last-of-type { margin-bottom: 0; }
+  .beginner .why {
+    font-weight: 700;
+  }
+
+  footer {
+    margin-top: 2.75rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 480px) {
+    .masthead-title { font-size: 1.25rem; }
+    .wrap { padding: 2rem 1.1rem 3rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <p class="masthead-title"><span class="bracket">//</span> Cybersecurity Digest</p>
+      <p class="masthead-sub">Signal for people building their footing in security</p>
+    </div>
+    <div class="masthead-date">July 25, 2026</div>
+  </header>
+
+  <p class="section-label">Last 48 Hours</p>
+
+  <div class="category cat-breach">
+    <div class="category-head">
+      <span class="category-dot"></span>
+      <h3>Breaches &amp; Incidents</h3>
+    </div>
+
+    <div class="item">
+      <span class="tag">Healthcare</span>
+      <h4>Abbott Laboratories hit by vishing-driven breach claims</h4>
+      <p>The ShinyHunters extortion group says it broke into an Abbott Microsoft Entra single sign-on account after a voice-phishing (vishing) campaign against employees in June, exposing systems tied to Abbott's Cancer Diagnostics business and its LabCenter portal. The gang claims millions of records, including patient notes and Social Security numbers; Abbott has not confirmed the scope.</p>
+      <a class="src" href="https://cybernews.com/news/abbott-laboratories-breach-shinyhunters/" target="_blank" rel="noopener">Cybernews</a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Ransomware</span>
+      <h4>Anubis gang lists Coca-Cola's Fairlife, halts US production</h4>
+      <p>The Anubis ransomware group posted Coca-Cola's dairy subsidiary Fairlife to its leak site on July 20, claiming roughly 1TB of stolen corporate data and forcing a temporary halt of US production. Anubis set a ransom deadline of July 27.</p>
+      <a class="src" href="https://www.bleepingcomputer.com/news/security/anubis-ransomware-claims-coca-cola-fairlife-attack-threatens-data-leak/" target="_blank" rel="noopener">BleepingComputer</a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Utilities</span>
+      <h4>Origin Energy confirms breach affecting up to 2M customers</h4>
+      <p>An attacker told an Australian newspaper he held records on roughly 2 million Origin Energy customers, including names, addresses, and partial card or bank details. Origin confirmed unauthorized access on July 22 and notified the Australian Cyber Security Centre and federal police.</p>
+      <a class="src" href="https://www.bleepingcomputer.com/news/security/australian-energy-provider-origin-says-data-breach-exposes-client-data/" target="_blank" rel="noopener">BleepingComputer</a>
+    </div>
+  </div>
+
+  <div class="category cat-vuln">
+    <div class="category-head">
+      <span class="category-dot"></span>
+      <h3>Vulnerabilities &amp; CVEs</h3>
+    </div>
+
+    <div class="item">
+      <span class="tag">Actively exploited</span>
+      <h4>Critical SharePoint RCE (CVE-2026-50522) under attack</h4>
+      <p>A critical deserialization flaw (CVSS 9.8) in on-premises Microsoft SharePoint is being actively exploited following a public proof-of-concept. CISA added it to its Known Exploited Vulnerabilities catalog and gave federal agencies until July 25 to patch — if you run on-prem SharePoint, patch now.</p>
+      <a class="src" href="https://thehackernews.com/2026/07/critical-sharepoint-rce-cve-2026-50522.html" target="_blank" rel="noopener">The Hacker News</a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Patch Tuesday</span>
+      <h4>Microsoft ships largest Patch Tuesday on record: 569 CVEs</h4>
+      <p>July's rollup fixed 569 CVEs — 56 rated critical and 3 actively exploited zero-days — including remote-code-execution flaws in Windows DHCP Server. It's the biggest single Patch Tuesday Microsoft has ever released; Windows admins should prioritize this month's updates.</p>
+      <a class="src" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-july-2026-patch-tuesday-fixes-massive-570-flaws-3-zero-days/" target="_blank" rel="noopener">BleepingComputer</a>
+    </div>
+  </div>
+
+  <div class="category cat-policy">
+    <div class="category-head">
+      <span class="category-dot"></span>
+      <h3>Industry &amp; Policy</h3>
+    </div>
+
+    <div class="item">
+      <span class="tag">Policy</span>
+      <h4>EU launches "Grand Challenge" on AI for cybersecurity</h4>
+      <p>The European Commission kicked off an initiative pairing companies, researchers, and public bodies to build AI-driven defensive tools, part of a broader plan to address both the risks and the opportunities AI brings to cybersecurity.</p>
+      <a class="src" href="https://commission.europa.eu/news-and-media/news/new-eu-plan-address-risks-and-opportunities-advanced-ai-cybersecurity-2026-07-07_en" target="_blank" rel="noopener">European Commission</a>
+    </div>
+
+    <div class="item">
+      <span class="tag">Emerging threat</span>
+      <h4>New ransomware strain targets AI infrastructure directly</h4>
+      <p>Researchers linked a new strain called ENCFORGE — delivered via a Langflow remote-code-execution bug — to attacks that encrypt AI model weights, vector databases, and training data instead of ordinary files, a sign ransomware crews are starting to target AI pipelines specifically.</p>
+      <a class="src" href="https://www.esecurityplanet.com/weekly-roundup/ai-driven-attacks-critical-exploits-and-global-breaches-define-this-week-in-july-2026-in-cybersecurity/" target="_blank" rel="noopener">eSecurity Planet</a>
+    </div>
+  </div>
+
+  <div class="category cat-defense">
+    <div class="category-head">
+      <span class="category-dot"></span>
+      <h3>AI &amp; Defensive Tools</h3>
+    </div>
+
+    <div class="item">
+      <span class="tag">New tool</span>
+      <h4>Polygraf AI launches real-time deepfake detector for meetings</h4>
+      <p>"Meeting Guard" joins video calls as a participant and analyzes audio and video in real time to flag synthetic or manipulated media, aimed at the rise of AI-cloned voices and faces in fraud and business-email-compromise scams.</p>
+      <a class="src" href="https://www.news4hackers.com/top-information-security-products-launching-this-week-july-17-2026/" target="_blank" rel="noopener">News4Hackers</a>
+    </div>
+
+    <div class="item">
+      <span class="tag">New tool</span>
+      <h4>Nudge Security adds automated OAuth &amp; extension risk scoring</h4>
+      <p>The SaaS security platform expanded to automatically assess risky OAuth app permissions and browser extensions — the kind of third-party access attackers increasingly abuse to get an initial foothold.</p>
+      <a class="src" href="https://www.news4hackers.com/top-information-security-products-launching-this-week-july-17-2026/" target="_blank" rel="noopener">News4Hackers</a>
+    </div>
+  </div>
+
+  <div class="beginner">
+    <p class="eyebrow">Beginner Pick — Learn the Fundamentals</p>
+    <h2>The MGM Resorts hack: how a 10-minute phone call took down a casino empire</h2>
+    <p class="dek">Not breaking news — a landmark incident from September 2023, still one of the clearest lessons in security today</p>
+    <p>In September 2023, a hacker from the group known as Scattered Spider called MGM Resorts' IT helpdesk, pretended to be a locked-out employee, and talked their way into a password reset — no malware, no exploit code, just a convincing phone call. That single reset gave the attackers access to MGM's Okta identity system, which controlled logins across the company's casinos and hotels.</p>
+    <p>The fallout was dramatic: slot machines went dark, digital room keys stopped working, and online booking systems froze for about ten days, costing MGM more than $100 million. MGM chose not to pay the ransom, following guidance from law enforcement and security experts.</p>
+    <p class="why">Why it matters for beginners: this attack didn't break any encryption or exploit any software bug — it exploited a person, and a process, on a helpdesk that was too willing to trust a phone call. It's a textbook example of "social engineering," and it's exactly the same playbook (vishing, or voice phishing) attackers used against Abbott Laboratories in this week's headlines above. The lesson scales down to anyone: verify identity before resetting credentials, and treat unexpected "urgent" requests — even ones that sound legitimate — with healthy suspicion.</p>
+  </div>
+
+  <footer>Cybersecurity Digest · Automated research digest, verify details at source links before acting</footer>
+
+</div>
