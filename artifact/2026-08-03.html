@@ -1,0 +1,385 @@
+<title>Cybersecurity Digest — August 3, 2026</title>
+<style>
+  :root {
+    --paper: #eef1ec;
+    --ink: #12181f;
+    --ink-soft: #2b333c;
+    --muted: #5b6470;
+    --rule: #ccd2c9;
+    --card: #ffffff;
+    --accent: #2f7d78;
+    --accent-soft: #e3efed;
+    --warm: #b8823a;
+    --warm-soft: #f3e9d8;
+    --critical: #b3392f;
+    --critical-soft: #f7e4e1;
+    --high: #b8792a;
+    --high-soft: #f5ecd8;
+    --info: #3c6e9e;
+    --info-soft: #e3ecf5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #10151c;
+      --ink: #e9ece7;
+      --ink-soft: #c7ccc5;
+      --muted: #93a0a6;
+      --rule: #2b333a;
+      --card: #171e26;
+      --accent: #6cbdb6;
+      --accent-soft: #1a2b29;
+      --warm: #d9a256;
+      --warm-soft: #2b2418;
+      --critical: #e2776d;
+      --critical-soft: #2e1e1c;
+      --high: #dba85a;
+      --high-soft: #2b2317;
+      --info: #86adda;
+      --info-soft: #1b2733;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #10151c;
+    --ink: #e9ece7;
+    --ink-soft: #c7ccc5;
+    --muted: #93a0a6;
+    --rule: #2b333a;
+    --card: #171e26;
+    --accent: #6cbdb6;
+    --accent-soft: #1a2b29;
+    --warm: #d9a256;
+    --warm-soft: #2b2418;
+    --critical: #e2776d;
+    --critical-soft: #2e1e1c;
+    --high: #dba85a;
+    --high-soft: #2b2317;
+    --info: #86adda;
+    --info-soft: #1b2733;
+  }
+
+  :root[data-theme="light"] {
+    --paper: #eef1ec;
+    --ink: #12181f;
+    --ink-soft: #2b333c;
+    --muted: #5b6470;
+    --rule: #ccd2c9;
+    --card: #ffffff;
+    --accent: #2f7d78;
+    --accent-soft: #e3efed;
+    --warm: #b8823a;
+    --warm-soft: #f3e9d8;
+    --critical: #b3392f;
+    --critical-soft: #f7e4e1;
+    --high: #b8792a;
+    --high-soft: #f5ecd8;
+    --info: #3c6e9e;
+    --info-soft: #e3ecf5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 5rem;
+  }
+
+  header.masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 2.5rem);
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .masthead-meta {
+    text-align: right;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+  }
+
+  .dek {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0.9rem 0 2.4rem;
+    max-width: 60ch;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 3rem 0 1.1rem;
+  }
+
+  .section-head .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .section-head .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  h2.section-title {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 1.4rem;
+    margin: 0 0 1.1rem;
+    text-wrap: balance;
+  }
+
+  article.item {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+
+  article.item h3 {
+    font-size: 1.02rem;
+    margin: 0 0 0.4rem;
+    font-weight: 650;
+    text-wrap: balance;
+  }
+
+  article.item p {
+    margin: 0 0 0.65rem;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+  }
+
+  .tag.critical { background: var(--critical-soft); color: var(--critical); }
+  .tag.high { background: var(--high-soft); color: var(--high); }
+  .tag.info { background: var(--info-soft); color: var(--info); }
+
+  .meta-row .date { color: var(--muted); }
+
+  .meta-row a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .meta-row a:hover, .meta-row a:focus-visible {
+    border-bottom-color: var(--accent);
+  }
+
+  .beginner {
+    background: var(--warm-soft);
+    border: 1px solid var(--warm);
+    border-radius: 10px;
+    padding: 1.6rem 1.6rem 1.5rem;
+  }
+
+  .beginner .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .beginner h2 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 1.5rem;
+    margin: 0 0 0.2rem;
+    text-wrap: balance;
+  }
+
+  .beginner .subhead {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+  }
+
+  .beginner p {
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.8rem;
+  }
+  .beginner p:last-of-type { margin-bottom: 0; }
+
+  footer {
+    margin-top: 3.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (max-width: 480px) {
+    .masthead-meta { text-align: left; }
+    header.masthead { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1 class="title">Cybersecurity Digest</h1>
+    <div class="masthead-meta">
+      3 August 2026<br>
+      Issue for the week of Jul 28&ndash;Aug 3
+    </div>
+  </header>
+  <p class="dek">A scan of what actually happened in security over the last two days &mdash; plus one story from the archives to build your foundations.</p>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">01 &middot; Breaches &amp; Incidents</span>
+      <span class="rule"></span>
+    </div>
+
+    <article class="item">
+      <h3>CISA warns of coordinated attacks hijacking water utility PLCs</h3>
+      <p>Since July 27, water and wastewater utilities in at least seven U.S. states have reported attackers hijacking internet-exposed programmable logic controllers (Rockwell/Allen-Bradley, Siemens, Schneider Electric), locking out operators by changing passwords and IP addresses &mdash; some incidents triggered boil-water notices. CISA is urging utilities to pull PLCs off the public internet immediately.</p>
+      <div class="meta-row">
+        <span class="tag critical">Critical infrastructure</span>
+        <span class="date">Jul 30, 2026</span>
+        <a href="https://www.cisa.gov/news-events/alerts/2026/07/30/cisa-urges-water-and-wastewater-systems-sector-protect-ot-against-activity-targeting-plcs" target="_blank" rel="noopener">CISA.gov &#8594;</a>
+      </div>
+    </article>
+
+    <article class="item">
+      <h3>ShinyHunters claims Ernst &amp; Young breach, threatens to leak tax data</h3>
+      <p>The extortion group added EY to its dark web leak site, claiming to hold client data &mdash; including Social Security numbers, financial account details, and tax filings &mdash; pulled from an IT service-management platform between late March and mid-April. EY has not confirmed the claim, and no data had surfaced publicly as of reporting.</p>
+      <div class="meta-row">
+        <span class="tag high">Data breach</span>
+        <span class="date">Jul 27, 2026</span>
+        <a href="https://www.bleepingcomputer.com/news/security/ernst-and-young-data-breach-claimed-by-shinyhunters-extortion-gang/" target="_blank" rel="noopener">BleepingComputer &#8594;</a>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">02 &middot; Vulnerabilities &amp; Patches</span>
+      <span class="rule"></span>
+    </div>
+
+    <article class="item">
+      <h3>Cisco firewall zero-day actively exploited via static credentials</h3>
+      <p>CVE-2026-20316 lets a remote attacker log into Secure Firewall Management Center using a built-in low-privilege account with a hardcoded password, then chain it with other flaws to pull sensitive data. Cisco confirmed active exploitation; CISA added it to the Known Exploited Vulnerabilities catalog and gave federal agencies until Aug 1 to patch. No workaround exists &mdash; apply Cisco's hotfix now.</p>
+      <div class="meta-row">
+        <span class="tag critical">CVE-2026-20316</span>
+        <span class="date">Jul 30, 2026</span>
+        <a href="https://thehackernews.com/2026/07/cisco-fmc-zero-day-actively-exploited.html" target="_blank" rel="noopener">The Hacker News &#8594;</a>
+      </div>
+    </article>
+
+    <article class="item">
+      <h3>VMware patches two critical vCenter flaws (CVSS 9.8)</h3>
+      <p>CVE-2026-59309 (authentication bypass) and CVE-2026-59310 (directory traversal) can be chained by a network attacker to break into vCenter Server and execute arbitrary code &mdash; a serious risk for any organization running VMware virtualization infrastructure. Patch immediately.</p>
+      <div class="meta-row">
+        <span class="tag critical">CVE-2026-59309 / -59310</span>
+        <span class="date">Late Jul 2026</span>
+        <a href="https://thehackernews.com/2026/07/three-critical-vmware-flaws-allow-auth.html" target="_blank" rel="noopener">The Hacker News &#8594;</a>
+      </div>
+    </article>
+
+    <article class="item">
+      <h3>N-able's first fix was incomplete &mdash; attackers took over N-central servers anyway</h3>
+      <p>N-able patched an admin-account-takeover bug in N-central back in June, but attackers found an alternate path around the fix (CVE-2026-18577), seized N-central servers, and used them to tunnel into customers' managed endpoints. N-able shipped a real fix in build 2026.3.1.7 on Aug 2 &mdash; MSPs running N-central should upgrade without delay.</p>
+      <div class="meta-row">
+        <span class="tag high">CVE-2026-18577</span>
+        <span class="date">Aug 1&ndash;2, 2026</span>
+        <a href="https://thehackernews.com/2026/08/n-able-says-attackers-take-over-n.html" target="_blank" rel="noopener">The Hacker News &#8594;</a>
+      </div>
+    </article>
+
+    <article class="item">
+      <h3>Adobe patches maximum-severity Campaign Classic flaw (CVSS 10.0)</h3>
+      <p>CVE-2026-48449 is an authorization flaw that could let an attacker execute arbitrary code with zero user interaction. Adobe says it hasn't seen exploitation in the wild yet, but a CVSS 10.0 rating means it's about as bad as it gets &mdash; update to ACC 7.4.3 build 9398 now rather than waiting.</p>
+      <div class="meta-row">
+        <span class="tag high">CVE-2026-48449</span>
+        <span class="date">Aug 1, 2026</span>
+        <a href="https://thehackernews.com/2026/08/adobe-campaign-classic-cvss-100-flaw.html" target="_blank" rel="noopener">The Hacker News &#8594;</a>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">03 &middot; Industry, Policy &amp; AI Defense</span>
+      <span class="rule"></span>
+    </div>
+
+    <article class="item">
+      <h3>Microsoft launches "Project Perception," an agentic AI security platform</h3>
+      <p>Entering public preview Aug 3, Project Perception runs teams of specialized AI agents &mdash; "red" agents that simulate attacks, "blue" agents that investigate threats, and "green" agents that apply fixes &mdash; alongside MAI-Cyber-1-Flash, Microsoft's first security-specialized in-house model. It's part of a broader industry push toward AI systems that act on defense, not just alert on it.</p>
+      <div class="meta-row">
+        <span class="tag info">New platform</span>
+        <span class="date">Jul 27&ndash;Aug 3, 2026</span>
+        <a href="https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/" target="_blank" rel="noopener">Microsoft Blog &#8594;</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="beginner">
+    <span class="eyebrow">Beginner Pick &middot; Learn the Fundamentals</span>
+    <h2>The XZ Utils backdoor (2024)</h2>
+    <p class="subhead">Not breaking news &mdash; a foundational case study every newcomer to security should know.</p>
+    <p>In early 2024, a Microsoft engineer named Andres Freund noticed something small and strange: SSH logins on a Debian test system were running about half a second slower than normal. Instead of shrugging it off, he investigated &mdash; and discovered that someone had spent over two years quietly earning the trust of the maintainer of xz, a compression library baked into nearly every Linux system on Earth, before secretly slipping a backdoor into its code.</p>
+    <p>Had it reached stable Linux releases, that backdoor could have let its creator remotely take over millions of servers by hijacking SSH, the protocol administrators use to log in and manage machines from anywhere. It's regarded as one of the most sophisticated supply-chain attacks ever discovered &mdash; and it was caught almost entirely by accident, because one engineer refused to ignore a "boring" performance quirk. For a newcomer, it's a great lesson in two things at once: how much of the internet quietly depends on volunteer-run open-source projects, and how the tiniest anomaly can be the only visible thread leading back to something very serious.</p>
+  </section>
+
+  <footer>
+    Cybersecurity Digest &middot; automated research digest &middot; sources linked inline
+  </footer>
+
+</div>
