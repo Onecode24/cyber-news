@@ -1,0 +1,408 @@
+<title>Cybersecurity Digest — Aug 7, 2026</title>
+<style>
+  :root {
+    --bg: #EDF1F0;
+    --surface: #FFFFFF;
+    --surface-2: #E4EAE8;
+    --ink: #101B1A;
+    --ink-soft: #45564F;
+    --ink-faint: #6E7F78;
+    --line: #CCD8D5;
+    --accent: #0E7C86;
+    --accent-ink: #075056;
+    --accent-soft: #DCEEEE;
+    --critical: #A6392E;
+    --critical-soft: #F5DEDB;
+    --warn: #92650B;
+    --warn-soft: #F1E4C6;
+    --info-soft: #DCEAF3;
+    --info-ink: #1F5C82;
+    --shadow: 0 1px 2px rgba(16,27,26,0.06), 0 6px 20px -12px rgba(16,27,26,0.18);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #0B1413;
+      --surface: #121E1C;
+      --surface-2: #182523;
+      --ink: #E7EFEE;
+      --ink-soft: #AFC3BE;
+      --ink-faint: #7E938D;
+      --line: #253634;
+      --accent: #4FC7CE;
+      --accent-ink: #BDEEF0;
+      --accent-soft: #163130;
+      --critical: #E2857A;
+      --critical-soft: #33201E;
+      --warn: #D6A845;
+      --warn-soft: #322914;
+      --info-soft: #182B36;
+      --info-ink: #8FC1E6;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -14px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1413;
+    --surface: #121E1C;
+    --surface-2: #182523;
+    --ink: #E7EFEE;
+    --ink-soft: #AFC3BE;
+    --ink-faint: #7E938D;
+    --line: #253634;
+    --accent: #4FC7CE;
+    --accent-ink: #BDEEF0;
+    --accent-soft: #163130;
+    --critical: #E2857A;
+    --critical-soft: #33201E;
+    --warn: #D6A845;
+    --warn-soft: #322914;
+    --info-soft: #182B36;
+    --info-ink: #8FC1E6;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -14px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  a { color: var(--accent-ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 4rem;
+  }
+
+  /* Masthead */
+  header.masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 2.25rem;
+  }
+  .kicker {
+    font-family: inherit;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--accent);
+    border-radius: 1px;
+    transform: rotate(45deg);
+  }
+  h1.title {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .masthead-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .date-chip {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.55rem;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink);
+  }
+  .dek {
+    margin: 0.35rem 0 0;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 58ch;
+  }
+
+  /* Section headers */
+  h2.section-title {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 0.35rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-sub {
+    color: var(--ink-faint);
+    font-size: 0.88rem;
+    margin: 0 0 1.4rem;
+    font-family: inherit;
+  }
+  section.block { margin-bottom: 2.75rem; }
+
+  h3.cat-title {
+    font-size: 0.72rem;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 1.6rem 0 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  h3.cat-title:first-of-type { margin-top: 0.4rem; }
+  h3.cat-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .items { display: flex; flex-direction: column; gap: 1.1rem; }
+  article.item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1rem 1.15rem 1.05rem;
+    box-shadow: var(--shadow);
+  }
+  .item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+  h4.item-title {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 650;
+    line-height: 1.35;
+    margin: 0;
+    color: var(--ink);
+  }
+  .tag {
+    flex: none;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 0.15rem;
+  }
+  .tag.critical { background: var(--critical-soft); color: var(--critical); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.info { background: var(--info-soft); color: var(--info-ink); }
+  p.item-summary {
+    margin: 0 0 0.55rem;
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+  }
+  a.source-link {
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--accent-ink);
+  }
+  a.source-link::after { content: " →"; }
+
+  /* Beginner pick */
+  section.beginner {
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.6rem 1.6rem 1.8rem;
+  }
+  .beginner .kicker { margin-bottom: 0.75rem; }
+  h2.beginner-title {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 750;
+    margin: 0 0 0.15rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .beginner-byline {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin: 0 0 1.1rem;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  .beginner p {
+    margin: 0 0 0.9rem;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .beginner p:last-of-type { margin-bottom: 0; }
+  .lesson {
+    margin-top: 1.2rem;
+    padding: 0.85rem 1rem;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+  }
+  .lesson strong { color: var(--ink); }
+
+  footer.colophon {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .item-head { flex-direction: column; }
+    .tag { margin-top: 0; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="kicker">Signal Report</div>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <div class="masthead-meta">
+      <span class="date-chip">Issue — Aug 7, 2026</span>
+      <span>A weekly-ish briefing for people building their security literacy</span>
+    </div>
+    <p class="dek">What actually happened in the last few days, and one story from cybersecurity history worth understanding.</p>
+  </header>
+
+  <section class="block">
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from early August 2026, grouped by type. Skim the tags — <span class="mono" style="color:var(--critical)">critical</span> means patch now, <span class="mono" style="color:var(--warn)">watch</span> means stay aware, <span class="mono" style="color:var(--info-ink)">context</span> means industry or policy news.</p>
+
+    <h3 class="cat-title">Breaches &amp; Incidents</h3>
+    <div class="items">
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Liechtenstein's beneficial-ownership register breached</h4>
+          <span class="tag warn">Breach</span>
+        </div>
+        <p class="item-summary">Attackers accessed the country's anti-money-laundering register overnight, copying data tied to roughly 31,000 companies, trusts, and foundations before officials noticed and took the system offline. Authorities say there's no sign the data was altered.</p>
+        <a class="source-link" href="https://securityaffairs.com/196558/cyber-crime/31000-records-compromised-in-breach-of-liechtenstein-companies-and-foundations-register.html" target="_blank" rel="noopener">securityaffairs.com</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Hyundai's Turkish operations hit by CRPx0 ransomware</h4>
+          <span class="tag warn">Ransomware</span>
+        </div>
+        <p class="item-summary">The CRPx0 group listed Hyundai Motor Türkiye on its leak site, claiming roughly 1.5GB of recruitment and executive-assessment data — part of a broader wave of CRPx0 attacks against Turkish firms this week.</p>
+        <a class="source-link" href="https://cyberpress.org/crpx0-ransomware-claims-hyundai-turkey-breach/" target="_blank" rel="noopener">cyberpress.org</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Fresh wave of ransomware leak-site listings</h4>
+          <span class="tag warn">Ransomware</span>
+        </div>
+        <p class="item-summary">Dozens of organizations — healthcare providers, insurers, and manufacturers among them — were newly added to dark-web leak sites this week by groups including INC Ransom, Gunra, and Chaos, a reminder of how routine mid-size ransomware activity has become.</p>
+        <a class="source-link" href="https://www.breachsense.com/breaches/2026/august/" target="_blank" rel="noopener">breachsense.com</a>
+      </article>
+    </div>
+
+    <h3 class="cat-title">Vulnerabilities &amp; CVEs</h3>
+    <div class="items">
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Cisco patches critical IOS XE / SD-WAN flaws</h4>
+          <span class="tag critical">CVE-2026-20272</span>
+        </div>
+        <p class="item-summary">A command-injection bug scoring 9.8 out of 10 headlines a dozen new fixes for IOS XE and SD-WAN software. No known exploitation yet, but Cisco says there's no workaround — patching is the only fix.</p>
+        <a class="source-link" href="https://thehackernews.com/2026/08/cisco-patches-12-sd-wan-and-ios-xe.html" target="_blank" rel="noopener">thehackernews.com</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Cisco firewall manager zero-day under active attack</h4>
+          <span class="tag critical">CVE-2026-20316</span>
+        </div>
+        <p class="item-summary">CISA added a static-credential flaw in Cisco Secure Firewall Management Center to its Known Exploited Vulnerabilities catalog after confirming real-world attacks, giving federal agencies days to patch.</p>
+        <a class="source-link" href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-fmc-static-credential-flaw-exploited-in-zero-day-attacks/" target="_blank" rel="noopener">bleepingcomputer.com</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">15 flaws found in TP-Link Omada auto-provisioning</h4>
+          <span class="tag warn">Disclosure</span>
+        </div>
+        <p class="item-summary">Researchers presenting at Black Hat USA showed how weaknesses in TP-Link's Omada zero-touch provisioning could let attackers hijack routers, cameras, and cloud accounts. Two of the flaws need a manufacturing-level fix, not just a software patch.</p>
+        <a class="source-link" href="https://www.helpnetsecurity.com/2026/08/05/forescout-tp-link-omada-vulnerabilities/" target="_blank" rel="noopener">helpnetsecurity.com</a>
+      </article>
+    </div>
+
+    <h3 class="cat-title">Industry, Policy &amp; AI Defense</h3>
+    <div class="items">
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">North Korean hackers hide C2 servers in blank crypto transfers</h4>
+          <span class="tag info">Supply Chain</span>
+        </div>
+        <p class="item-summary">A new technique dubbed "NullReceiver," found in trojanized npm packages linked to DPRK's Contagious Interview campaign, hides command-and-control addresses inside empty, zero-value Ethereum transactions — making the infrastructure harder for defenders to spot and block.</p>
+        <a class="source-link" href="https://thehackernews.com/2026/08/trojanized-npm-packages-decode-c2-ip.html" target="_blank" rel="noopener">thehackernews.com</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Microsoft launches agentic AI security platform</h4>
+          <span class="tag info">AI Defense</span>
+        </div>
+        <p class="item-summary">"Project Perception" entered public preview alongside MAI-Cyber-1-Flash, Microsoft's first in-house cybersecurity model. Coordinated AI agents split the work: some map attack paths, some investigate what's actually risky, and some fix it.</p>
+        <a class="source-link" href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" rel="noopener">techcrunch.com</a>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <h4 class="item-title">Apple escalates its fight over an iCloud backdoor</h4>
+          <span class="tag info">Policy</span>
+        </div>
+        <p class="item-summary">Apple filed a fresh legal complaint with the UK's Investigatory Powers Tribunal, again opposing a government demand for a way into encrypted iCloud backups, arguing any such access would weaken security for everyone.</p>
+        <a class="source-link" href="https://thehackernews.com/2026/08/threatsday-odysseus-rce-samsung-one.html" target="_blank" rel="noopener">thehackernews.com</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="beginner">
+    <div class="kicker">Beginner Pick — Educational Feature</div>
+    <h2 class="beginner-title">The MGM Resorts hack that started with a phone call</h2>
+    <p class="beginner-byline">Not breaking news — a formative case worth understanding — September 2023</p>
+    <p>In September 2023, a hacking group called Scattered Spider brought one of the world's largest casino operators to its knees — and they didn't write a single line of exploit code to get in. They found an MGM employee's profile on LinkedIn, called MGM's IT help desk pretending to be that employee, and in a ten-minute conversation talked the help desk into resetting the employee's multi-factor authentication. That was the whole break-in.</p>
+    <p>From there, the attackers used that reset to gain administrator access to MGM's identity system (Okta) and its cloud infrastructure. The fallout was dramatic and very physical: slot machines went dark, hotel key cards stopped working, guests were locked out of their rooms, and MGM's booking systems and website went offline for over a week. The company later estimated the incident cost it around $100 million.</p>
+    <p>The reason this story is a great starting point for learning security: it wasn't a sophisticated technical exploit that got MGM, it was a process failure. A single unverified phone call carried enough trust to unlock accounts protected by MFA — the very control designed to stop exactly this kind of takeover.</p>
+    <div class="lesson"><strong>Why it matters for you:</strong> Security isn't only firewalls and passwords — it's also the humans and processes with the power to override protections. Whenever you're asked to "just verify your identity" over the phone or reset a security setting for someone, slow down and confirm who you're really talking to.</div>
+  </section>
+
+  <footer class="colophon">
+    <span>Cybersecurity Digest · automated research digest</span>
+    <span>Sources linked inline — verify before acting on any advisory</span>
+  </footer>
+
+</div>
