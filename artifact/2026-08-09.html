@@ -1,0 +1,348 @@
+<title>Cybersecurity Digest — Aug 9, 2026</title>
+<style>
+  :root {
+    --paper: #eceff3;
+    --paper-raised: #f6f7fa;
+    --ink: #1b2430;
+    --ink-soft: #4a5468;
+    --ink-faint: #7c8598;
+    --line: #d3d8e2;
+    --accent: #0f6e5f;
+    --accent-ink: #0a4b41;
+    --tag-breach: #b8461f;
+    --tag-vuln: #a6740a;
+    --tag-industry: #2c5fa0;
+    --tag-ai: #6a4ab0;
+    --pick-bg: #f2ede1;
+    --pick-line: #d8cba8;
+    --pick-accent: #8a6a1f;
+    --shadow: 0 1px 2px rgba(27,36,48,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14181f;
+      --paper-raised: #1b212b;
+      --ink: #e7eaf0;
+      --ink-soft: #aab2c4;
+      --ink-faint: #7c8598;
+      --line: #2b3340;
+      --accent: #4fbfa8;
+      --accent-ink: #7fd6c2;
+      --tag-breach: #e08159;
+      --tag-vuln: #e0b34f;
+      --tag-industry: #79a6de;
+      --tag-ai: #ab93e8;
+      --pick-bg: #1f1a10;
+      --pick-line: #3d331a;
+      --pick-accent: #d4ac54;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #14181f;
+    --paper-raised: #1b212b;
+    --ink: #e7eaf0;
+    --ink-soft: #aab2c4;
+    --ink-faint: #7c8598;
+    --line: #2b3340;
+    --accent: #4fbfa8;
+    --accent-ink: #7fd6c2;
+    --tag-breach: #e08159;
+    --tag-vuln: #e0b34f;
+    --tag-industry: #79a6de;
+    --tag-ai: #ab93e8;
+    --pick-bg: #1f1a10;
+    --pick-line: #3d331a;
+    --pick-accent: #d4ac54;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 5rem;
+  }
+
+  header.masthead {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .kicker {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .kicker::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  h1.title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+    text-wrap: balance;
+  }
+
+  .dateline {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  h2.section-head {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 0.3rem;
+  }
+
+  .section-sub {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    margin: 0 0 1.4rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  section.digest { margin-bottom: 3rem; }
+
+  .cat-group { margin-bottom: 1.75rem; }
+
+  .cat-label {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    display: inline-block;
+    padding: 0.15rem 0;
+  }
+
+  .cat-breach { color: var(--tag-breach); }
+  .cat-vuln { color: var(--tag-vuln); }
+  .cat-industry { color: var(--tag-industry); }
+  .cat-ai { color: var(--tag-ai); }
+
+  .items { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  article.item {
+    background: var(--paper-raised);
+    border-left: 3px solid var(--line);
+    border-radius: 3px;
+    padding: 0.85rem 1.1rem;
+    box-shadow: var(--shadow);
+  }
+
+  .cat-breach + .items article.item,
+  article.item.b-breach { border-left-color: var(--tag-breach); }
+  article.item.b-vuln { border-left-color: var(--tag-vuln); }
+  article.item.b-industry { border-left-color: var(--tag-industry); }
+  article.item.b-ai { border-left-color: var(--tag-ai); }
+
+  h3.item-title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p.item-summary {
+    margin: 0 0 0.55rem;
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+  }
+
+  a.item-source {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  a.item-source:hover,
+  a.item-source:focus-visible { text-decoration: underline; }
+  a.item-source:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  a.item-source::after { content: "→"; }
+
+  /* Beginner Pick */
+  section.beginner {
+    background: var(--pick-bg);
+    border: 1px solid var(--pick-line);
+    border-radius: 6px;
+    padding: 1.6rem 1.6rem 1.75rem;
+  }
+
+  .pick-kicker {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pick-accent);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  h2.pick-title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    margin: 0 0 0.9rem;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .pick-body p { margin: 0 0 0.85rem; font-size: 1rem; color: var(--ink); }
+  .pick-body p:last-child { margin-bottom: 0; }
+
+  .pick-why {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--pick-line);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  .pick-why strong { color: var(--ink); }
+
+  footer.colophon {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 480px) {
+    h1.title { font-size: 1.7rem; }
+    .page { padding: 2rem 1.1rem 4rem; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="kicker">Cybersecurity Digest &middot; Weekly Briefing</div>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <div class="dateline">Sunday, August 9, 2026</div>
+  </header>
+
+  <section class="digest">
+    <h2 class="section-head">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past few days, grouped by type.</p>
+
+    <div class="cat-group">
+      <span class="cat-label cat-breach">Breaches &amp; Incidents</span>
+      <div class="items">
+        <article class="item b-breach">
+          <h3 class="item-title">Suspected Iranian hackers hit water utilities across a growing number of states</h3>
+          <p class="item-summary">The FBI is investigating a wave of intrusions into municipal water and wastewater systems that began around July 27 and has now spread to at least seven — by some counts a dozen — states, including Minnesota and Michigan. Attackers targeted internet-exposed Rockwell Automation industrial control gear, in some cases changing passwords and locking operators out; officials say water pressure was affected in places but all systems remain safe to drink from.</p>
+          <a class="item-source" href="https://www.washingtonpost.com/nation/2026/08/01/several-states-report-cyberattacks-spy-agencies-suspect-iran-targeting-water/">Washington Post</a>
+        </article>
+        <article class="item b-breach">
+          <h3 class="item-title">Cyberattack disrupts all three North Carolina state ports</h3>
+          <p class="item-summary">A cyberattack on North Carolina Ports' IT systems this week forced Wilmington, Morehead City, and the Charlotte Inland Port to switch to manual gate processing. The breach has since been contained; the U.S. Coast Guard and state IT officials are assisting an outside forensics team, and no attacker has been publicly identified yet.</p>
+          <a class="item-source" href="https://therecord.media/cyberattack-north-carolina-ports">The Record</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="cat-group">
+      <span class="cat-label cat-vuln">Vulnerabilities &amp; Patches</span>
+      <div class="items">
+        <article class="item b-vuln">
+          <h3 class="item-title">N-able N-central flaw under active exploitation — over half of servers still unpatched</h3>
+          <p class="item-summary">An authentication-bypass bug in N-able's N-central remote monitoring platform (CVE-2026-18577) can hand an unauthenticated attacker full "god-mode" admin access to the console used to manage client endpoints. N-able shipped an emergency hotfix on August 2 and a second required hotfix on August 6, but as of this week over half of reachable servers had not yet applied it.</p>
+          <a class="item-source" href="https://www.bleepingcomputer.com/news/security/n-able-warns-of-n-central-auth-bypass-flaw-exploited-in-attacks/">BleepingComputer</a>
+        </article>
+        <article class="item b-vuln">
+          <h3 class="item-title">Cisco pushes critical IOS XE hardening release for command-injection flaw</h3>
+          <p class="item-summary">Cisco's August 5 advisory bundle addresses a critical command/OS injection vulnerability in IOS XE Software (CVE-2026-20272, CVSS 9.8) alongside several related hardening fixes. Network admins running IOS XE devices should prioritize patching given the severity score and the software's widespread use in enterprise routers and switches.</p>
+          <a class="item-source" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-hardening-iosxe-V8NMuMZJ">Cisco Security Advisories</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="cat-group">
+      <span class="cat-label cat-ai">AI &amp; Defensive Tools</span>
+      <div class="items">
+        <article class="item b-ai">
+          <h3 class="item-title">Microsoft's "Project Perception" agentic security platform enters public preview</h3>
+          <p class="item-summary">Announced July 27 and now rolling out to select customers, Project Perception coordinates specialized AI agents — some that map attack paths, some that investigate findings, some that take corrective action — alongside Microsoft's new cybersecurity-tuned model, MAI-Cyber-1-Flash. Human approval is still required for consequential actions.</p>
+          <a class="item-source" href="https://www.axios.com/2026/07/27/microsoft-unveils-new-cyber-model-agentic-security-tools-to-fight-hackers">Axios</a>
+        </article>
+        <article class="item b-ai">
+          <h3 class="item-title">"Chop shops" are reselling stolen Claude, GPT, and Gemini access — and reading your prompts</h3>
+          <p class="item-summary">Researchers describe a growing gray market where criminals pool hijacked AI accounts and free cloud credits into proxy "transfer stations," reselling model access at 70–95% off list price. Because traffic routes through the reseller's proxy, buyers' prompts — sometimes containing sensitive business data — can be logged, retained, or resold along the way.</p>
+          <a class="item-source" href="https://www.axios.com/2026/08/06/hackers-ai-llm-hijacking">Axios</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="cat-group">
+      <span class="cat-label cat-industry">Industry &amp; Policy</span>
+      <div class="items">
+        <article class="item b-industry">
+          <h3 class="item-title">Black Hat USA 2026 vendor wave: agentic defense and AI-patch quality checks</h3>
+          <p class="item-summary">At this week's Black Hat USA conference, SentinelOne expanded a service pairing Anthropic's models with human analysts to hunt exploitable vulnerabilities, Sweet Security unveiled real-time blocking for rogue AI agents, and 1Password's new research arm found that 54% of AI-generated vulnerability patches it tested failed to actually fix the underlying bug.</p>
+          <a class="item-source" href="https://www.securityweek.com/black-hat-usa-2026-summary-of-vendor-announcements-part-1/">SecurityWeek</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="beginner">
+    <div class="pick-kicker">Beginner Pick &middot; Learn the Backstory</div>
+    <h2 class="pick-title">The XZ Utils Backdoor: how one engineer's 500-millisecond hunch stopped a global hack</h2>
+    <div class="pick-body">
+      <p>In late March 2024, a Microsoft engineer named Andres Freund noticed something tiny while benchmarking a database: SSH logins on his test machine were taking about half a second longer than they should. Most people would have shrugged it off. Instead, he dug in — and found that a compression library called <strong>xz/liblzma</strong>, quietly used by countless Linux systems to support SSH (the protocol used to remotely log into servers), had been deliberately sabotaged.</p>
+      <p>The backdoor wasn't the work of a lone hacker breaking in from outside. It was planted by someone using the handle "Jia Tan," who had spent roughly two years building trust as a helpful open-source contributor before eventually becoming a co-maintainer of the xz project — even pressuring the exhausted original maintainer to hand over more control. Once trusted, "Jia Tan" slipped malicious code into the software's build process, hidden well enough to survive review. Had it shipped widely into major Linux distributions, it could have let attackers remotely bypass authentication on affected servers worldwide.</p>
+      <p>It didn't get that far, because Freund's small performance quirk led him to catch it before it spread into stable releases used in production. Security researchers now call it one of the most sophisticated supply-chain attacks ever discovered — and one of the closest calls.</p>
+    </div>
+    <div class="pick-why"><strong>Why it matters for beginners:</strong> most software you use is built on open-source code maintained by volunteers, often for free and with little support. This story shows how patiently building trust over months or years can be a hacking technique in itself ("social engineering" at the level of an entire software project), why supply-chain security — trusting the code you didn't write yourself — is one of the hardest problems in the field, and how a single attentive person paying attention to something that "felt a little off" can matter more than any firewall.</div>
+  </section>
+
+  <footer class="colophon">Cybersecurity Digest — automated weekly briefing. Sources linked above; verify before acting on any advisory.</footer>
+
+</div>
