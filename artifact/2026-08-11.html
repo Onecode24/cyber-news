@@ -1,0 +1,410 @@
+<title>Cybersecurity Digest — August 11, 2026</title>
+<style>
+  :root {
+    --bg: #F5F6F8;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F5;
+    --ink: #1A2130;
+    --muted: #5B6478;
+    --line: rgba(26, 33, 48, 0.13);
+    --accent: #1C6E5C;
+    --accent-ink: #0F3F34;
+    --accent-tint: #E4F1EC;
+    --severity: #B54708;
+    --severity-tint: #FBEEE2;
+    --tag-breach: #A23B3B;
+    --tag-breach-tint: #FBEAEA;
+    --tag-vuln: #B54708;
+    --tag-vuln-tint: #FBEEE2;
+    --tag-policy: #3C5C9C;
+    --tag-policy-tint: #E9EEF9;
+    --tag-ai: #1C6E5C;
+    --tag-ai-tint: #E4F1EC;
+    --shadow: 0 1px 2px rgba(20, 24, 33, 0.06), 0 6px 20px rgba(20, 24, 33, 0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D1117;
+      --surface: #141B24;
+      --surface-2: #1A222D;
+      --ink: #E6E9EF;
+      --muted: #8B94A8;
+      --line: rgba(230, 233, 239, 0.14);
+      --accent: #4BB596;
+      --accent-ink: #BEEBDB;
+      --accent-tint: #16241F;
+      --severity: #E0902F;
+      --severity-tint: #2A2013;
+      --tag-breach: #E58A8A;
+      --tag-breach-tint: #2A1717;
+      --tag-vuln: #E0902F;
+      --tag-vuln-tint: #2A2013;
+      --tag-policy: #8FA9E0;
+      --tag-policy-tint: #171E2A;
+      --tag-ai: #4BB596;
+      --tag-ai-tint: #16241F;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0D1117;
+    --surface: #141B24;
+    --surface-2: #1A222D;
+    --ink: #E6E9EF;
+    --muted: #8B94A8;
+    --line: rgba(230, 233, 239, 0.14);
+    --accent: #4BB596;
+    --accent-ink: #BEEBDB;
+    --accent-tint: #16241F;
+    --severity: #E0902F;
+    --severity-tint: #2A2013;
+    --tag-breach: #E58A8A;
+    --tag-breach-tint: #2A1717;
+    --tag-vuln: #E0902F;
+    --tag-vuln-tint: #2A2013;
+    --tag-policy: #8FA9E0;
+    --tag-policy-tint: #171E2A;
+    --tag-ai: #4BB596;
+    --tag-ai-tint: #16241F;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header.masthead {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0 20px;
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  h1.title {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: clamp(32px, 5.5vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 10px 0 4px;
+    text-wrap: balance;
+  }
+
+  .dek {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 54ch;
+    line-height: 1.5;
+  }
+
+  section.block {
+    margin-bottom: 44px;
+  }
+
+  h2.section-title {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 22px;
+    line-height: 1.5;
+    max-width: 62ch;
+  }
+
+  h3.cat-title {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 30px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h3.cat-title:first-of-type { margin-top: 0; }
+
+  ul.item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  li.item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .item-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tag {
+    padding: 2px 8px;
+    border-radius: 5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .tag.breach { color: var(--tag-breach); background: var(--tag-breach-tint); }
+  .tag.vuln { color: var(--tag-vuln); background: var(--tag-vuln-tint); }
+  .tag.policy { color: var(--tag-policy); background: var(--tag-policy-tint); }
+  .tag.ai { color: var(--tag-ai); background: var(--tag-ai-tint); }
+
+  .item-date { color: var(--muted); }
+
+  h4.item-title {
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    line-height: 1.35;
+  }
+
+  p.item-summary {
+    margin: 0 0 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 64ch;
+  }
+
+  a.item-source {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  a.item-source:hover,
+  a.item-source:focus-visible {
+    border-bottom-color: currentColor;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .beginner-card {
+    background: var(--accent-tint);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 28px 30px;
+  }
+
+  .beginner-eyebrow {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  h3.beginner-title {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .beginner-card p {
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0 0 12px;
+    max-width: 62ch;
+  }
+
+  .beginner-card p:last-of-type { margin-bottom: 0; }
+
+  footer.colophon {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .page { padding: 32px 16px 64px; }
+    li.item { padding: 14px 14px; }
+    .beginner-card { padding: 22px 20px 24px; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Cybersecurity Digest</span>
+      <span>Issue · Tuesday, August 11, 2026</span>
+    </div>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <p class="dek">What happened in the last 48 hours, and one story from security history worth understanding if you're just getting started.</p>
+  </header>
+
+  <section class="block">
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories published in roughly the last two to three days, grouped by category. Each links to its original source.</p>
+
+    <h3 class="cat-title">Breaches &amp; Incidents</h3>
+    <ul class="item-list">
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag breach">Breach</span>
+          <span class="item-date">Aug 4, 2026</span>
+        </div>
+        <h4 class="item-title">Beacon CRM breach hits ~1,500 UK charities</h4>
+        <p class="item-summary">Beacon, a CRM platform widely used by UK charities including healthcare and victim-support organizations, confirmed an intruder used a compromised access key to access and likely exfiltrate donor databases. Exposed data may include names, addresses, emails, and donation histories, though no payment or bank details.</p>
+        <a class="item-source" href="https://www.infosecurity-magazine.com/news/healthcare-victim-charities-beacon/" target="_blank" rel="noopener noreferrer">Infosecurity Magazine ↗</a>
+      </li>
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag breach">Breach</span>
+          <span class="item-date">Jul 30 – Aug 2026</span>
+        </div>
+        <h4 class="item-title">Coldcard hardware wallet flaw drains $70M+ in Bitcoin</h4>
+        <p class="item-summary">A 2021 firmware integration error in Coldcard hardware wallets used the wrong random-number generator when creating wallet seeds, letting attackers predict them. In a 41-minute sweep on July 30, 1,196 addresses were drained of roughly $70.2M; researchers have since traced further waves pushing losses toward $88M+.</p>
+        <a class="item-source" href="https://thehackernews.com/2026/08/coldcard-hardware-wallet-flaw-linked-to.html" target="_blank" rel="noopener noreferrer">The Hacker News ↗</a>
+      </li>
+    </ul>
+
+    <h3 class="cat-title">Vulnerabilities &amp; CVEs</h3>
+    <ul class="item-list">
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag vuln">Vulnerability</span>
+          <span class="item-date">Aug 5–10, 2026</span>
+        </div>
+        <h4 class="item-title">CISA: JetBrains TeamCity RCE under active attack</h4>
+        <p class="item-summary">CVE-2026-63077, a critical (CVSS 9.8) deserialization flaw in on-prem TeamCity servers, lets unauthenticated attackers run arbitrary commands via the agent polling protocol. CISA added it to its Known Exploited Vulnerabilities catalog on August 5 with an August 8 patch deadline for federal agencies; JetBrains has fixed builds available.</p>
+        <a class="item-source" href="https://thehackernews.com/2026/08/cisa-flags-teamcity-cve-2026-63077-rce.html" target="_blank" rel="noopener noreferrer">The Hacker News ↗</a>
+      </li>
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag vuln">Vulnerability</span>
+          <span class="item-date">Aug 2026</span>
+        </div>
+        <h4 class="item-title">CISA flags Langflow and Apache Tomcat flaws as exploited</h4>
+        <p class="item-summary">CISA added CVE-2026-9198 (unauthenticated code injection in the Langflow AI-workflow builder, CVSS 9.8) and CVE-2026-34486 (a missing-encryption flaw in Apache Tomcat, CVSS 7.5) to its exploited-vulnerabilities catalog this week, alongside continued exploitation of N-central RMM flaws.</p>
+        <a class="item-source" href="https://thehackernews.com/2026/08/cisa-flags-langflow-rce-tomcat-and-n.html" target="_blank" rel="noopener noreferrer">The Hacker News ↗</a>
+      </li>
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag vuln">Vulnerability</span>
+          <span class="item-date">Aug 7, 2026</span>
+        </div>
+        <h4 class="item-title">"RovoBlast": one click could leak Jira and Confluence data</h4>
+        <p class="item-summary">Researchers at Varonis disclosed RovoBlast, a prompt-injection flaw in Atlassian's Rovo AI assistant: a single crafted link could seed attacker instructions into a victim's authenticated session, which Rovo's own research agent would then use to exfiltrate connected Jira, Confluence, and Slack data. Atlassian has already deployed a server-side fix.</p>
+        <a class="item-source" href="https://www.csoonline.com/article/4207306/one-click-flaw-in-atlassian-rovo-exposed-enterprise-data-via-prompt-injection-attack.html" target="_blank" rel="noopener noreferrer">CSO Online ↗</a>
+      </li>
+    </ul>
+
+    <h3 class="cat-title">Industry &amp; Policy</h3>
+    <ul class="item-list">
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag policy">Policy</span>
+          <span class="item-date">Aug 5, 2026</span>
+        </div>
+        <h4 class="item-title">Ransom Cartel creator sentenced to 16 years</h4>
+        <p class="item-summary">A US federal court in Virginia sentenced Maksim Silnikau, the Belarusian creator and administrator of the Ransom Cartel ransomware-as-a-service operation, to 16 years for conspiracy, wire fraud, and identity theft tied to attacks on at least 18 companies worldwide between 2021 and 2023.</p>
+        <a class="item-source" href="https://www.justice.gov/usao-edva/pr/belarusian-leader-international-ransomware-scheme-known-ransom-cartel-sentenced-16" target="_blank" rel="noopener noreferrer">US Department of Justice ↗</a>
+      </li>
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag policy">Policy</span>
+          <span class="item-date">Aug 2026</span>
+        </div>
+        <h4 class="item-title">INC ransomware surges via SonicWall flaws</h4>
+        <p class="item-summary">The INC ransomware group has sharply accelerated activity since early August, listing new victims on its leak site and bringing its total to 885. Researchers suspect the group is chaining two SonicWall SMA 1000 vulnerabilities to gain remote command execution on unpatched appliances.</p>
+        <a class="item-source" href="https://thehackernews.com/2026/08/inc-ransomware-emerges-as-dominant.html" target="_blank" rel="noopener noreferrer">The Hacker News ↗</a>
+      </li>
+    </ul>
+
+    <h3 class="cat-title">AI &amp; Defense</h3>
+    <ul class="item-list">
+      <li class="item">
+        <div class="item-meta">
+          <span class="tag ai">AI Tool</span>
+          <span class="item-date">Aug 10, 2026</span>
+        </div>
+        <h4 class="item-title">OpenAI expands Daybreak, ships GPT-5.6-Cyber</h4>
+        <p class="item-summary">OpenAI split its Daybreak cyber-defense program into two tiers — Blue for everyday defender access to general models, Red for vetted researchers using the new GPT-5.6-Cyber model — built for exploit-chain analysis and vulnerability research. OpenAI says it already used the model to find two previously unknown Chrome V8 vulnerabilities.</p>
+        <a class="item-source" href="https://techcrunch.com/2026/08/10/as-ai-led-attacks-multiply-openai-launches-a-new-cyber-model/" target="_blank" rel="noopener noreferrer">TechCrunch ↗</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Beginner Pick</h2>
+    <p class="section-sub">Not breaking news — a story from the last few years worth understanding if you're building your security foundations.</p>
+
+    <div class="beginner-card">
+      <div class="beginner-eyebrow">For newcomers · why this matters</div>
+      <h3 class="beginner-title">The MGM Resorts breach: hacking without touching a keyboard</h3>
+      <p>In September 2023, a group known as Scattered Spider took down MGM Resorts' casino floors, hotel systems, and slot machines for over a week — costing the company more than $100 million. They didn't use a zero-day exploit or crack any passwords. They called MGM's IT help desk, impersonated an employee found on LinkedIn, and talked their way into a password reset.</p>
+      <p>That single phone call gave them a foothold to escalate privileges and spread through MGM's network, eventually deploying ransomware. Caesars Entertainment, hit by the same group days earlier, quietly paid a reported $15 million ransom rather than risk the same outage.</p>
+      <p><strong>Why it matters for beginners:</strong> it's a clean example of "social engineering" — attacking the humans and processes around a system instead of the system itself. No firewall or antivirus stops a helpful help-desk agent who's been fooled. It's a good reminder that identity verification, employee training, and process design are as much a part of security as code.</p>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    Cybersecurity Digest is an automated research roundup. Stories are drawn from public reporting and linked to their original sources — verify details there before acting on them. Compiled August 11, 2026.
+  </footer>
+
+</div>
