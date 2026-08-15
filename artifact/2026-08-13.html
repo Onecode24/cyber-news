@@ -1,0 +1,362 @@
+<title>Cybersecurity Digest — August 13, 2026</title>
+<style>
+  :root {
+    --paper: #eef1f2;
+    --paper-raised: #ffffff;
+    --ink: #16202a;
+    --ink-soft: #4a5761;
+    --line: #d7dee2;
+    --accent: #1c5d99;
+    --accent-warm: #2f6b57;
+    --accent-warm-wash: #e6f0ec;
+    --sev-breach: #b23b3b;
+    --sev-vuln: #a3690a;
+    --sev-policy: #1c5d99;
+    --sev-ai: #6a4c93;
+    --shadow: 0 1px 2px rgba(22, 32, 42, 0.06), 0 1px 1px rgba(22, 32, 42, 0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #10151b;
+      --paper-raised: #171e26;
+      --ink: #e7edf1;
+      --ink-soft: #9fb0ba;
+      --line: #2a333c;
+      --accent: #74acdc;
+      --accent-warm: #6cbc9f;
+      --accent-warm-wash: #17251f;
+      --sev-breach: #e2857f;
+      --sev-vuln: #e0a83c;
+      --sev-policy: #74acdc;
+      --sev-ai: #b09cdb;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #10151b;
+    --paper-raised: #171e26;
+    --ink: #e7edf1;
+    --ink-soft: #9fb0ba;
+    --line: #2a333c;
+    --accent: #74acdc;
+    --accent-warm: #6cbc9f;
+    --accent-warm-wash: #17251f;
+    --sev-breach: #e2857f;
+    --sev-vuln: #e0a83c;
+    --sev-policy: #74acdc;
+    --sev-ai: #b09cdb;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  :root[data-theme="light"] {
+    --paper: #eef1f2;
+    --paper-raised: #ffffff;
+    --ink: #16202a;
+    --ink-soft: #4a5761;
+    --line: #d7dee2;
+    --accent: #1c5d99;
+    --accent-warm: #2f6b57;
+    --accent-warm-wash: #e6f0ec;
+    --sev-breach: #b23b3b;
+    --sev-vuln: #a3690a;
+    --sev-policy: #1c5d99;
+    --sev-ai: #6a4c93;
+    --shadow: 0 1px 2px rgba(22, 32, 42, 0.06), 0 1px 1px rgba(22, 32, 42, 0.04);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    margin: 0;
+    padding: 0 1.25rem 4rem;
+  }
+
+  .sheet {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", monospace;
+  }
+
+  /* ---- Masthead ---- */
+  header.masthead {
+    padding: 2.75rem 0 1.5rem;
+    border-bottom: 3px solid var(--ink);
+  }
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.6rem;
+  }
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-size: clamp(2rem, 5vw, 2.7rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  .dateline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .dateline strong { color: var(--ink); }
+  .strap {
+    margin: 1rem 0 0;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 34rem;
+  }
+
+  /* ---- Section headings ---- */
+  h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 3rem 0 0.35rem;
+    letter-spacing: -0.005em;
+  }
+  .section-sub {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 0 0 1.4rem;
+  }
+  h3.category-head {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.9rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  h3.category-head::before {
+    content: "";
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 1px;
+    background: var(--dot);
+  }
+
+  /* ---- Item cards ---- */
+  .items { display: flex; flex-direction: column; gap: 0.9rem; }
+  article.item {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--stripe, var(--accent));
+    border-radius: 6px;
+    padding: 1rem 1.15rem 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .item-meta {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+  }
+  .item-meta .tag {
+    color: var(--stripe, var(--accent));
+    font-weight: 600;
+  }
+  h4.item-title {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+  }
+  .item p {
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+    font-size: 0.97rem;
+  }
+  .item a.source {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .item a.source:hover,
+  .item a.source:focus-visible {
+    border-bottom-color: var(--accent);
+  }
+  a:focus-visible, .item a.source:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---- Beginner pick ---- */
+  .beginner-wrap {
+    margin-top: 3rem;
+    padding: 1.6rem 1.5rem 1.7rem;
+    background: var(--accent-warm-wash);
+    border: 1px solid var(--accent-warm);
+    border-radius: 8px;
+  }
+  .beginner-eyebrow {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    font-weight: 700;
+    margin: 0 0 0.6rem;
+  }
+  .beginner-wrap h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 1.4rem;
+    margin: 0 0 0.2rem;
+    text-wrap: balance;
+  }
+  .beginner-wrap .kicker {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    margin: 0 0 0.9rem;
+    font-style: italic;
+  }
+  .beginner-wrap p { margin: 0 0 0.75rem; font-size: 0.99rem; }
+  .beginner-wrap p:last-of-type { margin-bottom: 0.9rem; }
+  .beginner-wrap a.source {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-warm);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .beginner-wrap a.source:hover, .beginner-wrap a.source:focus-visible {
+    border-bottom-color: var(--accent-warm);
+  }
+
+  footer.colophon {
+    margin-top: 3.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 480px) {
+    .dateline { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <p class="eyebrow mono">Issue briefing</p>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <div class="dateline">
+      <span><strong class="mono">Thursday, August 13, 2026</strong></span>
+      <span class="mono">6 stories · 1 beginner feature</span>
+    </div>
+    <p class="strap">What broke, what patched, and what's worth learning — a plain-language rundown of the last 48 hours in security, plus one foundational story for readers still building their footing.</p>
+  </header>
+
+  <section>
+    <h2 class="section-head">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past few days, grouped by kind.</p>
+
+    <h3 class="category-head" style="--dot: var(--sev-breach)">Breaches &amp; Incidents</h3>
+    <div class="items">
+      <article class="item" style="--stripe: var(--sev-breach)">
+        <div class="item-meta">
+          <span class="tag mono">RANSOMWARE</span><span>·</span><span class="mono">Aug 10, 2026</span><span>·</span><span>thehackernews.com</span>
+        </div>
+        <h4 class="item-title">China-linked hackers debut new "StormEncryptor" ransomware</h4>
+        <p>Microsoft says the financially motivated, China-linked group Storm-1175 — previously a Medusa ransomware affiliate — is now deploying a new strain called StormEncryptor, likely gaining initial access through CVE-2026-18577, a patch-bypass flaw in N-able's N-central remote monitoring platform. The group reportedly moves from first access to full encryption and data theft within days, underscoring how fast unpatched remote-management tools get weaponized.</p>
+        <a class="source" href="https://thehackernews.com/2026/08/china-linked-hackers-deploy-new.html" target="_blank" rel="noopener">Read more at The Hacker News →</a>
+      </article>
+    </div>
+
+    <h3 class="category-head" style="--dot: var(--sev-vuln)">Vulnerabilities &amp; CVEs</h3>
+    <div class="items">
+      <article class="item" style="--stripe: var(--sev-vuln)">
+        <div class="item-meta">
+          <span class="tag mono">398 CVEs</span><span>·</span><span class="mono">Patch Tuesday</span><span>·</span><span>Aug 11–12, 2026</span>
+        </div>
+        <h4 class="item-title">Microsoft's August Patch Tuesday fixes 398 flaws, including an exploited kernel zero-day</h4>
+        <p>Microsoft's August release covers 398 CVEs, with roughly 40 rated critical, including a wormable Windows DNS Server remote-code-execution bug (CVE-2026-62878) and a QUIC use-after-free flaw — both CVSS 9.8. One issue, CVE-2026-68820 in the WinSock kernel driver, was already being exploited in the wild before the patch shipped.</p>
+        <a class="source" href="https://www.helpnetsecurity.com/2026/08/12/august-2026-patch-tuesday-cve-2026-68820/" target="_blank" rel="noopener">Read more at Help Net Security →</a>
+      </article>
+
+      <article class="item" style="--stripe: var(--sev-vuln)">
+        <div class="item-meta">
+          <span class="tag mono">CVE-2026-68820</span><span>·</span><span class="mono">KEV: Aug 11</span><span>·</span><span>bleepingcomputer.com</span>
+        </div>
+        <h4 class="item-title">Lazarus Group used that same zero-day to hit defense contractors with fake job offers</h4>
+        <p>North Korea's Lazarus Group exploited the WinSock kernel flaw (CVE-2026-68820) for weeks before the patch existed, using fraudulent recruiter outreach — its long-running "Operation Dream Job" playbook — to plant the FudModule rootkit on defense, aerospace, and aviation targets in Europe and India. CISA added the bug to its Known Exploited Vulnerabilities catalog on August 11 with a two-week federal patch deadline.</p>
+        <a class="source" href="https://www.bleepingcomputer.com/news/security/lazarus-hackers-exploited-windows-zero-day-to-target-defense-firms/" target="_blank" rel="noopener">Read more at BleepingComputer →</a>
+      </article>
+
+      <article class="item" style="--stripe: var(--sev-vuln)">
+        <div class="item-meta">
+          <span class="tag mono">CVE-2026-59310</span><span>·</span><span class="mono">CVSS 9.8</span><span>·</span><span>47 countries</span>
+        </div>
+        <h4 class="item-title">Critical VMware vCenter flaw now under active, wide-scale exploitation</h4>
+        <p>Attackers are exploiting a directory-traversal vulnerability in Broadcom's VMware vCenter Server to plant reverse-SSH backdoors for persistent remote access, with researchers at QUIRSO tracking 361 affected IP addresses across 47 countries. Germany, the US, and Turkey are the hardest hit; vCenter admins who haven't applied Broadcom's July 29 patch should treat this as urgent.</p>
+        <a class="source" href="https://thehackernews.com/2026/08/attackers-exploit-vmware-vcenter.html" target="_blank" rel="noopener">Read more at The Hacker News →</a>
+      </article>
+    </div>
+
+    <h3 class="category-head" style="--dot: var(--sev-policy)">Industry &amp; Policy</h3>
+    <div class="items">
+      <article class="item" style="--stripe: var(--sev-policy)">
+        <div class="item-meta">
+          <span class="tag mono">JOINT ADVISORY</span><span>·</span><span class="mono">Aug 11, 2026</span><span>·</span><span>US &amp; South Korea</span>
+        </div>
+        <h4 class="item-title">US and South Korean agencies warn on ransomware group hitting unpatched edge devices</h4>
+        <p>CISA, the FBI, NSA, and South Korea's National Police Agency issued a joint alert on the Gunra ransomware operation, which is bypassing MFA and exfiltrating data by exploiting Fortinet firewall and VPN flaws patched back in early 2025 but never applied by many critical-infrastructure operators. The advisory urges prioritized patching of internet-facing systems, network segmentation, and immutable backups.</p>
+        <a class="source" href="https://www.darkreading.com/cyberattacks-data-breaches/gunra-ransomware-gang-fortinet-flaws-bypasses-mfa" target="_blank" rel="noopener">Read more at Dark Reading →</a>
+      </article>
+    </div>
+
+    <h3 class="category-head" style="--dot: var(--sev-ai)">AI-Driven Defense</h3>
+    <div class="items">
+      <article class="item" style="--stripe: var(--sev-ai)">
+        <div class="item-meta">
+          <span class="tag mono">NEW MODEL</span><span>·</span><span class="mono">Aug 10, 2026</span><span>·</span><span>techcrunch.com</span>
+        </div>
+        <h4 class="item-title">OpenAI launches an "offense-grade" hacking model for vetted defenders</h4>
+        <p>OpenAI expanded its Daybreak cyber-defense program with a Red tier granting identity-verified security teams access to GPT-5.6-Cyber, a purpose-trained model for exploit validation and vulnerability research, alongside a Blue tier offering frontier models with security-prompt guardrails relaxed for approved defensive use. It's a direct response to the rise of AI-assisted attacks — arming defenders with the same class of tooling attackers are starting to use.</p>
+        <a class="source" href="https://techcrunch.com/2026/08/10/as-ai-led-attacks-multiply-openai-launches-a-new-cyber-model/" target="_blank" rel="noopener">Read more at TechCrunch →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="beginner-wrap">
+    <p class="beginner-eyebrow mono">Beginner Pick — Learn the Fundamentals</p>
+    <h3>Operation Cronos: the day police took over a ransomware gang's own website</h3>
+    <p class="kicker">Not breaking news — a landmark takedown from February 2024, worth knowing as you learn how the defense side fights back.</p>
+    <p>By early 2024, LockBit was the world's most prolific ransomware gang — a "ransomware-as-a-service" operation that had hit more than 2,000 victims and collected over $120 million in ransoms by renting its malware and leak-site infrastructure out to criminal affiliates. On February 19–20, 2024, law enforcement from ten countries — led by the UK's National Crime Agency and the FBI — pulled off Operation Cronos: they seized 34 servers across eight countries, took control of LockBit's dark-web leak site and admin panel, recovered decryption keys for victims, froze over 200 cryptocurrency accounts, and arrested affiliates in Poland and Ukraine.</p>
+    <p>What makes this story especially fun for newcomers is what police did next: instead of just shutting the site down, they repurposed LockBit's own leak page to publish their own countdown timers, press releases, and mocking messages using the gang's branding against it. It's a great first case study in two ideas that matter a lot in security: cryptocurrency payments are traceable with enough resources, and disrupting an attacker's infrastructure (not just patching your own systems) is a real, powerful part of cyber defense — even against a criminal enterprise built to survive.</p>
+    <a class="source" href="https://www.weforum.org/stories/2024/02/lockbit-ransomware-operation-cronos-cybercrime/" target="_blank" rel="noopener">Background reading at the World Economic Forum →</a>
+  </section>
+
+  <footer class="colophon">
+    <p>Cybersecurity Digest is an automated roundup. Stories are drawn from public reporting and linked to their original source — verify details there before acting on anything security-critical.</p>
+  </footer>
+
+</div>
