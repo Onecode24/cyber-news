@@ -1,0 +1,462 @@
+<title>Cybersecurity Digest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --ink: #1b2333;
+    --ink-soft: #4b5468;
+    --ink-faint: #7b8497;
+    --border: #dfe3ea;
+    --accent: #0e7c86;
+    --accent-ink: #0b5f67;
+    --accent-soft: #e3f1f1;
+    --cat-breach: #c2492e;
+    --cat-breach-soft: #f7e7e2;
+    --cat-vuln: #a9762f;
+    --cat-vuln-soft: #f6efe0;
+    --cat-policy: #3557c4;
+    --cat-policy-soft: #e6eafb;
+    --cat-ai: #6a4fb0;
+    --cat-ai-soft: #ece6f8;
+    --pick-bg: #f1ece0;
+    --pick-surface: #f9f6ee;
+    --pick-ink: #3a2e1f;
+    --pick-ink-soft: #6b5c46;
+    --pick-accent: #a9762f;
+    --pick-border: #e1d6bd;
+    --shadow: 0 1px 2px rgba(27,35,51,0.05), 0 8px 20px -12px rgba(27,35,51,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #171e2c;
+      --surface-2: #1e2637;
+      --ink: #e4e8f0;
+      --ink-soft: #a7b0c2;
+      --ink-faint: #7c869c;
+      --border: #2a3346;
+      --accent: #35b4be;
+      --accent-ink: #7fd6de;
+      --accent-soft: #16333a;
+      --cat-breach: #e0725a;
+      --cat-breach-soft: #34211d;
+      --cat-vuln: #e0b65c;
+      --cat-vuln-soft: #332a19;
+      --cat-policy: #7c97f0;
+      --cat-policy-soft: #1c2440;
+      --cat-ai: #b49ae8;
+      --cat-ai-soft: #241f38;
+      --pick-bg: #1a1710;
+      --pick-surface: #201b13;
+      --pick-ink: #ede3d0;
+      --pick-ink-soft: #b8a988;
+      --pick-accent: #d4a24c;
+      --pick-border: #3a3121;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #171e2c;
+    --surface-2: #1e2637;
+    --ink: #e4e8f0;
+    --ink-soft: #a7b0c2;
+    --ink-faint: #7c869c;
+    --border: #2a3346;
+    --accent: #35b4be;
+    --accent-ink: #7fd6de;
+    --accent-soft: #16333a;
+    --cat-breach: #e0725a;
+    --cat-breach-soft: #34211d;
+    --cat-vuln: #e0b65c;
+    --cat-vuln-soft: #332a19;
+    --cat-policy: #7c97f0;
+    --cat-policy-soft: #1c2440;
+    --cat-ai: #b49ae8;
+    --cat-ai-soft: #241f38;
+    --pick-bg: #1a1710;
+    --pick-surface: #201b13;
+    --pick-ink: #ede3d0;
+    --pick-ink-soft: #b8a988;
+    --pick-accent: #d4a24c;
+    --pick-border: #3a3121;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .item { transition: border-color 0.15s ease, transform 0.15s ease; }
+    .item:hover { transform: translateY(-1px); }
+  }
+
+  a { color: var(--accent-ink); }
+  a:focus-visible, .item a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 72px;
+  }
+
+  header.masthead {
+    padding: 44px 0 28px;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 2.7rem);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+    line-height: 1.02;
+  }
+
+  .masthead-title span {
+    color: var(--accent-ink);
+  }
+
+  .masthead-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .masthead-meta .date {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.88rem;
+  }
+
+  .intro {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 62ch;
+    margin: 0 0 40px;
+  }
+
+  section.block { margin-bottom: 48px; }
+
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .block-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  h2.block-title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .block-sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-left: auto;
+  }
+
+  .category-group { margin-bottom: 26px; }
+  .category-group:last-child { margin-bottom: 0; }
+
+  .category-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .category-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .cat-breach .dot { background: var(--cat-breach); }
+  .cat-breach .category-label { color: var(--cat-breach); }
+  .cat-vuln .dot { background: var(--cat-vuln); }
+  .cat-vuln .category-label { color: var(--cat-vuln); }
+  .cat-policy .dot { background: var(--cat-policy); }
+  .cat-policy .category-label { color: var(--cat-policy); }
+  .cat-ai .dot { background: var(--cat-ai); }
+  .cat-ai .category-label { color: var(--cat-ai); }
+
+  .items { display: flex; flex-direction: column; gap: 10px; }
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .cat-breach .item { border-left-color: var(--cat-breach); }
+  .cat-vuln .item { border-left-color: var(--cat-vuln); }
+  .cat-policy .item { border-left-color: var(--cat-policy); }
+  .cat-ai .item { border-left-color: var(--cat-ai); }
+
+  .item h3 {
+    font-family: "Archivo", sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+
+  .item p {
+    margin: 0 0 8px;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+
+  .item .src {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    text-decoration: none;
+    color: var(--accent-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .item .src:hover { text-decoration: underline; }
+
+  /* Beginner pick */
+  .pick {
+    background: var(--pick-bg);
+    border: 1px solid var(--pick-border);
+    border-radius: 10px;
+    padding: 30px 30px 28px;
+    color: var(--pick-ink);
+    box-shadow: var(--shadow);
+  }
+
+  .pick-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--pick-accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pick-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--pick-accent);
+  }
+
+  .pick h2 {
+    font-family: "Archivo", sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    margin: 0 0 4px;
+    color: var(--pick-ink);
+    text-wrap: balance;
+  }
+
+  .pick .pick-when {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    color: var(--pick-ink-soft);
+    margin: 0 0 18px;
+  }
+
+  .pick p {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    color: var(--pick-ink);
+  }
+  .pick p:last-of-type { margin-bottom: 0; }
+
+  .pick .why {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pick-border);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--pick-ink-soft);
+    line-height: 1.6;
+  }
+  .pick .why strong { color: var(--pick-accent); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { align-items: flex-start; }
+    .masthead-meta { text-align: left; }
+    .block-sub { display: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1 class="masthead-title">Cybersecurity<br><span>Digest</span></h1>
+    <div class="masthead-meta">
+      <div class="date">Tuesday, August 25, 2026</div>
+      <div>Issue for beginners &amp; the security-curious</div>
+    </div>
+  </header>
+
+  <p class="intro">What broke, what's being patched, and what's worth learning from the last several days in security &mdash; plus one story from the archives for readers still building their footing.</p>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-eyebrow">Briefing</span>
+      <h2 class="block-title">Last 48 Hours</h2>
+      <span class="block-sub">8 items &middot; Aug 17&ndash;25</span>
+    </div>
+
+    <div class="category-group cat-breach">
+      <p class="category-label"><span class="dot"></span>Breaches &amp; Incidents</p>
+      <div class="items">
+        <div class="item">
+          <h3>Iran-linked hackers reportedly shut down a UK power-generation site for four days</h3>
+          <p>The Telegraph reported that a small British power plant was forced offline for four days after a cyberattack attributed to Iran-linked hackers &mdash; possibly the first confirmed case of Iranian actors disrupting UK power infrastructure. The facility was small enough that the outage had no impact on the wider grid, but the NCSC is treating it as a warning shot and has briefed energy firms on hardening defenses.</p>
+          <a class="src" href="https://www.securityweek.com/iran-linked-hackers-shut-down-uk-power-plant-for-four-days/">securityweek.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>China-nexus actor rides a VMware vCenter flaw into Babuk-derived ransomware</h3>
+          <p>Researchers now attribute exploitation of vCenter bug CVE-2026-59310 to a suspected China-linked group that compromised 361 servers across 47 countries, planting backdoors for persistent access before deploying a Babuk-derived ransomware strain on some victims &mdash; suggesting the ransomware may be a distraction from a deeper espionage goal.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/suspected-china-nexus-actor-exploits.html">thehackernews.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>CISA, FBI and HHS: Medusa ransomware has now hit over 500 organizations</h3>
+          <p>An updated joint advisory says the Medusa ransomware-as-a-service operation has breached 500+ critical infrastructure victims since 2021, spanning healthcare, government, manufacturing and finance. Affiliates are told to double-extort victims &mdash; encrypt the network and threaten to leak stolen data on a public countdown timer.</p>
+          <a class="src" href="https://www.bleepingcomputer.com/news/security/cisa-medusa-ransomware-hit-over-500-critical-infrastructure-orgs/">bleepingcomputer.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-vuln">
+      <p class="category-label"><span class="dot"></span>Vulnerabilities &amp; CVEs</p>
+      <div class="items">
+        <div class="item">
+          <h3>Federal patch deadline lands today for an already-exploited Windows kernel bug</h3>
+          <p>CVE-2026-68820, a use-after-free flaw in the Windows WinSock driver (afd.sys) that lets a local attacker jump to SYSTEM, was already being exploited when Microsoft patched it on August 11. Under CISA's binding directive, today &mdash; August 25 &mdash; is the deadline for US federal civilian agencies to have it fixed; everyone else running Windows should treat it the same way.</p>
+          <a class="src" href="https://blog.qualys.com/product-tech/2026/08/18/cve-2026-68820-kev-bod-26-04-requirements">blog.qualys.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Unauthenticated Zimbra mail servers under active attack via CISA-listed flaw</h3>
+          <p>CVE-2026-73570 lets an attacker with no credentials run system commands on Zimbra Collaboration Suite mail servers that have SNMP notifications enabled. CERT Polska caught it being exploited in the wild on August 17, CISA added it to its Known Exploited Vulnerabilities list on August 21, and Zimbra's fix has been available since version 10.1.20 in July.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/attackers-exploit-zimbra-snmp-flaw-for.html">thehackernews.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Flaw in a popular WordPress form plugin opens 100,000+ sites to full takeover</h3>
+          <p>CVE-2026-19598, a CVSS 9.8 file-upload flaw in the Everest Forms plugin, lets an attacker with no login upload a PHP web shell and take complete control of a WordPress site. It's fixed in version 3.0.9.5 &mdash; a good reminder that plugins, not just WordPress core, are usually the weak point.</p>
+          <a class="src" href="https://cybersecuritynews.com/wordpress-everest-forms-plugin-flaw/">cybersecuritynews.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-policy">
+      <p class="category-label"><span class="dot"></span>Industry &amp; Policy</p>
+      <div class="items">
+        <div class="item">
+          <h3>Uber fined &euro;825 million by Dutch regulator over automated driver bans</h3>
+          <p>The Dutch Data Protection Authority fined Uber &euro;825 million for deactivating drivers' accounts through automated systems without meaningful human review &mdash; a violation of GDPR's ban on purely algorithmic decisions with major life impact. It's the second-largest GDPR fine ever issued, behind only Meta's 2023 penalty; Uber says it will appeal.</p>
+          <a class="src" href="https://www.bloomberg.com/news/articles/2026-08-21/uber-faces-825-million-dutch-fine-over-driver-data-breach">bloomberg.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-ai">
+      <p class="category-label"><span class="dot"></span>AI &amp; Defensive Tools</p>
+      <div class="items">
+        <div class="item">
+          <h3>Tufin launches AI-driven tool to catch network segmentation gaps before attackers do</h3>
+          <p>Tufin's new Segmentation Intelligence continuously analyzes an organization's network segmentation policy against its actual traffic, flagging drift and gaps that would let an attacker move laterally after an initial breach &mdash; the same kind of lateral movement seen in this week's vCenter and Medusa ransomware cases above.</p>
+          <a class="src" href="https://www.helpnetsecurity.com/2026/08/21/new-infosec-products-of-the-week-august-21-2026/">helpnetsecurity.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-eyebrow">From the archives</span>
+      <h2 class="block-title">Beginner Pick</h2>
+    </div>
+
+    <div class="pick">
+      <p class="pick-eyebrow">Not breaking news &mdash; a foundational story worth knowing</p>
+      <h2>The Change Healthcare Ransomware Attack</h2>
+      <p class="pick-when">February 2024</p>
+      <p>In February 2024, attackers linked to the ALPHV/BlackCat ransomware gang broke into Change Healthcare &mdash; a company that quietly processes claims and payments for a huge share of the US healthcare system &mdash; through a remote-access portal that had no multi-factor authentication. They spent nine days moving through the network undetected before locking systems and stealing an estimated 6 terabytes of data, including medical records and Social Security numbers for over 100 million people.</p>
+      <p>The fallout was enormous: pharmacies couldn't process prescriptions, hospitals couldn't submit insurance claims, and many providers went weeks without being paid. UnitedHealth Group (Change Healthcare's parent company) paid the attackers roughly $22 million &mdash; and the criminals leaked the stolen data anyway. The total cost to UnitedHealth has run into the billions.</p>
+      <p>It's a foundational story for beginners for two reasons: it shows how one missing basic control &mdash; multi-factor authentication on a single remote-access point &mdash; can cascade into a crisis for an entire industry, and it's a sobering real-world example of why paying a ransom is never a guarantee that stolen data stays private.</p>
+      <div class="why">
+        <strong>Why we picked it now:</strong> Medusa's advisory above lists healthcare among its top targets, and both incidents trace back to the same root cause &mdash; an internet-facing system without MFA. If you remember one lesson from this issue, make it that one.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Cybersecurity Digest &middot; automated research digest, verify before acting on any advisory</span>
+    <span>Issue: 2026-08-25</span>
+  </footer>
+
+</div>
