@@ -1,0 +1,320 @@
+<title>Cybersecurity Digest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
+<style>
+  :root{
+    --bg:#f5f6f8;
+    --surface:#ffffff;
+    --surface-2:#eef1f5;
+    --border:#dde1e7;
+    --text:#1b2430;
+    --text-soft:#54606f;
+    --text-faint:#8996a6;
+    --accent:#2b5f8a;
+    --accent-soft:#e4edf4;
+    --tag-breach:#a3453f;
+    --tag-breach-bg:#fbe9e7;
+    --tag-vuln:#96650a;
+    --tag-vuln-bg:#fbf0dd;
+    --tag-industry:#2b5f8a;
+    --tag-industry-bg:#e4edf4;
+    --beginner-bg:#eef4ee;
+    --beginner-border:#b9d0b9;
+    --beginner-accent:#3f6b45;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f141b;
+      --surface:#161d27;
+      --surface-2:#1c2530;
+      --border:#2b3541;
+      --text:#e6eaf0;
+      --text-soft:#a7b1bf;
+      --text-faint:#78849330;
+      --text-faint:#7c8898;
+      --accent:#7fb0dc;
+      --accent-soft:#1d2c39;
+      --tag-breach:#e8918a;
+      --tag-breach-bg:#3a2220;
+      --tag-vuln:#dbb35d;
+      --tag-vuln-bg:#3a2f18;
+      --tag-industry:#7fb0dc;
+      --tag-industry-bg:#1d2c39;
+      --beginner-bg:#182219;
+      --beginner-border:#39492f;
+      --beginner-accent:#8fbf8f;
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --bg:#0f141b;
+    --surface:#161d27;
+    --surface-2:#1c2530;
+    --border:#2b3541;
+    --text:#e6eaf0;
+    --text-soft:#a7b1bf;
+    --text-faint:#7c8898;
+    --accent:#7fb0dc;
+    --accent-soft:#1d2c39;
+    --tag-breach:#e8918a;
+    --tag-breach-bg:#3a2220;
+    --tag-vuln:#dbb35d;
+    --tag-vuln-bg:#3a2f18;
+    --tag-industry:#7fb0dc;
+    --tag-industry-bg:#1d2c39;
+    --beginner-bg:#182219;
+    --beginner-border:#39492f;
+    --beginner-accent:#8fbf8f;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .page{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 20px 64px;
+  }
+
+  header.masthead{
+    padding:44px 0 22px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  h1.title{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    font-weight:700;
+    font-size:clamp(28px, 5vw, 38px);
+    margin:0;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  .dateline{
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:13px;
+    color:var(--accent);
+  }
+
+  section.block{
+    padding-top:36px;
+  }
+  h2.section-head{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin:0 0 4px;
+  }
+  .section-sub{
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:12.5px;
+    color:var(--text-faint);
+    margin:0 0 22px;
+  }
+
+  .category{
+    margin-bottom:30px;
+  }
+  .category-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .category-label.breach{ color:var(--tag-breach); background:var(--tag-breach-bg); }
+  .category-label.vuln{ color:var(--tag-vuln); background:var(--tag-vuln-bg); }
+  .category-label.industry{ color:var(--tag-industry); background:var(--tag-industry-bg); }
+
+  .item-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .item{
+    padding-left:16px;
+    border-left:2px solid var(--border);
+  }
+  .item h3{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    font-size:16.5px;
+    font-weight:600;
+    margin:0 0 6px;
+    color:var(--text);
+    text-wrap:balance;
+  }
+  .item p{
+    margin:0 0 8px;
+    font-size:15.5px;
+    line-height:1.55;
+    color:var(--text-soft);
+    max-width:64ch;
+  }
+  .item a.src{
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:12.5px;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .item a.src:hover, .item a.src:focus-visible{
+    border-bottom-color:var(--accent);
+  }
+  a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .beginner{
+    background:var(--beginner-bg);
+    border:1px solid var(--beginner-border);
+    border-radius:6px;
+    padding:26px 26px 24px;
+  }
+  .beginner .eyebrow{
+    color:var(--beginner-accent);
+  }
+  .beginner h3{
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    font-size:21px;
+    font-weight:700;
+    margin:6px 0 12px;
+    color:var(--text);
+    text-wrap:balance;
+  }
+  .beginner p{
+    margin:0 0 12px;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--text);
+    max-width:66ch;
+  }
+  .beginner p:last-child{ margin-bottom:0; }
+  .beginner .why{
+    font-style:italic;
+    color:var(--text-soft);
+  }
+
+  footer.colophon{
+    padding-top:40px;
+    margin-top:24px;
+    border-top:1px solid var(--border);
+    font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size:12px;
+    color:var(--text-faint);
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <span class="eyebrow">Issue briefing</span>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <span class="dateline">Thursday, August 27, 2026</span>
+  </header>
+
+  <section class="block">
+    <h2 class="section-head">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories published in the last two to three days.</p>
+
+    <div class="category">
+      <span class="category-label breach">Breaches &amp; Incidents</span>
+      <div class="item-list">
+        <div class="item">
+          <h3>Boston Scientific hit by cyberattack causing global operational disruption</h3>
+          <p>The medical device maker disclosed on Aug 26 that a cybersecurity incident starting Aug 25 knocked out IT systems and business applications worldwide, limiting its ability to process and ship customer orders. No group has claimed responsibility and it's unclear if data was stolen.</p>
+          <a class="src" href="https://techcrunch.com/2026/08/26/medical-device-maker-boston-scientific-says-a-cyberattack-is-causing-a-global-disruption-to-its-operations/" target="_blank" rel="noopener">TechCrunch &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Qilin ransomware gang lists new victims: Integrex RCM, ATF, WireCo</h3>
+          <p>The Qilin ransomware group posted three new organizations to its leak site on Aug 26, the latest additions to one of the most active ransomware operations tracked this year.</p>
+          <a class="src" href="https://ransomware.live/" target="_blank" rel="noopener">Ransomware.live &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>AI voice agents used to trick stolen-iPhone owners into unlocking Activation Lock</h3>
+          <p>Researchers detailed "AnonyMousKIT," a phishing-as-a-service platform that rents AI voice agents posing as "Apple Support" to talk theft victims into revealing their passcode, feeding a network of 168 reseller storefronts for stolen devices.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/fake-apple-support-ai-calls-target.html" target="_blank" rel="noopener">The Hacker News &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <span class="category-label vuln">Vulnerabilities &amp; CVEs</span>
+      <div class="item-list">
+        <div class="item">
+          <h3>Maximum-severity Oracle flaw added to CISA's exploited list</h3>
+          <p>CVE-2026-21962 (CVSS 10.0) in Oracle HTTP Server and WebLogic Server Proxy Plug-in lets unauthenticated attackers access or modify critical data over the network. CISA confirmed active exploitation and gave federal agencies until Aug 27 to patch.</p>
+          <a class="src" href="https://www.cisa.gov/news-events/alerts/2026/08/24/cisa-adds-one-known-exploited-vulnerability-catalog" target="_blank" rel="noopener">CISA &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Two chained SharePoint bugs give unauthenticated remote code execution</h3>
+          <p>CVE-2026-55040 (auth bypass) combined with CVE-2026-63520 (Business Connectivity Services flaw) lets an attacker with no credentials run code on unpatched SharePoint servers. Public proof-of-concept exploits are circulating and CISA has told defenders to lock down exposed servers.</p>
+          <a class="src" href="https://www.bleepingcomputer.com/news/security/hackers-target-microsoft-sharepoint-rce-chain-with-poc-exploit/" target="_blank" rel="noopener">BleepingComputer &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Flaw in Nvidia's NemoClaw lets any webpage hijack a local AI agent</h3>
+          <p>CVE-2026-65105 stems from NemoClaw binding Ollama to an unauthenticated network port; a DNS-rebinding trick from a single malicious webpage can silently rewrite the agent's system prompt and persist across sessions. macOS and Linux are patched in v0.0.35; Windows/WSL is still exposed.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/a-malicious-webpage-could-poison-your.html" target="_blank" rel="noopener">The Hacker News &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>SonicWall patches root-privilege file-write flaw in NetExtender for Linux</h3>
+          <p>CVE-2026-66152 (CVSS 8.8) is a path-traversal bug in how the Linux VPN client unpacks an OPSWAT tarball, letting an attacker write files as root. No exploitation seen yet — upgrade from 10.3.5 or earlier to 10.3.6+.</p>
+          <a class="src" href="https://cybersecuritynews.com/sonicwall-netextender-vulnerabilities/" target="_blank" rel="noopener">Cyber Security News &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <span class="category-label industry">Industry &amp; Supply Chain</span>
+      <div class="item-list">
+        <div class="item">
+          <h3>24 npm packages weaponize trusted mirrors to host fake CAPTCHA phishing pages</h3>
+          <p>Researchers found packages carrying a single HTML file that, once served through mirrors like unpkg, renders a convincing fake Cloudflare verification screen on a trusted domain and redirects victims to attacker infrastructure — a reminder that "trusted domain" no longer means "safe content."</p>
+          <a class="src" href="https://thehackernews.com/2026/08/24-npm-packages-abuse-unpkg-mirrors-to.html" target="_blank" rel="noopener">The Hacker News &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-head">Beginner Pick</h2>
+    <p class="section-sub">One story from cybersecurity history, explained for newcomers — not breaking news.</p>
+
+    <div class="beginner">
+      <span class="eyebrow">Learn the field</span>
+      <h3>Colonial Pipeline (2021): one leaked password shut down fuel for half the US East Coast</h3>
+      <p>In May 2021, a ransomware gang called DarkSide broke into Colonial Pipeline, the company operating the largest fuel pipeline in the United States. They got in through a single VPN account whose password had leaked online and wasn't protected by multi-factor authentication (MFA) — no phishing email, no zero-day exploit, just a reused password on an account nobody thought to double-lock.</p>
+      <p>Colonial shut the pipeline down itself to contain the attack, which triggered gas shortages and panic-buying across several states. The company ultimately paid the attackers roughly $4.4 million in Bitcoin, part of which the FBI later recovered.</p>
+      <p class="why">Why it matters for beginners: it's the clearest real-world proof that "boring" basics — unique passwords and MFA on every remote-access account — aren't optional advice, they're the difference between a non-event and a national headline.</p>
+    </div>
+  </section>
+
+  <footer class="colophon">Cybersecurity Digest &middot; automated research digest &middot; verify details at the linked sources before acting on them</footer>
+
+</div>
