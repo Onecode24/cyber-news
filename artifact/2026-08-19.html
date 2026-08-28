@@ -1,0 +1,339 @@
+<title>Cybersecurity Digest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F1F3F5;
+    --surface: #FFFFFF;
+    --surface-2: #E7ECEF;
+    --ink: #10171F;
+    --ink-soft: #4B5766;
+    --ink-faint: #7C8794;
+    --border: #DCE2E7;
+    --accent: #C1501F;
+    --accent-soft: #F4E3D9;
+    --teal: #0F6E63;
+    --teal-soft: #DCEEEA;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B0F14;
+      --surface: #12181F;
+      --surface-2: #1A222A;
+      --ink: #E7ECF0;
+      --ink-soft: #A6B1BC;
+      --ink-faint: #6E7A86;
+      --border: #232C35;
+      --accent: #E2793D;
+      --accent-soft: #2B1E14;
+      --teal: #4FB3A4;
+      --teal-soft: #142521;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0F14;
+    --surface: #12181F;
+    --surface-2: #1A222A;
+    --ink: #E7ECF0;
+    --ink-soft: #A6B1BC;
+    --ink-faint: #6E7A86;
+    --border: #232C35;
+    --accent: #E2793D;
+    --accent-soft: #2B1E14;
+    --teal: #4FB3A4;
+    --teal-soft: #142521;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent-soft); }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.75rem 1.25rem 4rem;
+  }
+
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .masthead-eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  h1.title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 6vw, 2.8rem);
+    letter-spacing: -0.01em;
+    margin: 0.25rem 0 0.35rem;
+    text-wrap: balance;
+  }
+  .masthead-sub {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .masthead-date {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  section.block { margin-bottom: 3rem; }
+  section.block:last-child { margin-bottom: 0; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.4rem;
+  }
+  h2.section-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .section-note {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  .category { margin-bottom: 1.9rem; }
+  .category:last-child { margin-bottom: 0; }
+  .category-label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .category-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .item {
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .category > .item:first-of-type { border-top: none; padding-top: 0; }
+
+  .item-bar {
+    flex: none;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    margin-top: 0.15rem;
+  }
+  .item-body { flex: 1; min-width: 0; }
+  .item-head {
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    margin: 0 0 0.3rem;
+  }
+  .item-head a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+  .item-head a:hover { color: var(--accent); }
+  .item-summary {
+    margin: 0 0 0.45rem;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+  .item-meta {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .item-meta .sep { color: var(--border); }
+
+  .feature {
+    background: var(--teal-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.7rem 1.6rem;
+  }
+  .feature-tag {
+    display: inline-block;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 999px;
+    padding: 0.22rem 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  .feature h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+    text-wrap: balance;
+  }
+  .feature p {
+    margin: 0 0 0.8rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+  .feature p:last-of-type { margin-bottom: 0; }
+  .feature strong { color: var(--ink); }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  @media (max-width: 480px) {
+    .item { gap: 0.65rem; }
+    .feature { padding: 1.35rem 1.15rem; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <div>
+        <div class="masthead-eyebrow">Issue &middot; Weekly Briefing</div>
+        <h1 class="title">Cybersecurity Digest</h1>
+      </div>
+      <div class="masthead-date">19 AUGUST 2026</div>
+    </div>
+    <p class="masthead-sub">What broke, what's exploited, and what's worth learning &mdash; in plain language.</p>
+  </header>
+
+  <section class="block">
+    <div class="section-head">
+      <h2 class="section-title">Last 48 Hours</h2>
+      <span class="section-note">verified, dated Aug 14&ndash;18</span>
+    </div>
+
+    <div class="category">
+      <p class="category-label">Breaches &amp; Incidents</p>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://therecord.media/university-of-texas-forced-to-take-systems-offline-cyberattack-san-antonio" target="_blank" rel="noopener">UT San Antonio takes systems offline after attempted breach, days before fall classes</a></p>
+          <p class="item-summary">The university detected unauthorized activity at the edge of its network and pulled core systems offline for review, cutting student access to registration and accounts just before the semester began. No evidence of data theft has surfaced so far.</p>
+          <p class="item-meta"><span>therecord.media</span><span class="sep">&middot;</span><span>Aug 17&ndash;18, 2026</span></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://thehackernews.com/2026/08/suspected-china-nexus-actor-exploits.html" target="_blank" rel="noopener">Suspected China-nexus actor exploits VMware vCenter flaw, drops Babuk-derived ransomware</a></p>
+          <p class="item-summary">Attackers exploited a directory-traversal bug in vCenter (CVE-2026-59310) to get root access across 361 IPs in 47 countries, then deployed ransomware that researchers suspect was a smokescreen for deeper espionage rather than the main goal.</p>
+          <p class="item-meta"><span>thehackernews.com</span><span class="sep">&middot;</span><span>Aug 17, 2026</span></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://research.checkpoint.com/2026/thousands-of-hacked-wordpress-sites-one-operation-unmasking-stopandprotect/" target="_blank" rel="noopener">"StopAndProtect" operation turns thousands of hacked WordPress sites into a criminal C2 network</a></p>
+          <p class="item-summary">Check Point Research unmasked an operation running ransomware, credential stealers, and a worm through nearly 2,000 compromised WordPress sites acting as rotating command-and-control infrastructure, with over 6,000 victim IPs identified via an operational-security slip-up.</p>
+          <p class="item-meta"><span>research.checkpoint.com</span><span class="sep">&middot;</span><span>Aug 2026</span></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://www.bleepingcomputer.com/news/security/french-tax-authority-data-breach-affects-678-000-individuals/" target="_blank" rel="noopener">French tax authority breach exposes data on 678,000 people and businesses</a></p>
+          <p class="item-summary">Attackers used stolen employee and third-party credentials to access France's DGFiP systems between June and July, pulling tax income, family-quotient, and property data. Online tax portal logins were not affected.</p>
+          <p class="item-meta"><span>bleepingcomputer.com</span><span class="sep">&middot;</span><span>disclosed Aug 14, confirmed Aug 17, 2026</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-label">Vulnerabilities &amp; CVEs</p>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://www.helpnetsecurity.com/2026/08/18/gitlab-critical-code-injection-flaw-cve-2026-19478/" target="_blank" rel="noopener">GitLab issues emergency patch for critical GraphQL flaw (CVE-2026-19478, CVSS 9.4)</a></p>
+          <p class="item-summary">An unauthenticated attacker could exploit a GraphQL directive to modify or delete public projects and user data. Fixed in CE/EE 18.11.11, 19.0.8, 19.1.6 and 19.2.4 &mdash; self-managed instances should upgrade now; GitLab.com is already patched.</p>
+          <p class="item-meta"><span>helpnetsecurity.com</span><span class="sep">&middot;</span><span>Aug 17, 2026</span></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-bar"></div>
+        <div class="item-body">
+          <p class="item-head"><a href="https://thehackernews.com/2026/08/attackers-exploit-mlflow-ssrf-flaw-to.html" target="_blank" rel="noopener">Attackers actively exploiting MLflow SSRF flaw to steal cloud credentials</a></p>
+          <p class="item-summary">CVE-2026-64849 (CVSS 9.3) lets an unauthenticated request abuse MLflow's webhook test endpoint to reach internal services and cloud metadata endpoints. Exploitation began within hours of disclosure. Patch: upgrade to MLflow 3.15.0.</p>
+          <p class="item-meta"><span>thehackernews.com</span><span class="sep">&middot;</span><span>Aug 17&ndash;18, 2026</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-head">
+      <h2 class="section-title">Beginner Pick</h2>
+      <span class="section-note">learn the story behind the headlines</span>
+    </div>
+
+    <div class="feature">
+      <span class="feature-tag">Not breaking news &mdash; a classic worth knowing</span>
+      <h3>MGM Resorts, 2023: the $100 million breach that started with a phone call</h3>
+      <p>In September 2023, a hacking group called Scattered Spider brought one of the world's largest casino operators to its knees &mdash; not with clever malware, but with a single phone call. They found an MGM employee's name on LinkedIn, then called the company's IT help desk pretending to be that employee, and talked their way into a password reset. That was enough to get a foothold inside MGM's network.</p>
+      <p>From there, the attackers escalated their access and eventually deployed ransomware across MGM's systems. Slot machines went dark, hotel room key cards stopped working, and reservation and payment systems failed for roughly ten days. MGM later estimated the incident cost the company around <strong>$100 million</strong> in lost business and cleanup, even though it refused to pay the ransom.</p>
+      <p><strong>Why it matters for beginners:</strong> it's a textbook example of <strong>social engineering</strong> &mdash; manipulating a person rather than breaking code. No firewall or antivirus stops a convincing phone call to a help desk. It's also why many organizations now require callback verification and stronger identity checks before any password reset, and why "the weakest link is usually human" has become one of security's most repeated (and truest) lessons.</p>
+    </div>
+  </section>
+
+  <footer>
+    Cybersecurity Digest &mdash; compiled from public reporting for general awareness. Verify details at the linked sources before acting on any advisory.
+  </footer>
+
+</div>
