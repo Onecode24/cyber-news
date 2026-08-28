@@ -1,0 +1,457 @@
+<title>Cybersecurity Digest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --ink: #1b2333;
+    --ink-soft: #4b5468;
+    --ink-faint: #7b8497;
+    --border: #dfe3ea;
+    --accent: #0e7c86;
+    --accent-ink: #0b5f67;
+    --accent-soft: #e3f1f1;
+    --cat-breach: #c2492e;
+    --cat-breach-soft: #f7e7e2;
+    --cat-vuln: #a9762f;
+    --cat-vuln-soft: #f6efe0;
+    --cat-policy: #3557c4;
+    --cat-policy-soft: #e6eafb;
+    --cat-ai: #6a4fb0;
+    --cat-ai-soft: #ece6f8;
+    --pick-bg: #f1ece0;
+    --pick-surface: #f9f6ee;
+    --pick-ink: #3a2e1f;
+    --pick-ink-soft: #6b5c46;
+    --pick-accent: #a9762f;
+    --pick-border: #e1d6bd;
+    --shadow: 0 1px 2px rgba(27,35,51,0.05), 0 8px 20px -12px rgba(27,35,51,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #171e2c;
+      --surface-2: #1e2637;
+      --ink: #e4e8f0;
+      --ink-soft: #a7b0c2;
+      --ink-faint: #7c869c;
+      --border: #2a3346;
+      --accent: #35b4be;
+      --accent-ink: #7fd6de;
+      --accent-soft: #16333a;
+      --cat-breach: #e0725a;
+      --cat-breach-soft: #34211d;
+      --cat-vuln: #e0b65c;
+      --cat-vuln-soft: #332a19;
+      --cat-policy: #7c97f0;
+      --cat-policy-soft: #1c2440;
+      --cat-ai: #b49ae8;
+      --cat-ai-soft: #241f38;
+      --pick-bg: #1a1710;
+      --pick-surface: #201b13;
+      --pick-ink: #ede3d0;
+      --pick-ink-soft: #b8a988;
+      --pick-accent: #d4a24c;
+      --pick-border: #3a3121;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #171e2c;
+    --surface-2: #1e2637;
+    --ink: #e4e8f0;
+    --ink-soft: #a7b0c2;
+    --ink-faint: #7c869c;
+    --border: #2a3346;
+    --accent: #35b4be;
+    --accent-ink: #7fd6de;
+    --accent-soft: #16333a;
+    --cat-breach: #e0725a;
+    --cat-breach-soft: #34211d;
+    --cat-vuln: #e0b65c;
+    --cat-vuln-soft: #332a19;
+    --cat-policy: #7c97f0;
+    --cat-policy-soft: #1c2440;
+    --cat-ai: #b49ae8;
+    --cat-ai-soft: #241f38;
+    --pick-bg: #1a1710;
+    --pick-surface: #201b13;
+    --pick-ink: #ede3d0;
+    --pick-ink-soft: #b8a988;
+    --pick-accent: #d4a24c;
+    --pick-border: #3a3121;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .item { transition: border-color 0.15s ease, transform 0.15s ease; }
+    .item:hover { transform: translateY(-1px); }
+  }
+
+  a { color: var(--accent-ink); }
+  a:focus-visible, .item a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 72px;
+  }
+
+  header.masthead {
+    padding: 44px 0 28px;
+    border-bottom: 3px solid var(--ink);
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 2.7rem);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+    line-height: 1.02;
+  }
+
+  .masthead-title span {
+    color: var(--accent-ink);
+  }
+
+  .masthead-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .masthead-meta .date {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.88rem;
+  }
+
+  .intro {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 62ch;
+    margin: 0 0 40px;
+  }
+
+  section.block { margin-bottom: 48px; }
+
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .block-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  h2.block-title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .block-sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-left: auto;
+  }
+
+  .category-group { margin-bottom: 26px; }
+  .category-group:last-child { margin-bottom: 0; }
+
+  .category-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .category-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .cat-breach .dot { background: var(--cat-breach); }
+  .cat-breach .category-label { color: var(--cat-breach); }
+  .cat-vuln .dot { background: var(--cat-vuln); }
+  .cat-vuln .category-label { color: var(--cat-vuln); }
+  .cat-policy .dot { background: var(--cat-policy); }
+  .cat-policy .category-label { color: var(--cat-policy); }
+  .cat-ai .dot { background: var(--cat-ai); }
+  .cat-ai .category-label { color: var(--cat-ai); }
+
+  .items { display: flex; flex-direction: column; gap: 10px; }
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .cat-breach .item { border-left-color: var(--cat-breach); }
+  .cat-vuln .item { border-left-color: var(--cat-vuln); }
+  .cat-policy .item { border-left-color: var(--cat-policy); }
+  .cat-ai .item { border-left-color: var(--cat-ai); }
+
+  .item h3 {
+    font-family: "Archivo", sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+
+  .item p {
+    margin: 0 0 8px;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+
+  .item .src {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    text-decoration: none;
+    color: var(--accent-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .item .src:hover { text-decoration: underline; }
+
+  /* Beginner pick */
+  .pick {
+    background: var(--pick-bg);
+    border: 1px solid var(--pick-border);
+    border-radius: 10px;
+    padding: 30px 30px 28px;
+    color: var(--pick-ink);
+    box-shadow: var(--shadow);
+  }
+
+  .pick-eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--pick-accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pick-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--pick-accent);
+  }
+
+  .pick h2 {
+    font-family: "Archivo", sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    margin: 0 0 4px;
+    color: var(--pick-ink);
+    text-wrap: balance;
+  }
+
+  .pick .pick-when {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    color: var(--pick-ink-soft);
+    margin: 0 0 18px;
+  }
+
+  .pick p {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    color: var(--pick-ink);
+  }
+  .pick p:last-of-type { margin-bottom: 0; }
+
+  .pick .why {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pick-border);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--pick-ink-soft);
+    line-height: 1.6;
+  }
+  .pick .why strong { color: var(--pick-accent); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { align-items: flex-start; }
+    .masthead-meta { text-align: left; }
+    .block-sub { display: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1 class="masthead-title">Cybersecurity<br><span>Digest</span></h1>
+    <div class="masthead-meta">
+      <div class="date">Sunday, August 23, 2026</div>
+      <div>Issue for beginners &amp; the security-curious</div>
+    </div>
+  </header>
+
+  <p class="intro">A weekend read on what actually happened in security over the last few days, plus one story from the archives worth knowing if you're new to the field.</p>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-eyebrow">Briefing</span>
+      <h2 class="block-title">Last 48 Hours</h2>
+      <span class="block-sub">7 items · Aug 19&ndash;22</span>
+    </div>
+
+    <div class="category-group cat-breach">
+      <p class="category-label"><span class="dot"></span>Breaches &amp; Incidents</p>
+      <div class="items">
+        <div class="item">
+          <h3>SickKids children's hospital discloses staff data breach</h3>
+          <p>Toronto's Hospital for Sick Children confirmed a breach affecting current and former employees, job applicants, and its Boomerang clinic, traced to a flaw in third-party software behind its careers site and payroll functions. Clinical systems and patient records were not touched, and affected people are being offered credit monitoring.</p>
+          <a class="src" href="https://www.bleepingcomputer.com/news/security/sickkids-data-breach-exposes-employee-and-job-applicant-info/">bleepingcomputer.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Rust Project pulls malicious crates after maintainer account compromise</h3>
+          <p>Three widely used Rust packages were briefly replaced with malicious versions after an attacker compromised a maintainer's account; a build script quietly downloaded and ran a payload at compile time. The Rust Project pulled the releases on August 20.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/weekly-recap-vmware-exploits-windows-0.html">thehackernews.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-vuln">
+      <p class="category-label"><span class="dot"></span>Vulnerabilities &amp; CVEs</p>
+      <div class="items">
+        <div class="item">
+          <h3>Perfect-10 Microsoft Entra ID flaw comes under attack scrutiny</h3>
+          <p>CVE-2026-69836, a CVSS 10.0 unauthenticated remote-code-execution bug in Microsoft's cloud identity service, was initially flagged as exploited in the wild; Microsoft corrected that status on August 21 and says it's already fully mitigated server-side, with no customer action needed.</p>
+          <a class="src" href="https://www.helpnetsecurity.com/2026/08/21/microsoft-entra-id-vulnerability-cve-2026-69836/">helpnetsecurity.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>Citrix urges emergency patching for critical NetScaler bypass</h3>
+          <p>CVE-2026-19490 lets a remote, unauthenticated attacker skip login entirely on NetScaler ADC and Gateway appliances configured for VPN, ICA proxy, or AAA. No confirmed in-the-wild exploitation yet, but researchers expect it soon given how often Citrix gear gets targeted.</p>
+          <a class="src" href="https://www.helpnetsecurity.com/2026/08/21/citrix-netscaler-gateway-cve-2026-19490/">helpnetsecurity.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-policy">
+      <p class="category-label"><span class="dot"></span>Industry &amp; Policy</p>
+      <div class="items">
+        <div class="item">
+          <h3>Google links three Russian espionage clusters to OAuth token theft</h3>
+          <p>Google's Threat Intelligence Group detailed three distinct Russia-linked groups phishing defense, government, and academic targets by abusing legitimate "Sign in with Google" and WhatsApp device-linking flows to steal live authentication tokens rather than passwords.</p>
+          <a class="src" href="https://thehackernews.com/2026/08/suspected-russian-hackers-abuse-google.html">thehackernews.com &rarr;</a>
+        </div>
+        <div class="item">
+          <h3>US agencies warn of AI-assisted attacks on Siemens industrial controllers</h3>
+          <p>Government advisories flagged an AI-assisted campaign probing internet-exposed Siemens operational-technology devices, underscoring growing concern that AI is lowering the bar for attacks on industrial control systems.</p>
+          <a class="src" href="https://cybernews.com/">cybernews.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-ai">
+      <p class="category-label"><span class="dot"></span>AI &amp; Defensive Tools</p>
+      <div class="items">
+        <div class="item">
+          <h3>F5 and Intezer ship new AI-driven defense features</h3>
+          <p>This week's infosec product roundup included F5 expanding its AI Gateway inside the F5 AI Security Platform, and threat-analysis firm Intezer launching "Workflows," a native automation builder for triaging and responding to detections without custom scripting.</p>
+          <a class="src" href="https://www.helpnetsecurity.com/2026/08/21/new-infosec-products-of-the-week-august-21-2026/">helpnetsecurity.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-eyebrow">From the archives</span>
+      <h2 class="block-title">Beginner Pick</h2>
+    </div>
+
+    <div class="pick">
+      <p class="pick-eyebrow">Not breaking news &mdash; a foundational story worth knowing</p>
+      <h2>The XZ Utils Backdoor</h2>
+      <p class="pick-when">Discovered March 2024</p>
+      <p>In early 2024, a Microsoft engineer named Andres Freund noticed something odd: SSH logins on a server were taking a fraction of a second longer than usual. Chasing that tiny slowdown, he uncovered a backdoor hidden inside <em>xz</em>, a compression library used by nearly every Linux system on Earth, planted by a contributor who had spent over two years quietly building trust as a co-maintainer of the open-source project.</p>
+      <p>The backdoor was expertly hidden inside test files and build scripts, engineered to eventually let the attacker slip malicious commands past SSH authentication on affected systems. Had it not been caught days before major Linux distributions shipped it, it could have handed remote access to millions of servers worldwide.</p>
+      <p>It matters for beginners because it's the clearest real-world lesson in <strong>supply chain risk</strong>: the software you trust is often built on volunteer-maintained code with far less scrutiny than a bank or hospital website. It's also a reminder that good security sometimes comes down to one curious person noticing that something felt "slightly off" &mdash; and taking it seriously.</p>
+      <div class="why">
+        <strong>Why we picked it now:</strong> today's Rust crates incident above is a smaller-scale echo of the exact same playbook &mdash; compromise a trusted maintainer, hide malicious code in the build process. Worth keeping in mind any time you run <code>npm install</code> or <code>cargo build</code>.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Cybersecurity Digest &middot; automated research digest, verify before acting on any advisory</span>
+    <span>Issue: 2026-08-23</span>
+  </footer>
+
+</div>
