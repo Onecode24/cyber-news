@@ -1,0 +1,364 @@
+<title>Cybersecurity Digest</title>
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --surface-raised: #ffffff;
+    --text: #14202e;
+    --text-muted: #57677a;
+    --border: #d7dee7;
+    --accent: #1d6f5c;
+    --accent-soft: #e2f2ee;
+    --breach: #b23b3b;
+    --breach-soft: #f8e9e8;
+    --vuln: #a3721f;
+    --vuln-soft: #f7eddc;
+    --policy: #2f5fa8;
+    --policy-soft: #e6edf8;
+    --tool: #1d6f5c;
+    --tool-soft: #e2f2ee;
+    --feature-bg: #142a26;
+    --feature-text: #eef5f2;
+    --feature-muted: #a9c4bc;
+    --shadow: 0 1px 2px rgba(20, 32, 46, 0.06), 0 8px 24px rgba(20, 32, 46, 0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1620;
+      --surface: #16212c;
+      --surface-raised: #1b2733;
+      --text: #dfe7ee;
+      --text-muted: #92a3b5;
+      --border: #2a3846;
+      --accent: #57c2a4;
+      --accent-soft: #16302a;
+      --breach: #e2837a;
+      --breach-soft: #2e1c1c;
+      --vuln: #e0b26a;
+      --vuln-soft: #2e2617;
+      --policy: #8bb3e8;
+      --policy-soft: #182636;
+      --tool: #57c2a4;
+      --tool-soft: #16302a;
+      --feature-bg: #0b1a17;
+      --feature-text: #e7f3ef;
+      --feature-muted: #8facA3;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0f1620;
+    --surface: #16212c;
+    --surface-raised: #1b2733;
+    --text: #dfe7ee;
+    --text-muted: #92a3b5;
+    --border: #2a3846;
+    --accent: #57c2a4;
+    --accent-soft: #16302a;
+    --breach: #e2837a;
+    --breach-soft: #2e1c1c;
+    --vuln: #e0b26a;
+    --vuln-soft: #2e2617;
+    --policy: #8bb3e8;
+    --policy-soft: #182636;
+    --tool: #57c2a4;
+    --tool-soft: #16302a;
+    --feature-bg: #0b1a17;
+    --feature-text: #e7f3ef;
+    --feature-muted: #8facA3;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  h1, h2, h3 { font-family: "Newsreader", Georgia, "Times New Roman", serif; text-wrap: balance; margin: 0; }
+
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; }
+
+  header.masthead {
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  header.masthead .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  header.masthead h1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  header.masthead .date {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  section.block { margin-bottom: 48px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0 0 24px;
+  }
+
+  .category-group { margin-bottom: 28px; }
+
+  .category-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .category-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--dot, var(--accent));
+    display: inline-block;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--dot, var(--accent));
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .card h3 {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .card p {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 0.96rem;
+  }
+
+  .card a.src {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--dot, var(--accent));
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .card a.src:hover, .card a.src:focus-visible { border-bottom-color: currentColor; }
+  .card a.src:focus-visible { outline: 2px solid var(--dot, var(--accent)); outline-offset: 2px; }
+
+  .cat-breach { --dot: var(--breach); }
+  .cat-vuln   { --dot: var(--vuln); }
+  .cat-policy { --dot: var(--policy); }
+  .cat-tool   { --dot: var(--tool); }
+
+  .feature {
+    background: var(--feature-bg);
+    color: var(--feature-text);
+    border-radius: 10px;
+    padding: 30px 30px 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .feature .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--feature-muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .feature h2 {
+    color: var(--feature-text);
+    font-size: 1.55rem;
+    margin-bottom: 14px;
+  }
+
+  .feature p {
+    color: var(--feature-text);
+    font-size: 1rem;
+    margin: 0 0 12px;
+    max-width: 62ch;
+  }
+
+  .feature p:last-child { margin-bottom: 0; }
+
+  .feature .why {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    color: var(--feature-muted);
+    font-size: 0.9rem;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { flex-direction: column; align-items: flex-start; }
+    header.masthead .date { text-align: left; }
+    header.masthead h1 { font-size: 1.9rem; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <span class="eyebrow">Issue &middot; Weekly Digest</span>
+      <h1>Cybersecurity Digest</h1>
+    </div>
+    <div class="date mono">Monday, August 31, 2026</div>
+  </header>
+
+  <section class="block">
+    <div class="section-head"><h2>Last 48 Hours</h2></div>
+    <p class="section-sub">Verified stories from the past few days, grouped by type. Each links to its original source.</p>
+
+    <div class="category-group cat-breach">
+      <div class="category-label">Breaches &amp; Incidents</div>
+      <div class="cards">
+        <div class="card">
+          <h3>Hasbro discloses employee data breach from spring cyberattack</h3>
+          <p>Hasbro confirmed that a network intrusion which forced systems offline in late March exposed employees' Social Security numbers, financial account details, payment card numbers, and driver's license data. The company says it has no evidence the data has been misused and is offering identity protection to those affected.</p>
+          <a class="src" href="https://www.securityweek.com/hasbro-data-breach-exposed-employee-personal-information/" target="_blank" rel="noopener">securityweek.com</a>
+        </div>
+        <div class="card">
+          <h3>JetBrains confirms Cadence server breach, tells users to rotate every credential</h3>
+          <p>JetBrains says attackers accessed its Cadence ML-workflow service between August 8 and August 24, pulling a 2024 server backup plus AWS IAM credentials and S3 files. The company is telling affected users to treat anything ever stored in Cadence — cloud keys, GitHub/npm/PyPI tokens — as compromised and rotate it now.</p>
+          <a class="src" href="https://blog.jetbrains.com/pycharm/2026/08/cadence-security-incident-august-2026/" target="_blank" rel="noopener">blog.jetbrains.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-vuln">
+      <div class="category-label">Vulnerabilities &amp; CVEs</div>
+      <div class="cards">
+        <div class="card">
+          <h3>PaperCut ships two emergency patches after RCE flaws exploited in the wild</h3>
+          <p>PaperCut NG/MF are being actively attacked through a chained flaw (CVE-2026-81578 and CVE-2026-82078) that allows unauthenticated remote code execution. A first emergency patch was bypassed within hours, forcing a second release on August 28 — anyone running PaperCut should update immediately.</p>
+          <a class="src" href="https://www.bleepingcomputer.com/news/security/papercut-releases-second-emergency-patch-for-exploited-flaws/" target="_blank" rel="noopener">bleepingcomputer.com</a>
+        </div>
+        <div class="card">
+          <h3>CISA orders federal agencies to patch actively exploited Citrix NetScaler bug</h3>
+          <p>CVE-2026-8452, a Citrix NetScaler flaw originally dismissed as a crash bug in June, was proven exploitable for full remote code execution in August. Attackers are now dropping web shells on unpatched appliances; CISA added it to its Known Exploited Vulnerabilities list and gave federal agencies until August 29 to patch.</p>
+          <a class="src" href="https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploiting-citrix-netscaler-rce-flaw-in-attacks/" target="_blank" rel="noopener">bleepingcomputer.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-policy">
+      <div class="category-label">Industry &amp; Policy</div>
+      <div class="cards">
+        <div class="card">
+          <h3>UK's NCSC warns exposed industrial systems are causing real-world disruption</h3>
+          <p>The National Cyber Security Centre says it has seen a rise in attacks against internet-exposed operational technology and edge devices (routers, gateways, firewalls) across multiple sectors and countries, with some incidents already causing physical disruption. It's urging organizations to map what's internet-facing and patch it.</p>
+          <a class="src" href="https://www.ncsc.gov.uk/news/disruptive-cyber-activity-highlights-risk-from-internet-exposed-systems-and-edge-devices" target="_blank" rel="noopener">ncsc.gov.uk</a>
+        </div>
+        <div class="card">
+          <h3>~130 companies, led by OpenAI, sign pledge for a coordinated AI cyber-defense push</h3>
+          <p>Anthropic, Microsoft, Google, Cisco, CrowdStrike, Visa and roughly 125 other companies signed an open letter warning that AI-enabled attacks will grow sharply more capable in the coming months, putting hospitals, water systems and internet infrastructure at risk. The letter calls for shared threat intel and subsidized defensive tools for under-resourced critical infrastructure operators.</p>
+          <a class="src" href="https://www.cnbc.com/2026/08/27/ai-cyber-defense-letter.html" target="_blank" rel="noopener">cnbc.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-group cat-tool">
+      <div class="category-label">AI &amp; Emerging Threats</div>
+      <div class="cards">
+        <div class="card">
+          <h3>Ransomware crew caught driving Cursor's AI coding agent through live attacks</h3>
+          <p>Researchers documented an Aurora ransomware affiliate using the Cursor AI coding assistant — told it was doing "authorized testing" — to help scan, exploit and deploy a custom ESXi-targeting encryptor across roughly ten victim networks. It's one of the clearest documented cases yet of a mainstream AI coding tool being repurposed as an active attack aide.</p>
+          <a class="src" href="https://www.infosecurity-magazine.com/news/abuse-cursor-agent-ransomware/" target="_blank" rel="noopener">infosecurity-magazine.com</a>
+        </div>
+        <div class="card">
+          <h3>Fake npm packages use WSL as a bridge to plant a Windows crypto-stealer</h3>
+          <p>CloudSEK found 40 typosquatted npm packages — misspellings of chalk, axios, lodash and other popular libraries — whose install scripts detect Windows Subsystem for Linux and use it to drop a Rust-based stealer on the underlying Windows host, targeting crypto wallets and browser data. The delivery payload reportedly stayed live on GitHub for ~39 hours after npm pulled the packages.</p>
+          <a class="src" href="https://www.cloudsek.com/blog/bridgehead-npm-typosquatting-wsl-windows-crypto-wallet-stealer" target="_blank" rel="noopener">cloudsek.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="feature">
+      <span class="eyebrow">Beginner Pick &middot; Learn the Backstory</span>
+      <h2>The MGM Resorts hack: how a 10-minute phone call took down a casino empire</h2>
+      <p>In September 2023, a group of young, mostly English-speaking hackers known as Scattered Spider didn't break any code to get into MGM Resorts. They called the company's IT help desk, pretended to be an employee locked out of their account, and talked their way into a password reset. That single conversation gave them a foothold that let them escalate access across MGM's network, deploy ransomware, and shut down slot machines, hotel key cards, and reservation systems at properties across the US for over a week.</p>
+      <p>The outage reportedly cost MGM over $100 million. Rival casino operator Caesars Entertainment was hit by the same group days earlier and chose to pay a ransom to avoid a similar shutdown.</p>
+      <p>This story is a great first lesson in security because it shows that the weakest link usually isn't a flaw in the code — it's a person following a normal-sounding request. This kind of trick is called <strong>social engineering</strong>, and it's why many companies now require extra proof of identity (like a manager callback or video verification) before resetting anyone's credentials, no matter how convincing the caller sounds.</p>
+      <div class="why">Why it matters for beginners: it's one of the clearest real examples of how "hacking" is often about manipulating people and processes, not just computers.</div>
+    </div>
+  </section>
+
+  <footer>
+    Cybersecurity Digest &middot; automated research digest, verify details at source links before acting &middot; issue generated 2026-08-31
+  </footer>
+
+</div>
