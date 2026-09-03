@@ -1,0 +1,347 @@
+<!doctype html>
+<title>Cybersecurity Digest</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#16232B;
+    --paper:#F2F5F3;
+    --panel:#E7ECE9;
+    --accent:#0F7C82;
+    --accent-ink:#08383B;
+    --line:#D2DAD8;
+    --muted:#57686D;
+    --crit:#B3261E;
+    --crit-bg:#F7E4E2;
+    --high:#A2650F;
+    --high-bg:#F5E7D1;
+    --note:#2C5F8A;
+    --note-bg:#DFE9F1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#E8EEED;
+      --paper:#0E1517;
+      --panel:#16201F;
+      --accent:#57D9DF;
+      --accent-ink:#BEF3F5;
+      --line:#223032;
+      --muted:#96A6A9;
+      --crit:#E5675E;
+      --crit-bg:#3A1E1C;
+      --high:#E3A25B;
+      --high-bg:#3A2C15;
+      --note:#7FB4DE;
+      --note-bg:#17293A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#E8EEED;
+    --paper:#0E1517;
+    --panel:#16201F;
+    --accent:#57D9DF;
+    --accent-ink:#BEF3F5;
+    --line:#223032;
+    --muted:#96A6A9;
+    --crit:#E5675E;
+    --crit-bg:#3A1E1C;
+    --high:#E3A25B;
+    --high-bg:#3A2C15;
+    --note:#7FB4DE;
+    --note-bg:#17293A;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:740px;
+    margin:0 auto;
+    padding:48px 24px 88px;
+  }
+
+  /* Masthead */
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  header.masthead{ margin-bottom:28px; }
+  header.masthead .eyebrow{ display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+  header.masthead .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  h1{
+    font-family:'Fraunces', Georgia, serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(34px, 6vw, 50px);
+    line-height:1.05;
+    letter-spacing:-.01em;
+    margin:0 0 10px;
+    text-wrap:balance;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--muted);
+    max-width:52ch;
+    line-height:1.5;
+    margin:0;
+  }
+  .rule{
+    height:0;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--line);
+    margin:26px 0 0;
+  }
+
+  /* Section headers */
+  section{ margin-top:44px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .section-head .tick{
+    width:16px; height:2px;
+    background:var(--accent);
+    flex:none;
+  }
+  .section-head h2{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+  .section-sub{
+    font-size:14px;
+    color:var(--muted);
+    margin:0 0 18px;
+    padding-left:26px;
+  }
+
+  /* News items */
+  .items{
+    border-top:1px solid var(--line);
+  }
+  .item{
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    gap:6px;
+  }
+  .item h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    font-size:19px;
+    line-height:1.28;
+    margin:0;
+    text-wrap:balance;
+  }
+  .item h3 a{
+    color:var(--ink);
+    text-decoration:none;
+    background-image:linear-gradient(var(--accent), var(--accent));
+    background-repeat:no-repeat;
+    background-position:0 100%;
+    background-size:0% 1px;
+    transition:background-size .15s ease;
+  }
+  .item h3 a:hover, .item h3 a:focus-visible{
+    background-size:100% 1px;
+  }
+  .item h3 a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  .item p{
+    margin:2px 0 0;
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink);
+    max-width:62ch;
+  }
+  .meta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:8px;
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:11.5px;
+    color:var(--muted);
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    padding:2px 8px;
+    border-radius:3px;
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-size:10.5px;
+  }
+  .chip.crit{ background:var(--crit-bg); color:var(--crit); }
+  .chip.high{ background:var(--high-bg); color:var(--high); }
+  .chip.note{ background:var(--note-bg); color:var(--note); }
+  .meta .source{ color:var(--muted); }
+  .meta a.src-link{
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .meta a.src-link:hover{ border-bottom-color:var(--accent); }
+
+  /* Beginner pick */
+  .field-note{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:6px;
+    padding:26px 28px 28px;
+  }
+  .field-note .section-head{ margin-bottom:4px; }
+  .field-note .section-sub{ padding-left:26px; margin-bottom:20px; }
+  .field-note h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    font-size:23px;
+    line-height:1.2;
+    margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .field-note .when{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:11.5px;
+    color:var(--accent-ink);
+    background:color-mix(in srgb, var(--accent) 16%, transparent);
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-bottom:12px;
+    letter-spacing:.04em;
+  }
+  .field-note p{
+    font-size:15.5px;
+    line-height:1.65;
+    margin:0 0 12px;
+    max-width:64ch;
+  }
+  .field-note p:last-of-type{ margin-bottom:0; }
+  .field-note .why{
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-size:14px;
+    color:var(--muted);
+  }
+  .field-note .why b{ color:var(--ink); font-weight:600; }
+
+  footer{
+    margin-top:56px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media (max-width:480px){
+    .wrap{ padding:32px 16px 64px; }
+    .section-sub{ padding-left:0; }
+    .field-note{ padding:20px 18px 22px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="dot"></span> Issue &middot; 2026-09-03 &middot; Weekly Briefing</div>
+    <h1>Cybersecurity Digest</h1>
+    <p class="dek">What broke, what got patched, and what's worth understanding &mdash; from the last two days in security, plus one story to learn from.</p>
+    <div class="rule"></div>
+  </header>
+
+  <section aria-labelledby="h-48h">
+    <div class="section-head"><span class="tick"></span><h2 id="h-48h">Last 48 Hours</h2></div>
+    <p class="section-sub">Verified stories from the past two to three days, grouped by category.</p>
+
+    <div class="section-head" style="margin-top:8px;"><span class="tick" style="background:var(--crit);"></span><h2 style="color:var(--muted);">Breaches &amp; Incidents</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3><a href="https://cybernews.com/news/qilin-ransomware-bureau-alcohol-tobacco-firearms-atf-cyberattack/" target="_blank" rel="noopener">Qilin ransomware gang leaks ATF investigation files after breach</a></h3>
+        <p>The U.S. Bureau of Alcohol, Tobacco, Firearms and Explosives confirmed a breach of a standalone legacy system after the Qilin ransomware gang published roughly 6.3GB of files, including names, phone numbers and device-forensics data tied to active criminal investigations. ATF says its main network and eForms system were unaffected.</p>
+        <div class="meta"><span class="chip crit">Ransomware</span><span class="source">Cybernews</span> &middot; <a class="src-link" href="https://cybernews.com/news/qilin-ransomware-bureau-alcohol-tobacco-firearms-atf-cyberattack/" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+      <article class="item">
+        <h3><a href="https://www.theregister.com/security/2026/09/02/legacy-lenovo-login-opens-5000-dropbox-accounts-to-attackers/" target="_blank" rel="noopener">Flaw in Lenovo's login system let attackers into 5,000 Dropbox accounts</a></h3>
+        <p>Dropbox says attackers exploited a weakness in Lenovo ID's email verification to register accounts under victims' email addresses, then used them to sign into linked Dropbox accounts without a password &mdash; none of which had two-factor authentication turned on. The access window ran August 4&ndash;21.</p>
+        <div class="meta"><span class="chip crit">Breach</span><span class="source">The Register</span> &middot; <a class="src-link" href="https://www.theregister.com/security/2026/09/02/legacy-lenovo-login-opens-5000-dropbox-accounts-to-attackers/" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+    </div>
+
+    <div class="section-head" style="margin-top:32px;"><span class="tick" style="background:var(--high);"></span><h2 style="color:var(--muted);">Vulnerabilities, CVEs &amp; Patches</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3><a href="https://www.bleepingcomputer.com/news/security/sonicwall-warns-of-actively-exploited-sma1000-zero-day-flaws/" target="_blank" rel="noopener">SonicWall SMA1000 VPN appliances under active zero-day attack</a></h3>
+        <p>SonicWall disclosed two flaws in its SMA1000 series (CVE-2026-83548, a pre-auth SSRF scoring a perfect 10.0, and CVE-2026-83549, a post-auth RCE) that attackers are chaining for unauthenticated remote code execution. Hotfixes are out; if you run SMA1000, patch now.</p>
+        <div class="meta"><span class="chip high">CVSS 10.0</span><span class="source">BleepingComputer</span> &middot; <a class="src-link" href="https://www.bleepingcomputer.com/news/security/sonicwall-warns-of-actively-exploited-sma1000-zero-day-flaws/" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+      <article class="item">
+        <h3><a href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-n9k-s1-rce-EH8dEtr" target="_blank" rel="noopener">Cisco Nexus 9000 switches: unauthenticated root RCE via Silicon One</a></h3>
+        <p>CVE-2026-20212 (CVSS 9.8) lets an unauthenticated remote attacker send crafted input to two exposed TCP ports and execute code as root on affected Nexus 9000 Silicon One switches, or crash the device. Cisco published fixes and mitigations on September 2.</p>
+        <div class="meta"><span class="chip high">CVSS 9.8</span><span class="source">Cisco Advisory</span> &middot; <a class="src-link" href="https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-n9k-s1-rce-EH8dEtr" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+      <article class="item">
+        <h3><a href="https://www.jenkins.io/security/advisory/2026-08-05/" target="_blank" rel="noopener">Jenkins ships bumper advisory fixing 30+ CVEs, including RCE flaws</a></h3>
+        <p>Jenkins' latest security advisory patches more than thirty vulnerabilities across core and plugins, including a critical remote-code-execution bug and a symlink-handling flaw in archive extraction. Teams running self-hosted CI/CD should prioritize the controller update.</p>
+        <div class="meta"><span class="chip note">Patch</span><span class="source">Jenkins.io</span> &middot; <a class="src-link" href="https://www.jenkins.io/security/advisory/2026-08-05/" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+    </div>
+
+    <div class="section-head" style="margin-top:32px;"><span class="tick" style="background:var(--note);"></span><h2 style="color:var(--muted);">Industry, Research &amp; AI-Driven Defense</h2></div>
+    <div class="items" style="border-bottom:1px solid var(--line);">
+      <article class="item">
+        <h3><a href="https://thehackernews.com/2026/09/malicious-git-configs-can-make-claude.html" target="_blank" rel="noopener">"GitSpawn" flaws let a booby-trapped repo run code the moment an AI coding agent opens it</a></h3>
+        <p>Researchers found that AI coding tools &mdash; including Claude Code, Codex, Cursor and Grok &mdash; can be tricked by a malicious <code>.git/config</code> into silently running attacker code while gathering background context, with no prompt or approval needed. Vendors are being urged to disable the abused Git setting during automatic context checks.</p>
+        <div class="meta"><span class="chip note">Research</span><span class="source">The Hacker News</span> &middot; <a class="src-link" href="https://thehackernews.com/2026/09/malicious-git-configs-can-make-claude.html" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+      <article class="item">
+        <h3><a href="https://cybersecuritynews.com/gemini-3-8-flash-cyber/amp/" target="_blank" rel="noopener">Google launches Gemini 3.8 Flash Cyber, a model built to find and auto-patch vulnerabilities</a></h3>
+        <p>Google DeepMind's new cybersecurity-focused model is designed to autonomously discover software vulnerabilities, generate fixes, and validate the patch before deployment; Google says it produced 2.6x more correct patches for Chrome bugs than comparable models in internal testing. Access is currently limited to government and critical-infrastructure partners via Google's Fairwind Program.</p>
+        <div class="meta"><span class="chip note">AI Defense</span><span class="source">Cyber Security News</span> &middot; <a class="src-link" href="https://cybersecuritynews.com/gemini-3-8-flash-cyber/amp/" target="_blank" rel="noopener">read source →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-pick">
+    <div class="field-note">
+      <div class="section-head"><span class="tick"></span><h2 id="h-pick">Beginner Pick</h2></div>
+      <p class="section-sub">Not breaking news &mdash; a story worth understanding if you're new to security.</p>
+      <span class="when">May 2021</span>
+      <h3>The Colonial Pipeline attack: how one leaked password shut down fuel for the East Coast</h3>
+      <p>In May 2021, the ransomware group DarkSide broke into Colonial Pipeline, which carries nearly half the fuel supply for the U.S. East Coast, using a single compromised VPN password for an account that didn't have multi-factor authentication enabled. Colonial didn't wait to find out how far the attackers had gotten inside its network &mdash; it proactively shut the pipeline down itself, which was the actual cause of the days of gas shortages and panic-buying that followed, not the hack itself.</p>
+      <p>The company ended up paying roughly $4.4 million in ransom, part of which the FBI later recovered by tracing the cryptocurrency wallet. The incident became the textbook example of how a single weak credential in a "boring" IT system can cascade into a national infrastructure crisis, and it directly pushed U.S. pipeline operators and other critical-infrastructure sectors into new mandatory cybersecurity regulations.</p>
+      <div class="why"><b>Why it matters for beginners:</b> it's the clearest real-world case for two fundamentals you'll hear constantly &mdash; multi-factor authentication and network segmentation between IT and operational systems &mdash; and a reminder that the business decision after a breach can cause more visible damage than the breach itself.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Cybersecurity Digest &middot; issue 2026-09-03</span>
+    <span>Sources linked inline &middot; verify before acting on any advisory</span>
+  </footer>
+
+</div>
