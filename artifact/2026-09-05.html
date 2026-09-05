@@ -1,0 +1,385 @@
+<title>Cybersecurity Digest</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root {
+    --bg: #f3f4f7;
+    --surface: #ffffff;
+    --surface-2: #eceef2;
+    --ink: #131a22;
+    --muted: #5c6672;
+    --faint: #8993a1;
+    --border: #dde1e7;
+    --accent: #1c6d9c;
+    --accent-ink: #0d4c6f;
+    --accent-soft: #e4eef4;
+    --critical: #a3271f;
+    --critical-soft: #fbe9e7;
+    --warn: #8a5a0a;
+    --warn-soft: #fbf1de;
+    --policy: #5b4b8a;
+    --policy-soft: #efeaf9;
+    --feature: #9a4a24;
+    --feature-soft: #f8ece3;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1116;
+      --surface: #151b22;
+      --surface-2: #1b222b;
+      --ink: #e9edf2;
+      --muted: #9aa5b1;
+      --faint: #6b7684;
+      --border: #2a323c;
+      --accent: #6bb3dd;
+      --accent-ink: #9ccbe8;
+      --accent-soft: #16293349;
+      --critical: #e3766d;
+      --critical-soft: #3a1e1c;
+      --warn: #d8ab5c;
+      --warn-soft: #392c14;
+      --policy: #b3a2e6;
+      --policy-soft: #251f3a;
+      --feature: #e2a179;
+      --feature-soft: #3a2418;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0d1116;
+    --surface: #151b22;
+    --surface-2: #1b222b;
+    --ink: #e9edf2;
+    --muted: #9aa5b1;
+    --faint: #6b7684;
+    --border: #2a323c;
+    --accent: #6bb3dd;
+    --accent-ink: #9ccbe8;
+    --accent-soft: #16293349;
+    --critical: #e3766d;
+    --critical-soft: #3a1e1c;
+    --warn: #d8ab5c;
+    --warn-soft: #392c14;
+    --policy: #b3a2e6;
+    --policy-soft: #251f3a;
+    --feature: #e2a179;
+    --feature-soft: #3a2418;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    line-height: 1.55;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  header.masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .dateline {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent-ink);
+    margin: 0 0 1.75rem;
+  }
+
+  h2.section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 3rem 0 0.3rem;
+    text-wrap: balance;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0 0 1.4rem;
+    max-width: 62ch;
+  }
+
+  h3.cat-title {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+    margin: 1.9rem 0 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  h3.cat-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  ul.items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.95rem 1.1rem 1.05rem;
+  }
+
+  .item-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .item h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .item-date {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .item p {
+    margin: 0 0 0.55rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .item a.src {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .item a.src:hover { border-bottom-color: var(--accent-ink); }
+  .item a.src::after { content: " →"; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    margin-bottom: 0.4rem;
+  }
+  .tag.breach { color: var(--critical); background: var(--critical-soft); }
+  .tag.cve { color: var(--critical); background: var(--critical-soft); }
+  .tag.policy { color: var(--policy); background: var(--policy-soft); }
+  .tag.ai { color: var(--accent-ink); background: var(--accent-soft); }
+
+  .kev {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--warn);
+    background: var(--warn-soft);
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+  }
+
+  .beginner {
+    margin-top: 3.2rem;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--feature);
+    background: var(--surface);
+    border-radius: 4px 10px 10px 4px;
+    padding: 1.5rem 1.6rem 1.7rem;
+  }
+
+  .beginner .kicker {
+    color: var(--feature);
+    margin-bottom: 0.6rem;
+  }
+
+  .beginner h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.55rem;
+    margin: 0 0 0.85rem;
+    text-wrap: balance;
+  }
+
+  .beginner p {
+    color: var(--ink);
+    font-size: 0.98rem;
+    max-width: 64ch;
+    margin: 0 0 0.85rem;
+  }
+  .beginner p:last-child { margin-bottom: 0; }
+  .beginner strong { color: var(--feature); }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    .item-head { flex-direction: column; gap: 0.15rem; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>Cybersecurity Digest</h1>
+    <span class="dateline">Issue &middot; September 5, 2026</span>
+  </header>
+  <p class="kicker">A weekly briefing for people leveling up their security literacy</p>
+
+  <section>
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past few days, grouped by what kind of problem they are.</p>
+
+    <h3 class="cat-title">Breaches &amp; Incidents</h3>
+    <ul class="items">
+      <li class="item">
+        <span class="tag breach">Breach</span>
+        <div class="item-head"><h4>Qilin ransomware gang leaks ATF investigation files</h4><span class="item-date">Sep 1</span></div>
+        <p>The U.S. Bureau of Alcohol, Tobacco, Firearms and Explosives confirmed hackers breached a standalone system used for CALEA wiretap records, and the Qilin gang has since published files tied to active criminal investigations. The DOJ has designated it a "major incident."</p>
+        <a class="src" href="https://cybernews.com/cybercrime/atf-qilin-ransomware-cyberattack-data-leak-investigations/">cybernews.com</a>
+      </li>
+      <li class="item">
+        <span class="tag breach">Breach</span>
+        <div class="item-head"><h4>Berlin refuses to pay after Rhysida steals city government data</h4><span class="item-date">Aug 31</span></div>
+        <p>The Rhysida ransomware gang claims to have exfiltrated 5.79 TB (roughly 1.44 million files) from Berlin's administrative network, including contracts, emails and passwords. City officials say they won't pay and found no evidence election systems were touched.</p>
+        <a class="src" href="https://thehackernews.com/2026/08/berlin-refuses-to-pay-hackers-who-stole.html">thehackernews.com</a>
+      </li>
+      <li class="item">
+        <span class="tag breach">Breach</span>
+        <div class="item-head"><h4>153 million driver's licenses surface on dark-web ID market</h4><span class="item-date">Sep 2</span></div>
+        <p>A dark-web service called Nexus is selling scans of over 153 million U.S. and Canadian driver's licenses, apparently sourced from age-verification vendor IDScan.net over more than a year of undetected access. Records tied to Hertz and dispensary partners are reportedly included; the FBI is investigating.</p>
+        <a class="src" href="https://www.securityweek.com/153-million-driver-license-images-offered-on-dark-web/">securityweek.com</a>
+      </li>
+      <li class="item">
+        <span class="tag breach">Breach</span>
+        <div class="item-head"><h4>Manchester Airports Group discloses customer data exposure</h4><span class="item-date">Sep 4</span></div>
+        <p>A breach affecting Manchester, London Stansted and East Midlands airports exposed consolidated customer profiles, including roughly 200,000 records tied to travel booked later this year.</p>
+        <a class="src" href="https://www.privacyguides.org/news/2026/09/04/data-breach-roundup-aug-28-sep-3-2026/">privacyguides.org</a>
+      </li>
+    </ul>
+
+    <h3 class="cat-title">Vulnerabilities &amp; CVEs</h3>
+    <ul class="items">
+      <li class="item">
+        <span class="tag cve">CVE</span><span class="kev">actively exploited</span>
+        <div class="item-head"><h4>SonicWall SMA1000 zero-days chain to full remote takeover</h4><span class="item-date">Sep 1</span></div>
+        <p>CVE-2026-83548 (a pre-auth SSRF, CVSS 10.0) can be chained with CVE-2026-83549 for unauthenticated remote code execution on SMA1000 6210/7210/8200v appliances. Both are in CISA's Known Exploited Vulnerabilities catalog — patch to the latest hotfix now if you run one.</p>
+        <a class="src" href="https://www.securityweek.com/sonicwall-warns-of-two-sma1000-zero-days-exploited-in-attacks/">securityweek.com</a>
+      </li>
+      <li class="item">
+        <span class="tag cve">CVE</span>
+        <div class="item-head"><h4>Cisco discloses three critical 9.8-severity flaws</h4><span class="item-date">Sep 3</span></div>
+        <p>CVE-2026-20274 and CVE-2026-20279 in IOS XR, plus CVE-2026-20212 in NX-OS, could let an attacker execute crafted code with root privileges on affected network infrastructure. Cisco shops should prioritize this week's advisories.</p>
+        <a class="src" href="https://cvebrief.com/archive/2026/09/03/">cvebrief.com</a>
+      </li>
+      <li class="item">
+        <span class="tag policy">Policy</span>
+        <div class="item-head"><h4>CISA issues emergency directive on exploited ICS systems</h4><span class="item-date">Sep 4</span></div>
+        <p>The directive orders critical-infrastructure operators to take immediate mitigation steps against industrial control system flaws already being targeted in the wild.</p>
+        <a class="src" href="https://hipther.com/news/2026/09/04/129674/cybersecurity-roundup-partnerships-funding-and-emerging-threats-september-4-2026-starlink-terminal-r">hipther.com</a>
+      </li>
+    </ul>
+
+    <h3 class="cat-title">Industry, Policy &amp; AI Defense</h3>
+    <ul class="items">
+      <li class="item">
+        <span class="tag ai">AI</span>
+        <div class="item-head"><h4>OpenAI says its new Astra model crosses a "Critical" cyber threshold</h4><span class="item-date">Sep 1</span></div>
+        <p>Astra scored 100% on an internal exploit-development benchmark and independently chained two zero-day vulnerabilities during testing. OpenAI is restricting access to its most powerful offensive capabilities to a small group at launch.</p>
+        <a class="src" href="https://www.cnbc.com/2026/09/01/open-ai-astra-cyber-model.html">cnbc.com</a>
+      </li>
+      <li class="item">
+        <span class="tag ai">AI</span>
+        <div class="item-head"><h4>F5 adds AI-driven anomaly detection to its web app firewall</h4><span class="item-date">Sep 4</span></div>
+        <p>The update leans on agentic threat intelligence to spot and respond to AI-generated attack traffic in real time, part of a broader wave of defenders folding AI into existing security products.</p>
+        <a class="src" href="https://www.news4hackers.com/top-information-security-products-of-the-week-september-4-2026/">news4hackers.com</a>
+      </li>
+      <li class="item">
+        <span class="tag ai">AI</span>
+        <div class="item-head"><h4>Microsoft unveils "Project Perception," a multi-agent SOC concept</h4><span class="item-date">Sep 2026</span></div>
+        <p>The approach uses specialized AI agents that collaborate across detection, triage and response stages of the security lifecycle, reflecting the industry's push toward agentic security operations.</p>
+        <a class="src" href="https://local-ai-zone.github.io/blog/September_2026_AI_Model_Updates.html">local-ai-zone.github.io</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="beginner">
+    <p class="kicker">Beginner Pick &middot; a story worth understanding, not breaking news</p>
+    <h2>The XZ Utils backdoor: a supply-chain attack caught almost by accident</h2>
+    <p>In early 2024, a Microsoft engineer named <strong>Andres Freund</strong> noticed something odd while benchmarking his computer: SSH logins, a routine way to connect securely to remote servers, were taking a fraction of a second longer than they should. Most people would have shrugged it off — he investigated instead.</p>
+    <p>What he found was a deliberately planted backdoor hidden inside <strong>XZ Utils</strong>, a small, widely used open-source compression tool that quietly ships inside countless Linux systems. Over roughly two years, an anonymous contributor had built trust with the project's maintainer under a fake identity, then slipped in malicious code designed to let an attacker with the right secret key bypass SSH authentication entirely on affected servers.</p>
+    <p>Had it gone undetected, the backdoor could have given attackers a hidden master key into an enormous number of servers worldwide — one of the most severe supply-chain compromises ever attempted. It was caught only because one engineer trusted a half-second delay enough to dig in.</p>
+    <p>The lesson for newcomers: modern software is built on layers of open-source components that few people scrutinize line by line, and trust in those components can be quietly exploited over long periods. It's also a reminder that unglamorous habits — noticing when something is slightly slower or slightly "off" — are a real and valuable security skill.</p>
+  </section>
+
+  <footer>
+    <span>Cybersecurity Digest &middot; compiled from public reporting</span>
+    <span>Issue date: 2026-09-05</span>
+  </footer>
+</div>
