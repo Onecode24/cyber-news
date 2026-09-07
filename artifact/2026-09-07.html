@@ -1,0 +1,372 @@
+<title>Cybersecurity Digest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #eef0f3;
+    --paper-raised: #e2e5ea;
+    --ink: #171b23;
+    --ink-soft: #4b5262;
+    --ink-faint: #7b8494;
+    --line: #d3d7de;
+    --accent: #2c4a72;
+    --accent-soft: #dbe3ee;
+    --breach: #a8431f;
+    --breach-soft: #f3dfd4;
+    --vuln: #94660f;
+    --vuln-soft: #f2e6c9;
+    --industry: #5b4b8a;
+    --industry-soft: #e6e0f3;
+    --feature: #4b6b4e;
+    --feature-soft: #dfe8de;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14171d;
+      --paper-raised: #1b1f27;
+      --ink: #e9ebef;
+      --ink-soft: #b0b6c2;
+      --ink-faint: #7c8494;
+      --line: #2c313c;
+      --accent: #7fa3d6;
+      --accent-soft: #223247;
+      --breach: #e08a5f;
+      --breach-soft: #3a2a20;
+      --vuln: #d9b25c;
+      --vuln-soft: #3a3120;
+      --industry: #ac9bd9;
+      --industry-soft: #2c2740;
+      --feature: #93c398;
+      --feature-soft: #212e20;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #14171d;
+    --paper-raised: #1b1f27;
+    --ink: #e9ebef;
+    --ink-soft: #b0b6c2;
+    --ink-faint: #7c8494;
+    --line: #2c313c;
+    --accent: #7fa3d6;
+    --accent-soft: #223247;
+    --breach: #e08a5f;
+    --breach-soft: #3a2a20;
+    --vuln: #d9b25c;
+    --vuln-soft: #3a3120;
+    --industry: #ac9bd9;
+    --industry-soft: #2c2740;
+    --feature: #93c398;
+    --feature-soft: #212e20;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.6rem;
+  }
+
+  h1.title {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5vw, 2.7rem);
+    line-height: 1.05;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0;
+  }
+
+  h2.section-title {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .section-note {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    margin: 0 0 1.6rem;
+  }
+
+  section.news { margin-bottom: 3rem; }
+
+  .category { margin-bottom: 2.1rem; }
+
+  .category-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .dot.breach { background: var(--breach); }
+  .dot.vuln { background: var(--vuln); }
+  .dot.industry { background: var(--industry); }
+
+  .item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .item:last-child { border-bottom: none; }
+
+  .item-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    height: fit-content;
+    white-space: nowrap;
+    margin-top: 0.2rem;
+  }
+  .breach .item-tag { background: var(--breach-soft); color: var(--breach); }
+  .vuln .item-tag { background: var(--vuln-soft); color: var(--vuln); }
+  .industry .item-tag { background: var(--industry-soft); color: var(--industry); }
+
+  .item-head {
+    font-weight: 600;
+    font-size: 1.02rem;
+    margin: 0 0 0.3rem;
+    color: var(--ink);
+  }
+
+  .item-body {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.4rem;
+  }
+
+  .source {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .source:hover, .source:focus-visible { border-bottom-color: var(--accent); }
+  .source::before { content: "→ "; }
+
+  section.feature {
+    background: var(--feature-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.8rem 1.8rem 2rem;
+  }
+
+  .feature-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--feature);
+    margin: 0 0 0.9rem;
+  }
+
+  .feature-eyebrow .dot { background: var(--feature); }
+
+  h3.feature-title {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.55rem;
+    margin: 0 0 0.9rem;
+    text-wrap: balance;
+  }
+
+  .feature p {
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.9rem;
+  }
+  .feature p:last-child { margin-bottom: 0; }
+
+  .feature strong { color: var(--ink); }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    .item { grid-template-columns: 1fr; }
+    .item-tag { width: fit-content; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Cybersecurity Digest · Automated Briefing</p>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <p class="dek">Sunday, September 7, 2026 — what happened in the last few days, and one story to build on if you're new to the field.</p>
+  </header>
+
+  <section class="news">
+    <h2 class="section-title">Last 48 Hours</h2>
+    <p class="section-note">Nine verified stories from the past week, grouped by type.</p>
+
+    <div class="category">
+      <p class="category-head"><span class="dot breach"></span> Breaches &amp; Incidents</p>
+
+      <div class="item breach">
+        <span class="item-tag">Breach</span>
+        <div>
+          <p class="item-head">ATF confirms breach after Qilin ransomware claim</p>
+          <p class="item-body">The ATF confirmed attackers hit a standalone system tied to its CALEA program after the Qilin ransomware group posted over 6GB of files, including details on criminal investigation targets. The Justice Department has designated it a "major incident."</p>
+          <a class="source" href="https://cybernews.com/news/qilin-ransomware-bureau-alcohol-tobacco-firearms-atf-cyberattack/">cybernews.com</a>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <span class="item-tag">Breach</span>
+        <div>
+          <p class="item-head">Berlin's city government refuses to pay Rhysida's ransom</p>
+          <p class="item-body">The Rhysida gang claims it stole 5.79 TB (1.44 million files) from Berlin's state network, including HR, financial, and ID records. Mayor Kai Wegner says the city won't pay the roughly $2.3 million demand.</p>
+          <a class="source" href="https://thehackernews.com/2026/08/berlin-refuses-to-pay-hackers-who-stole.html">thehackernews.com</a>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <span class="item-tag">Breach</span>
+        <div>
+          <p class="item-head">150M+ driver's licenses leaked; FBI investigating</p>
+          <p class="item-body">A dark-web seller advertised searchable scans of more than 153 million US and Canadian driver's licenses — including Defense Secretary Pete Hegseth's — traced to identity-verification vendor IDScan.net.</p>
+          <a class="source" href="https://krebsonsecurity.com/2026/09/fbi-probes-service-selling-153m-drivers-licenses/">krebsonsecurity.com</a>
+        </div>
+      </div>
+
+      <div class="item breach">
+        <span class="item-tag">Breach</span>
+        <div>
+          <p class="item-head">Dropbox: 5,000 accounts hit through a Lenovo login flaw</p>
+          <p class="item-body">Attackers exploited a flawed Lenovo ID integration between August 4–21, registering Lenovo accounts with victims' email addresses to log straight into their Dropbox — no password needed. Dropbox has disabled the integration.</p>
+          <a class="source" href="https://www.theregister.com/security/2026/09/02/legacy-lenovo-login-opens-5000-dropbox-accounts-to-attackers/5293924">theregister.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-head"><span class="dot vuln"></span> Vulnerabilities &amp; CVEs</p>
+
+      <div class="item vuln">
+        <span class="item-tag">CVE</span>
+        <div>
+          <p class="item-head">Chrome patches an actively exploited V8 zero-day</p>
+          <p class="item-body">Google shipped Chrome 152.0.7977.82/.83 to fix CVE-2026-85046, a type-confusion bug in the V8 engine already being exploited in the wild — the sixth Chrome zero-day patched this year. Update your browser now.</p>
+          <a class="source" href="https://thehackernews.com/2026/09/google-releases-chrome-update-to-patch.html">thehackernews.com</a>
+        </div>
+      </div>
+
+      <div class="item vuln">
+        <span class="item-tag">CVE</span>
+        <div>
+          <p class="item-head">"PostGREShell": 12-year-old PostgreSQL flaw enables full takeover</p>
+          <p class="item-body">CVE-2026-6471 lets anyone with replication privileges abuse logical decoding to get remote code execution, permanent superuser rights, and a persistent backdoor. It affects PostgreSQL 9.4–18; patched in 18.6, 17.11, 16.15, 15.19, and 14.24.</p>
+          <a class="source" href="https://www.securityweek.com/12-year-old-postgresql-vulnerability-enables-database-server-takeover/">securityweek.com</a>
+        </div>
+      </div>
+
+      <div class="item vuln">
+        <span class="item-tag">CVE Pending</span>
+        <div>
+          <p class="item-head">Unpatched PoC targets CrowdStrike Falcon on Windows</p>
+          <p class="item-body">A researcher published "FalconFlank," proof-of-concept code abusing Falcon's malicious-macro cleanup routine to escalate a local foothold to full SYSTEM access. CrowdStrike hasn't shipped a fix yet and recommends disabling the affected Office macro-removal policy meanwhile.</p>
+          <a class="source" href="https://thehackernews.com/2026/09/researcher-releases-falconflank-poc.html">thehackernews.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-head"><span class="dot industry"></span> Industry, Policy &amp; AI</p>
+
+      <div class="item industry">
+        <span class="item-tag">Policy</span>
+        <div>
+          <p class="item-head">OpenAI's Astra crosses the "Critical" cyber-capability line</p>
+          <p class="item-body">OpenAI classified its new Astra model as the first to meet the "Critical" tier of its Preparedness Framework for cybersecurity — able to find and exploit unknown flaws in hardened systems largely unsupervised — triggering tighter access controls.</p>
+          <a class="source" href="https://www.cnbc.com/2026/09/01/open-ai-astra-cyber-model.html">cnbc.com</a>
+        </div>
+      </div>
+
+      <div class="item industry">
+        <span class="item-tag">AI Threat</span>
+        <div>
+          <p class="item-head">AI agents ran a full ransomware intrusion in under 10 hours</p>
+          <p class="item-body">A new threat-intel report details a human operator directing AI agents through nearly every stage of a real intrusion — recon to negotiation — compressing roughly two weeks of work into under 10 hours, and auto-generating an 80-page "security audit" for the victim.</p>
+          <a class="source" href="https://www.theregister.com/security/2026/09/02/ai-agents-carried-out-every-step-of-this-ransomware-attack-then-left-the-victim-an-80-page-security-audit/5294009">theregister.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <p class="feature-eyebrow"><span class="dot"></span> Beginner Pick · Field Guide</p>
+    <h3 class="feature-title">Colonial Pipeline: how a billing outage shut down a fuel supply</h3>
+    <p>In May 2021, the ransomware gang DarkSide broke into <strong>Colonial Pipeline</strong>, the company that operates the largest fuel pipeline in the United States, and locked up its billing systems — not the pipeline's actual controls. Unable to accurately bill customers, and unsure how far the intruders had gotten, Colonial proactively shut the pipeline down for six days.</p>
+    <p>That single decision, not the hack itself, is what caused the chaos: gas shortages, panic-buying, and price spikes across the East Coast, serious enough that the White House declared a state of emergency. Colonial paid the attackers roughly $4.4 million in Bitcoin, part of which the FBI later clawed back — one of the first ransom recoveries carried out at scale.</p>
+    <p><strong>Why it matters for newcomers:</strong> Colonial Pipeline is the textbook case for two ideas that show up constantly in security work. First, attackers don't need to touch the "important" system directly — an ordinary IT breach (billing servers, email, a VPN password) can still force a shutdown of something critical. Second, it's why <strong>network segmentation</strong>, keeping business IT and operational technology on separate, isolated networks, became a mainstream priority afterward: if Colonial's billing network had been walled off from pipeline operations, a shutdown might not have been the only safe option.</p>
+  </section>
+
+  <footer>
+    <span>Cybersecurity Digest · automated briefing, sources linked above</span>
+    <span>Issue: 2026-09-07</span>
+  </footer>
+</div>
