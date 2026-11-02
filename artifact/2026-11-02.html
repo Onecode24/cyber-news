@@ -1,0 +1,297 @@
+<title>Cybersecurity Digest</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: single scrollable column, dated masthead, category-grouped news cards, a distinct "Beginner Pick" feature block set apart by a warmer tint */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --border: #ddd8cc;
+  --fg: #1d1b16;
+  --fg-dim: #6b6558;
+  --accent: #1f5e52;
+  --accent-soft: #e4efe9;
+  --feature-bg: #fbf3e4;
+  --feature-border: #e8d6ab;
+  --tag-breach: #9a3324;
+  --tag-vuln: #b5790a;
+  --tag-policy: #1f5e52;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15140f;
+    --surface: #1e1c16;
+    --border: #35321f;
+    --fg: #ece7d8;
+    --fg-dim: #9a927c;
+    --accent: #6fcdb6;
+    --accent-soft: #223029;
+    --feature-bg: #241f12;
+    --feature-border: #4a3c1c;
+    --tag-breach: #e07b63;
+    --tag-vuln: #e0ad4a;
+    --tag-policy: #6fcdb6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15140f;
+  --surface: #1e1c16;
+  --border: #35321f;
+  --fg: #ece7d8;
+  --fg-dim: #9a927c;
+  --accent: #6fcdb6;
+  --accent-soft: #223029;
+  --feature-bg: #241f12;
+  --feature-border: #4a3c1c;
+  --tag-breach: #e07b63;
+  --tag-vuln: #e0ad4a;
+  --tag-policy: #6fcdb6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-block: 32px 64px;
+}
+
+header.masthead {
+  border-bottom: 3px solid var(--fg);
+  padding-bottom: 18px;
+  margin-bottom: 36px;
+}
+.kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+h1.title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  line-height: 1.02;
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+.dateline {
+  font-size: 0.95rem;
+  color: var(--fg-dim);
+  margin: 0;
+}
+
+h2.section-head {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.section-sub {
+  font-size: 0.88rem;
+  color: var(--fg-dim);
+  margin: 0 0 18px;
+}
+section.block { margin-bottom: 44px; }
+
+.category-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 28px 0 12px;
+  padding-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.category-label:first-of-type { margin-top: 4px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.dot.breach { background: var(--tag-breach); }
+.dot.vuln { background: var(--tag-vuln); }
+.dot.policy { background: var(--tag-policy); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+.card h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+.card p {
+  margin: 0 0 10px;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+}
+.card .when {
+  color: var(--fg-dim);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+.card a.src {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+}
+.card a.src:hover { border-bottom-color: var(--accent); }
+
+.feature {
+  background: var(--feature-bg);
+  border: 1px solid var(--feature-border);
+  border-radius: 12px;
+  padding: 24px 22px;
+}
+.feature-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tag-vuln);
+  margin: 0 0 10px;
+}
+.feature h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.feature p {
+  margin: 0 0 12px;
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+.feature p:last-child { margin-bottom: 0; }
+.feature .lesson {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--feature-border);
+  font-size: 0.88rem;
+  color: var(--fg-dim);
+}
+.feature .lesson strong { color: var(--fg); }
+
+footer {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  line-height: 1.6;
+}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="kicker">Issue · Weekly briefing</p>
+    <h1 class="title">Cybersecurity Digest</h1>
+    <p class="dateline">November 2, 2026</p>
+  </header>
+
+  <section class="block">
+    <h2 class="section-head">Last 48 Hours</h2>
+    <p class="section-sub">Verified stories from the past several days, newest first within each group.</p>
+
+    <div class="category-label"><span class="dot breach"></span>Breaches &amp; Incidents</div>
+
+    <div class="card">
+      <h3>Fan-fiction archive AO3 knocked offline by security incident</h3>
+      <p>The Organization for Transformative Works took Archive of Our Own down after finding "evidence of a security incident," separate from a routine maintenance window. OTW says restoring service could take two to four weeks; early reporting says the user database does not appear to have been stolen, though the investigation is ongoing.</p>
+      <div class="meta"><span class="when">Oct 30, 2026</span><a class="src" href="https://www.avclub.com/ao3-fan-fiction-site-down-for-month-security-incident" target="_blank" rel="noopener">AV Club →</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Chainalysis says attacker used "agentic" techniques to breach internal tools</h3>
+      <p>The blockchain analytics firm disclosed that an external actor gained unauthorized access to internal systems using offensive AI-agent techniques, exposing non-sensitive customer data such as names, emails, and role labels. Chainalysis has brought in outside incident responders.</p>
+      <div class="meta"><span class="when">Oct 30, 2026</span><a class="src" href="https://www.chainalysis.com/blog/security-incident-october-30/" target="_blank" rel="noopener">Chainalysis →</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Polymarket users lose roughly $2.7M in third-party vendor breach</h3>
+      <p>Around 700 wallets on the prediction-market platform were drained after a breach at an outside vendor, not Polymarket's own infrastructure. Trading was paused and then restored; the company has pledged to reimburse affected users.</p>
+      <div class="meta"><span class="when">Oct 29, 2026</span><a class="src" href="https://news.bitcoin.com/security/polymarket-halts-trading-exploit-stole-estimated-2-7m-users/" target="_blank" rel="noopener">Bitcoin.com News →</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Hackers leak contact data for 40,000+ DHS staff</h3>
+      <p>A group calling itself "Department of Peace" published names, phone numbers, titles, and addresses for over 40,000 Department of Homeland Security personnel, including ICE and CBP agents, via the leak-hosting site DDoSecrets. The group claims entry through DHS's single sign-on; Okta says it has found no evidence its own systems were compromised.</p>
+      <div class="meta"><span class="when">Oct 28, 2026</span><a class="src" href="https://www.gpb.org/news/2026/10/28/hackers-expose-the-identities-of-more-40000-dhs-employees" target="_blank" rel="noopener">GPB News →</a></div>
+    </div>
+
+    <div class="category-label"><span class="dot vuln"></span>Vulnerabilities &amp; CVEs</div>
+
+    <div class="card">
+      <h3>Critical FortiSIEM flaw allows remote code execution</h3>
+      <p>Singapore's cybersecurity agency warned of CVE-2026-106173, a critical vulnerability (CVSS 9.8) in Fortinet's FortiSIEM that lets attackers run arbitrary code. Organizations running FortiSIEM are urged to patch immediately rather than wait for a routine cycle.</p>
+      <div class="meta"><span class="when">disclosed Oct 22, 2026</span><a class="src" href="https://www.csa.gov.sg/alerts-and-advisories/alerts/al-2026-153/" target="_blank" rel="noopener">CSA Singapore →</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Ivanti Connect Secure zero-day under active exploitation</h3>
+      <p>CISA confirmed in-the-wild exploitation of CVE-2026-104935 in Ivanti Connect Secure and added it to its Known Exploited Vulnerabilities catalog, giving federal agencies a short patching deadline. Rapid7 says attackers are using it to gain initial footholds on VPN gateways.</p>
+      <div class="meta"><span class="when">added to KEV Oct 13, 2026</span><a class="src" href="https://www.rapid7.com/blog/post/etr-ivanti-connect-secure-zero-day-exploited-in-the-wild-cve-2026-104935/" target="_blank" rel="noopener">Rapid7 →</a></div>
+    </div>
+
+    <div class="category-label"><span class="dot policy"></span>Industry &amp; Policy</div>
+
+    <div class="card">
+      <h3>Belgium's tax portal taken offline days before filing deadline</h3>
+      <p>Belgium's federal finance agency shut down MyMinfin, Tax-on-web, and Biztax as a precaution after detecting a cyberattack. Officials say no data leak has been found so far and pushed the October 31 filing deadline to November 16 while they investigate.</p>
+      <div class="meta"><span class="when">Oct 28, 2026</span><a class="src" href="https://www.euronews.com/2026/10/28/belgiums-finance-and-tax-agency-hit-by-cyberattack" target="_blank" rel="noopener">Euronews →</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Moldova shuts down 82 public systems after mass data-scraping attack</h3>
+      <p>Moldova's e-Government Agency says attackers made roughly 11 million requests against government services to pull data tied to about 750,000 national ID numbers, prompting officials to shut down 82 public services and more than 30 IT systems. A government spokesperson called it part of a broader pattern of hybrid attacks on the country.</p>
+      <div class="meta"><span class="when">Oct 19–23, 2026</span><a class="src" href="https://therecord.media/moldova-investigates-possible-foreign-involvement-cyberattacks" target="_blank" rel="noopener">The Record →</a></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-head">Beginner Pick</h2>
+    <p class="section-sub">A past event worth understanding, not breaking news — picked to build foundational knowledge.</p>
+
+    <div class="feature">
+      <p class="feature-eyebrow">Learn the fundamentals</p>
+      <h3>Colonial Pipeline: how one leaked password shut down fuel to the East Coast</h3>
+      <p>In May 2021, the ransomware group DarkSide broke into Colonial Pipeline, which carries nearly half the fuel supply for the U.S. East Coast, through a single compromised VPN password for an account that had no multi-factor authentication. The attackers encrypted the company's billing and business systems. Colonial itself took the pipeline offline as a precaution, even though the operational control systems that actually pump fuel were never touched.</p>
+      <p>The shutdown lasted about six days and triggered real gas shortages and panic buying across the Southeast. Colonial paid roughly $4.4 million in Bitcoin to get a decryption key; the U.S. Department of Justice later recovered about $2.3 million of that ransom by tracing the cryptocurrency wallet.</p>
+      <div class="lesson"><strong>Why it matters for beginners:</strong> the breach didn't require advanced hacking, just one reused or stolen password on an account without MFA. It's a textbook case of how a small, boring gap in "basic" security hygiene can cascade into a national crisis, and why MFA and credential hygiene get so much emphasis in cybersecurity fundamentals.</div>
+    </div>
+  </section>
+
+  <footer>
+    Compiled from public reporting; verify details with the linked sources before acting on them. Published dates are approximate where only a report date, not an incident date, was available.
+  </footer>
+</div>
