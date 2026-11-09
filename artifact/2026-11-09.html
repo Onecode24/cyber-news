@@ -1,0 +1,353 @@
+<title>Cybersecurity Digest</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: single-column briefing — header band, two news sections grouped by category, then a visually distinct "Beginner Pick" feature box */
+:root {
+  --bg: #f1f3f6;
+  --surface: #ffffff;
+  --ink: #171c26;
+  --ink-muted: #565f70;
+  --border: #d9dee6;
+  --accent: #2d4bd6;
+  --accent-soft: #e8ecfb;
+  --critical: #b3261e;
+  --critical-soft: #fbe9e7;
+  --warn: #8a5a00;
+  --warn-soft: #fbf1dc;
+  --good: #146c43;
+  --good-soft: #e3f3ea;
+  --feature-bg: #fff9ec;
+  --feature-border: #e8d6a1;
+
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151d;
+    --surface: #171c27;
+    --ink: #e8ebf2;
+    --ink-muted: #9aa3b5;
+    --border: #2a3140;
+    --accent: #7f9bff;
+    --accent-soft: #212a47;
+    --critical: #ff8077;
+    --critical-soft: #3a1f1f;
+    --warn: #e3b24c;
+    --warn-soft: #3a2f16;
+    --good: #6cd79a;
+    --good-soft: #1b3326;
+    --feature-bg: #211c12;
+    --feature-border: #4a3c1e;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #11151d;
+  --surface: #171c27;
+  --ink: #e8ebf2;
+  --ink-muted: #9aa3b5;
+  --border: #2a3140;
+  --accent: #7f9bff;
+  --accent-soft: #212a47;
+  --critical: #ff8077;
+  --critical-soft: #3a1f1f;
+  --warn: #e3b24c;
+  --warn-soft: #3a2f16;
+  --good: #6cd79a;
+  --good-soft: #1b3326;
+  --feature-bg: #211c12;
+  --feature-border: #4a3c1e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  line-height: 1.55;
+}
+
+.wrap { max-width: 680px; margin: 0 auto; padding-block: 28px 56px; }
+
+.mono {
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+header.masthead {
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 28px;
+}
+.masthead .eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+.masthead h1 {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 7vw, 2.7rem);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  text-wrap: balance;
+}
+.masthead .sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+.masthead .sub .date {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+section.group { margin-bottom: 36px; }
+section.group:last-of-type { margin-bottom: 40px; }
+
+.group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.group-head h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0;
+}
+.group-head .count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.cat-block { margin-bottom: 22px; }
+.cat-block:last-child { margin-bottom: 0; }
+.cat-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+.card:last-child { margin-bottom: 0; }
+.card h3 {
+  font-family: "Archivo", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.card p {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.pill.critical { background: var(--critical-soft); color: var(--critical); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.good { background: var(--good-soft); color: var(--good); }
+.pill.neutral { background: var(--accent-soft); color: var(--accent); }
+
+.card a.source {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.feature {
+  background: var(--feature-bg);
+  border: 1px solid var(--feature-border);
+  border-radius: 14px;
+  padding: 22px 22px 24px;
+}
+.feature .eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warn);
+  margin: 0 0 10px;
+}
+.feature h2 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+.feature .dek {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin: 0 0 14px;
+}
+.feature p {
+  margin: 0 0 12px;
+  font-size: 1.02rem;
+}
+.feature p:last-child { margin-bottom: 0; }
+
+footer.colophon {
+  margin-top: 44px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 440px) {
+  .masthead h1 { font-size: 1.8rem; }
+  .card { padding: 14px 15px; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@500;600&display=swap">
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Issue briefing</p>
+    <h1>Cybersecurity Digest</h1>
+    <div class="sub">
+      <span class="date">Monday, November 9, 2026</span>
+      <span>·</span>
+      <span>Last 48–72 hours, plus one story to learn from</span>
+    </div>
+  </header>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Last 48 Hours</h2>
+      <span class="count mono">7 items</span>
+    </div>
+
+    <div class="cat-block">
+      <p class="cat-label">Breaches &amp; Incidents</p>
+
+      <div class="card">
+        <div class="tags"><span class="pill critical">$6.3B STOLEN</span><span class="pill neutral">CRYPTO</span></div>
+        <h3>Binance says North Korean hackers stole $6.3 billion in roughly 20 minutes</h3>
+        <p>Binance disclosed that attackers — the FBI attributes the theft to North Korea's TraderTraitor group — tricked an engineer into installing a fake developer tool, then drained about $6.3 billion in digital assets. Binance says it has since replenished 98% of the affected funds, and roughly $3 billion in assets have been frozen industry-wide.</p>
+        <a class="source mono" href="https://www.npr.org/2026/11/03/nx-s1-6027799/binance-crypto-exchange-cyber-heist" target="_blank" rel="noopener">Source: NPR →</a>
+      </div>
+
+      <div class="card">
+        <div class="tags"><span class="pill critical">€100M MISSING</span><span class="pill neutral">BANKING</span></div>
+        <h3>French bank Crédit Mutuel Arkéa loses ~€100 million to a supply-chain attack</h3>
+        <p>The bank confirmed on November 5 that attackers entered through a service provider's platform and reached its systems directly, moving roughly €100 million (some trackers estimate higher). Customer assets weren't affected, and French cybercrime police have opened an investigation; the compromised provider hasn't been named.</p>
+        <a class="source mono" href="https://www.insurancejournal.com/news/international/2026/11/06/891802.htm" target="_blank" rel="noopener">Source: Insurance Journal →</a>
+      </div>
+
+      <div class="card">
+        <div class="tags"><span class="pill warn">CARD DATA EXPOSED</span><span class="pill neutral">FINTECH</span></div>
+        <h3>Gnosis Pay discloses breach of its consumer card system</h3>
+        <p>The crypto card provider detected unauthorized access on November 3 and contained it within two hours. Reported data includes card numbers, expiry dates, CVVs, names, and addresses; customer funds were not affected. Gnosis Pay has added mandatory 3D Secure checks and plans to retire the affected system on December 20.</p>
+        <a class="source mono" href="https://cointelegraph.com/news/gnosis-pay-breach-exposes-card-details-personal-data-crypto-wallet-information" target="_blank" rel="noopener">Source: Cointelegraph →</a>
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <p class="cat-label">Vulnerabilities &amp; CVEs</p>
+
+      <div class="card">
+        <div class="tags"><span class="pill critical">CVSS 10.0</span><span class="pill critical">EXPLOITED IN THE WILD</span></div>
+        <h3>Maximum-severity Node-RED flaw under active attack</h3>
+        <p><code class="mono">CVE-2026-58115</code> is a missing-authentication bug in Node-RED's HTTP interface, used heavily in industrial and IoT gear (including Siemens SIMATIC devices). Researchers logged exploitation attempts starting October 30, with attackers abusing built-in nodes to drop Linux bots and webshells that can survive a reboot. Fix: enable Node-RED's <code class="mono">adminAuth</code> and restrict external access now.</p>
+        <a class="source mono" href="https://www.securityweek.com/critical-node-red-flaw-exploited-in-attacks/" target="_blank" rel="noopener">Source: SecurityWeek →</a>
+      </div>
+
+      <div class="card">
+        <div class="tags"><span class="pill critical">ZERO-CLICK RCE</span><span class="pill neutral">ANDROID</span></div>
+        <h3>Android's November bulletin fixes a no-interaction remote code execution bug</h3>
+        <p>Google's November 2026 security bulletin patches 216 issues, including <code class="mono">CVE-2026-58868</code>, a critical Framework flaw that lets an attacker run code on Android 14–17 devices with no tap or interaction required. It's not yet listed as exploited, but patch level 2026-11-01 or later closes it — check for the update.</p>
+        <a class="source mono" href="https://source.android.com/docs/security/bulletin/2026/2026-11-01" target="_blank" rel="noopener">Source: Android Open Source Project →</a>
+      </div>
+
+      <div class="card">
+        <div class="tags"><span class="pill good">HEADS UP</span><span class="pill neutral">MICROSOFT</span></div>
+        <h3>Microsoft's November Patch Tuesday lands tomorrow, November 10</h3>
+        <p>Microsoft's monthly security update is scheduled for November 10 — the day after this issue goes out. Worth a calendar note: plan to review and apply it promptly once it's released, especially on internet-facing Windows servers.</p>
+        <a class="source mono" href="https://blog.qualys.com/vulnerabilities-threat-research/2026/10/13/microsoft-patch-tuesday-october-2026-security-update-review" target="_blank" rel="noopener">Source: Qualys (prior month's review) →</a>
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <p class="cat-label">AI-Driven Defense</p>
+
+      <div class="card">
+        <div class="tags"><span class="pill neutral">NEW TOOL</span></div>
+        <h3>Sysdig launches AI Defense to police autonomous AI agents</h3>
+        <p>Sysdig announced general availability of AI Defense on November 5 — a platform that watches what AI agents actually do across endpoints and cloud environments, checks each action against policy, and can allow, hold for approval, or block it before it completes.</p>
+        <a class="source mono" href="https://www.helpnetsecurity.com/2026/11/05/sysdig-ai-defense/" target="_blank" rel="noopener">Source: Help Net Security →</a>
+      </div>
+
+      <div class="card">
+        <div class="tags"><span class="pill neutral">NEW TOOL</span></div>
+        <h3>Google Cloud expands security tooling for AI agents</h3>
+        <p>On November 8, Google Cloud rolled out new agent-identity controls and tighter Wiz integration, including a preview of CodeMender (an automated code-security agent) and Wiz AI SAST, aimed at organizations running increasing numbers of autonomous AI agents in production.</p>
+        <a class="source mono" href="https://securitybrief.ca/story/google-cloud-launches-new-security-tools-for-ai-agents" target="_blank" rel="noopener">Source: SecurityBrief →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Beginner Pick</h2>
+    </div>
+    <div class="feature">
+      <p class="eyebrow">Learn from history — not breaking news</p>
+      <h2>The Colonial Pipeline attack: how one password shut down fuel for the East Coast</h2>
+      <p class="dek">May 2021 · Ransomware · Critical infrastructure</p>
+      <p>In May 2021, a ransomware gang called DarkSide broke into Colonial Pipeline, which carries almost half the fuel used on the U.S. East Coast, using a single leaked password on an old VPN account that didn't have multi-factor authentication turned on. The password turned up in a batch of credentials leaked from an unrelated breach — the attackers didn't even need to guess it.</p>
+      <p>Colonial didn't wait to find out how far the ransomware had spread into its control systems. It shut the entire pipeline down as a precaution, which triggered gas shortages, panic buying, and price spikes across several states — a striking example of a purely digital attack causing very physical, very visible consequences. The company ended up paying the attackers about $4.4 million in Bitcoin to get a decryption key.</p>
+      <p>The story has a rare twist: the U.S. Department of Justice later traced and recovered roughly $2.3 million of that ransom by following the Bitcoin through the blockchain to a wallet the attackers controlled. For newcomers, this case is a tidy lesson in three ideas that show up constantly in security: how one reused or leaked credential can be enough to get in, why multi-factor authentication matters, and why law enforcement increasingly treats cryptocurrency tracing as a real tool rather than a dead end.</p>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    Cybersecurity Digest is an automated research briefing. Verify details against primary sources before acting on them.
+  </footer>
+
+</div>
