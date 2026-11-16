@@ -1,0 +1,318 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Cybersecurity Digest</title>
+<style>
+  /*
+    Layout: single-column newsletter, masthead + dated rule, category-marked
+    news items on the left border, a distinct dashed "field note" card for
+    the beginner feature at the end.
+  */
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-2: #eceff7;
+    --fg: #171c2b;
+    --fg-dim: #5b6478;
+    --line: #d9deeb;
+    --accent: #b9780a;
+    --accent-ink: #171c2b;
+    --danger: #c23f26;
+    --warn: #b9780a;
+    --info: #0f7a70;
+    --mono-chip: #e9ecf6;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121826;
+      --surface: #182134;
+      --surface-2: #1b2436;
+      --fg: #e7ebf2;
+      --fg-dim: #9aa5b8;
+      --line: #2a3348;
+      --accent: #e8a33d;
+      --accent-ink: #121826;
+      --danger: #e8593d;
+      --warn: #e8a33d;
+      --info: #4fd1c5;
+      --mono-chip: #222c42;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121826;
+    --surface: #182134;
+    --surface-2: #1b2436;
+    --fg: #e7ebf2;
+    --fg-dim: #9aa5b8;
+    --line: #2a3348;
+    --accent: #e8a33d;
+    --accent-ink: #121826;
+    --danger: #e8593d;
+    --warn: #e8a33d;
+    --info: #4fd1c5;
+    --mono-chip: #222c42;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.55;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 32px 56px;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    text-wrap: balance;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+  .wrap { max-width: 680px; margin: 0 auto; }
+
+  /* ---------- Masthead ---------- */
+  header.masthead {
+    border-bottom: 2px solid var(--fg);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  header.masthead h1 {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  header.masthead .date {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.85rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .subhead {
+    color: var(--fg-dim);
+    font-size: 0.95rem;
+    margin: 0 0 32px;
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 40px 0 16px;
+    color: var(--fg);
+  }
+  .section-title::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  section.group:first-of-type .section-title { margin-top: 0; }
+
+  .cat-label {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-dim);
+    margin: 28px 0 10px;
+  }
+
+  /* ---------- News items ---------- */
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--marker, var(--accent));
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .item--breach { --marker: var(--danger); }
+  .item--vuln   { --marker: var(--warn); }
+  .item--ai     { --marker: var(--info); }
+
+  .item h3 {
+    font-size: 1rem;
+    margin: 0 0 6px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+  }
+  .item p {
+    margin: 0 0 10px;
+    color: var(--fg-dim);
+    font-size: 0.92rem;
+  }
+  .item a {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--marker, var(--accent));
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    word-break: break-word;
+  }
+  .item a:hover { opacity: 0.75; }
+
+  /* ---------- Beginner pick ---------- */
+  .feature {
+    margin-top: 48px;
+    border: 2px dashed var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    background: var(--surface-2);
+  }
+  .feature .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-ink);
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .feature h2 {
+    font-size: 1.4rem;
+    margin: 0 0 4px;
+  }
+  .feature .chip {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+    background: var(--mono-chip);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .feature p {
+    margin: 0 0 12px;
+    font-size: 0.97rem;
+  }
+  .feature p:last-child { margin-bottom: 0; }
+  .feature .why {
+    border-top: 1px solid var(--line);
+    margin-top: 16px;
+    padding-top: 14px;
+    font-size: 0.9rem;
+    color: var(--fg-dim);
+  }
+  .feature .why strong { color: var(--fg); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 480px) {
+    header.masthead { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>Cybersecurity Digest</h1>
+    <span class="date">November 16, 2026</span>
+  </header>
+  <p class="subhead">What happened in security this week, and one story to learn from &mdash; built for readers getting their footing in cybersecurity.</p>
+
+  <section class="group">
+    <h2 class="section-title">Last 48 Hours</h2>
+
+    <p class="cat-label">Breaches &amp; Incidents</p>
+
+    <article class="item item--breach">
+      <h3>Fireworks AI's breach turns out wider than first disclosed</h3>
+      <p>An update on Fireworks AI's October intrusion confirmed attackers who got in through a compromised cloud provider accessed customer datasets and a subset of incomplete model weights, plus billing data, for a limited set of accounts.</p>
+      <a href="https://www.bleepingcomputer.com/news/security/fireworks-ai-discloses-new-breach-after-cloud-provider-hack/" target="_blank" rel="noopener">bleepingcomputer.com &rarr;</a>
+    </article>
+
+    <article class="item item--breach">
+      <h3>Railway: stolen AI keys ran up $740K in usage charges</h3>
+      <p>The cloud platform said customer API keys for AI services, stolen through an unrelated compromise, were used by attackers to rack up roughly $740,000 in unauthorized usage before the activity was caught.</p>
+      <a href="https://thehackernews.com" target="_blank" rel="noopener">thehackernews.com &rarr;</a>
+    </article>
+
+    <article class="item item--breach">
+      <h3>Attackers abused Qubole's trusted AWS access to reach customers</h3>
+      <p>Researchers reported that threat actors exploited a trusted AWS cross-account access path tied to the Qubole data platform to break into customer AWS environments and pull data out.</p>
+      <a href="https://thehackernews.com" target="_blank" rel="noopener">thehackernews.com &rarr;</a>
+    </article>
+
+    <p class="cat-label">Vulnerabilities &amp; CVEs</p>
+
+    <article class="item item--vuln">
+      <h3>Microsoft's November Patch Tuesday fixes ~1,100 flaws, one under active attack</h3>
+      <p>Microsoft's monthly update addressed roughly 1,100 vulnerabilities, 63 rated critical, including a zero-day (CVE-2026-124194) already being exploited and a set of critical Windows DNS and DHCP server remote-code-execution bugs.</p>
+      <a href="https://www.action1.com/patch-tuesday/patch-tuesday-november-2026/" target="_blank" rel="noopener">action1.com &rarr;</a>
+    </article>
+
+    <article class="item item--vuln">
+      <h3>China-linked group exploited a BeyondTrust zero-day for months before patch</h3>
+      <p>BeyondTrust confirmed a zero-day (CVE-2026-102764, CVSS 9.3) in its Remote Support appliances was exploited as far back as August by a China-linked actor tracked as Armory Castle/UNC5221; it's now in CISA's Known Exploited Vulnerabilities catalog.</p>
+      <a href="https://www.bleepingcomputer.com/news/security/beyondtrust-patches-zero-day-exploited-in-attacks-since-august" target="_blank" rel="noopener">bleepingcomputer.com &rarr;</a>
+    </article>
+
+    <article class="item item--vuln">
+      <h3>CISA orders agencies to patch two chained Ivanti Connect Secure flaws</h3>
+      <p>Two Ivanti Connect Secure vulnerabilities (CVE-2026-111357 and CVE-2026-118527), chained together with an earlier flaw in real attacks, landed on CISA's exploited-vulnerabilities list with federal fix deadlines of November 2 and November 13.</p>
+      <a href="https://www.helpnetsecurity.com/2026/11/02/cisa-to-federal-agencies-remediate-exploited-ivanti-connect-secure-vulnerabilities-cve-2026-111357-cve-2026-118527" target="_blank" rel="noopener">helpnetsecurity.com &rarr;</a>
+    </article>
+
+    <p class="cat-label">AI-Driven Security &amp; Patch Guidance</p>
+
+    <article class="item item--ai">
+      <h3>OpenAI ships GPT-6 Cyber for security teams</h3>
+      <p>OpenAI released a cybersecurity-focused model built for defenders doing specialized security work, part of a broader push by AI labs into the security space as concern grows over AI-assisted attacks.</p>
+      <a href="https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/" target="_blank" rel="noopener">fortune.com &rarr;</a>
+    </article>
+
+    <article class="item item--ai">
+      <h3>Microsoft's security model moves into preview</h3>
+      <p>Microsoft's MAI-Cyber-1-Flash model, first unveiled in July, reached preview access on November 3, feeding into "Perception," a platform aimed at surfacing hard-to-spot vulnerabilities in complex codebases.</p>
+      <a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system" target="_blank" rel="noopener">techcrunch.com &rarr;</a>
+    </article>
+
+  </section>
+
+  <section class="feature">
+    <span class="eyebrow">Beginner Pick &middot; Learn the history</span>
+    <h2>The Colonial Pipeline Attack</h2>
+    <span class="chip mono">May 2021 &middot; Ransomware</span>
+    <p>In May 2021, a ransomware gang called DarkSide broke into the IT network of Colonial Pipeline, the operator of the largest fuel pipeline in the United States, using a single compromised password for an old VPN account that had no multi-factor authentication. The attackers never touched the pipeline's physical control systems &mdash; they hit the billing and business network. But Colonial shut the pipeline down anyway, because it couldn't be sure the attack hadn't spread, and because it had no way to bill customers for fuel it delivered.</p>
+    <p>The shutdown cut off nearly half the fuel supply to the US East Coast for several days, triggering panic buying, mile-long gas station lines, and a brief spike in prices. Colonial ended up paying the attackers roughly $4.4 million in Bitcoin to get a decryption key, and the US Department of Justice later clawed back a portion of that ransom by tracing the cryptocurrency wallet it moved through.</p>
+    <div class="why">
+      <strong>Why it matters for beginners:</strong> this incident is the textbook example of how a ransomware attack doesn't need to touch the "important" systems to cause real-world chaos &mdash; a weak password and no MFA on a forgotten account was enough. It's also one of the clearest public demonstrations that paying a ransom in cryptocurrency doesn't guarantee anonymity, and that basic hygiene (MFA, network segmentation, retiring old accounts) is often the actual line of defense.
+    </div>
+  </section>
+
+  <footer>
+    Cybersecurity Digest &middot; Automated research digest &middot; Verify details against primary sources before acting
+  </footer>
+
+</div>
